@@ -9,9 +9,12 @@ class_name Character
 @export var character_aim_visuals: Node2D
 @export var character_health: CharacterHealth
 @export var character_health_bar: CharacterHealthBar
+@export var character_block: CharacterBlock
 
 @export var ally: bool = true
+@export var support: bool = true
 @export var character_role: String = ""
+@export var character_importantness: float = 1.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -37,15 +40,23 @@ func _ready():
 		
 		character_attack.shooter = self
 		
+	if character_block:
+		character_block.ally = ally
+		
 	if character_move:
 		character_move.character_to_move = self
 		
 	if character_health and character_health_bar:
 		character_health.hp_changed.connect(character_health_bar.update_hp)
+		character_health.died.connect(queue_free)
 		
 	if GameManager.current_battle_manager != null:
 		if ally:
 			GameManager.current_battle_manager.allies.append(self)
+			if support:
+				GameManager.current_battle_manager.support_allies.append(self)
+			else:
+				GameManager.current_battle_manager.frontline_allies.append(self)
 		else:
 			GameManager.current_battle_manager.enemiess.append(self)
 
@@ -64,6 +75,11 @@ func _physics_process(delta):
 	if (not movement_input_controller) or (not character_move):
 		return
 		
+	if character_block:
+		if character_block.blocked:
+			velocity = Vector2.ZERO
+			return
+		
 	character_move.move_character(movement_input_controller.move_vector)
 		
 	move_and_slide()
@@ -75,3 +91,17 @@ func damage(amount: float, damager: Character):
 		character_health.damage(amount)
 	else:
 		print("No HP component for character!")
+		
+func get_block_weight() -> int:
+	if character_block:
+		return character_block.block_weight
+		
+	return -1
+		
+func block_character() -> bool:
+	if character_block:
+		if not character_block.blocked:
+			character_block.blocked = true
+			return true
+			
+	return false

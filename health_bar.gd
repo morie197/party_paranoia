@@ -14,4 +14,4 @@ func _process(delta):
 	pass
 
 func update_hp(new_hp_percent: float):
-	actual_health_bar.value = new_hp_percent
+	actual_health_bar.value = roundi(new_hp_percent) 
