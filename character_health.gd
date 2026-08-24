@@ -4,6 +4,7 @@ class_name CharacterHealth
 @export var max_hp: float = 10
 @export var current_hp: float = 10
 
+signal hp_changed(percent: float)
 signal died
 
 # Called when the node enters the scene tree for the first time.
@@ -20,5 +21,7 @@ func damage(amount: float):
 	if current_hp <= 0:
 		died.emit()
 		print("Dead lol")
-		
+	
+	hp_changed.emit(current_hp/max_hp * 100)
+	
 	print(current_hp)

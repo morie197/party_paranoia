@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://cd1f3cufc3x8p"]
+
+[ext_resource type="Texture2D" uid="uid://ef1iq8xoylle" path="res://bar_background.png" id="1_82ka4"]
+[ext_resource type="Texture2D" uid="uid://c2vfhciurwafn" path="res://bar_over.png" id="2_4h7ao"]
+[ext_resource type="Texture2D" uid="uid://s4sb106gr1ge" path="res://red_bar_smaller.png" id="3_ck4u4"]
+[ext_resource type="Script" uid="uid://6ijdn8d7nx5q" path="res://health_bar.gd" id="4_phk74"]
+
+[node name="CharacterHPBar" type="TextureProgressBar" unique_id=361129362]
+offset_left = -56.0
+offset_top = -56.0
+offset_right = 56.0
+offset_bottom = -24.0
+max_value = 160.0
+value = 100.0
+nine_patch_stretch = true
+texture_under = ExtResource("1_82ka4")
+texture_over = ExtResource("2_4h7ao")
+texture_progress = ExtResource("3_ck4u4")
+texture_progress_offset = Vector2(23.365, 0)
+script = ExtResource("4_phk74")

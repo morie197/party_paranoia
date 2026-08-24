@@ -8,6 +8,7 @@ class_name Character
 @export var character_attack: Node
 @export var character_aim_visuals: Node2D
 @export var character_health: CharacterHealth
+@export var character_health_bar: CharacterHealthBar
 
 @export var ally: bool = true
 
@@ -37,6 +38,9 @@ func _ready():
 		
 	if character_move:
 		character_move.character_to_move = self
+		
+	if character_health and character_health_bar:
+		character_health.hp_changed.connect(character_health_bar.update_hp)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

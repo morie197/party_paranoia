@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c6883obyp1ilb" path="res://character.gd" id="1_35gl2"]
 [ext_resource type="Script" uid="uid://chdaesq4yyh0h" path="res://character_move.gd" id="2_74pum"]
+[ext_resource type="PackedScene" uid="uid://cd1f3cufc3x8p" path="res://character_hp_bar.tscn" id="4_n8qhk"]
 [ext_resource type="Script" uid="uid://c15iunfn6p2qk" path="res://character_health.gd" id="5_g2n3m"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_33ipd"]
@@ -18,10 +19,11 @@ material = SubResource("StandardMaterial3D_33ipd")
 [sub_resource type="CircleShape2D" id="CircleShape2D_bj0nv"]
 radius = 16.0
 
-[node name="SmallEnemy" type="CharacterBody2D" unique_id=1235497243 node_paths=PackedStringArray("character_aim_visuals", "character_health")]
+[node name="SmallEnemy" type="CharacterBody2D" unique_id=1235497243 node_paths=PackedStringArray("character_aim_visuals", "character_health", "character_health_bar")]
 script = ExtResource("1_35gl2")
 character_aim_visuals = NodePath("AimVisuals")
 character_health = NodePath("CharacterHealth")
+character_health_bar = NodePath("CharacterHPBar")
 ally = false
 metadata/_custom_type_script = "uid://c6883obyp1ilb"
 
@@ -50,3 +52,5 @@ polygon = PackedVector2Array(16, -16, 32, 0, 16, 16, 24, 0)
 
 [node name="CharacterHealth" type="Node" parent="." unique_id=451289663]
 script = ExtResource("5_g2n3m")
+
+[node name="CharacterHPBar" parent="." unique_id=361129362 instance=ExtResource("4_n8qhk")]
