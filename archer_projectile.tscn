@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://c5f5543jot8m1"]
+
+[ext_resource type="Script" uid="uid://c1rq7b12fj7gi" path="res://archer_projectile.gd" id="1_a4rfu"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_5fqsj"]
+size = Vector3(1, 0.5, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pofft"]
+radius = 8.0
+
+[node name="ArcherProjectile" type="Node2D" unique_id=155385979]
+script = ExtResource("1_a4rfu")
+
+[node name="ProjectileVisuals" type="Node2D" parent="." unique_id=425731625]
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="ProjectileVisuals" unique_id=1387698132]
+scale = Vector2(32.5, 8.5)
+mesh = SubResource("BoxMesh_5fqsj")
+
+[node name="ProjectileHitBox" type="Area2D" parent="." unique_id=1980277344]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ProjectileHitBox" unique_id=1564093604]
+shape = SubResource("CircleShape2D_pofft")

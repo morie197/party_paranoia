@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://c6883obyp1ilb" path="res://character.gd" id="1_yyhkc"]
 [ext_resource type="Script" uid="uid://chdaesq4yyh0h" path="res://character_move.gd" id="2_5fqsj"]
 [ext_resource type="Script" uid="uid://cictflrbxlmv3" path="res://player_input.gd" id="2_yyhkc"]
+[ext_resource type="Script" uid="uid://c4ce50nrk6ade" path="res://character_projectile_attack.gd" id="4_5fqsj"]
+[ext_resource type="PackedScene" uid="uid://c5f5543jot8m1" path="res://archer_projectile.tscn" id="5_4d32p"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_h5qqk"]
 radius = 1.0
@@ -13,10 +15,14 @@ height = 2.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_h5qqk"]
 radius = 16.0
 
-[node name="PlayerArcher" type="CharacterBody2D" unique_id=882159276 node_paths=PackedStringArray("movement_input_controller", "character_move")]
+[node name="PlayerArcher" type="CharacterBody2D" unique_id=882159276 node_paths=PackedStringArray("movement_input_controller", "direction_controller", "attack_input_controller", "character_move", "character_attack", "character_aim_visuals")]
 script = ExtResource("1_yyhkc")
 movement_input_controller = NodePath("PlayerInput")
+direction_controller = NodePath("PlayerInput")
+attack_input_controller = NodePath("PlayerInput")
 character_move = NodePath("CharacterMove")
+character_attack = NodePath("CharacterProjectileAttack")
+character_aim_visuals = NodePath("AimVisuals")
 
 [node name="CharacterVisuals" type="Node2D" parent="." unique_id=268260858]
 
@@ -25,7 +31,8 @@ scale = Vector2(16.018143, 16)
 mesh = SubResource("SphereMesh_h5qqk")
 
 [node name="MeshInstance2D2" type="MeshInstance2D" parent="CharacterVisuals" unique_id=1219332382]
-position = Vector2(0, 8)
+position = Vector2(8, 0)
+rotation = -1.5707964
 scale = Vector2(32, 24)
 mesh = SubResource("PrismMesh_h5qqk")
 
@@ -35,6 +42,15 @@ script = ExtResource("2_5fqsj")
 [node name="PlayerCollision" type="CollisionShape2D" parent="." unique_id=1436767257]
 shape = SubResource("CircleShape2D_h5qqk")
 
-[node name="PlayerInput" type="Node" parent="." unique_id=379284341]
+[node name="CharacterProjectileAttack" type="Node" parent="." unique_id=1523114842]
+script = ExtResource("4_5fqsj")
+projectile_to_fire = ExtResource("5_4d32p")
+
+[node name="PlayerInput" type="Node2D" parent="." unique_id=826694354]
 script = ExtResource("2_yyhkc")
 metadata/_custom_type_script = "uid://cictflrbxlmv3"
+
+[node name="AimVisuals" type="Node2D" parent="." unique_id=990575795]
+
+[node name="Polygon2D" type="Polygon2D" parent="AimVisuals" unique_id=1787561655]
+polygon = PackedVector2Array(16, -16, 32, 0, 16, 16, 24, 0)

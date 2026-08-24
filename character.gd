@@ -2,13 +2,33 @@ extends CharacterBody2D
 class_name Character
 
 @export var movement_input_controller: Node
+@export var direction_controller: Node
+@export var attack_input_controller: Node
 @export var character_move: CharacterMove
+@export var character_attack: Node
+@export var character_aim_visuals: Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	if not "move_vector" in movement_input_controller:
-		print("No movement vector for character!")
-		movement_input_controller = null
+	if movement_input_controller:
+		if not "move_vector" in movement_input_controller:
+			print("No movement vector for character!")
+			movement_input_controller = null
+			
+	if direction_controller:
+		if not "facing_direction" in direction_controller:
+			print("No facing vector for character!")
+			direction_controller = null
+		
+	if attack_input_controller:
+		if not "is_attacking" in attack_input_controller:
+			print("No attacking for character!")
+			attack_input_controller = null
+	
+	if character_attack:
+		if not character_attack.has_method("attack"):
+			print("No attack module for character!")
+			character_attack = null
 		
 	if character_move:
 		character_move.character_to_move = self
@@ -16,10 +36,17 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	if (not attack_input_controller) or (not character_attack):
+		return
+	
+	if attack_input_controller.is_attacking:
+		character_attack.attack()
+		
+	character_aim_visuals.look_at(GameManager.mouse_pos)
+		
 
 func _physics_process(delta):
-	if not movement_input_controller and character_move:
+	if (not movement_input_controller) or (not character_move):
 		return
 		
 	character_move.move_character(movement_input_controller.move_vector)
