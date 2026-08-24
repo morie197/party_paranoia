@@ -20,10 +20,8 @@ material = SubResource("StandardMaterial3D_33ipd")
 [sub_resource type="CircleShape2D" id="CircleShape2D_bj0nv"]
 radius = 16.0
 
-[node name="SmallEnemy" type="CharacterBody2D" unique_id=1235497243 node_paths=PackedStringArray("movement_input_controller", "character_move", "character_aim_visuals", "character_health", "character_health_bar")]
+[node name="SmallEnemy" type="CharacterBody2D" unique_id=1235497243 node_paths=PackedStringArray("character_aim_visuals", "character_health", "character_health_bar")]
 script = ExtResource("1_35gl2")
-movement_input_controller = NodePath("CharacterPathfinding")
-character_move = NodePath("CharacterMove")
 character_aim_visuals = NodePath("AimVisuals")
 character_health = NodePath("CharacterHealth")
 character_health_bar = NodePath("CharacterHPBar")

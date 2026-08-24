@@ -27,6 +27,7 @@ character_attack = NodePath("CharacterProjectileAttack")
 character_aim_visuals = NodePath("AimVisuals")
 character_health = NodePath("CharacterHealth")
 character_health_bar = NodePath("CharacterHPBar")
+character_role = "Archer"
 
 [node name="CharacterVisuals" type="Node2D" parent="." unique_id=268260858]
 

@@ -11,6 +11,7 @@ class_name Character
 @export var character_health_bar: CharacterHealthBar
 
 @export var ally: bool = true
+@export var character_role: String = ""
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -41,7 +42,12 @@ func _ready():
 		
 	if character_health and character_health_bar:
 		character_health.hp_changed.connect(character_health_bar.update_hp)
-
+		
+	if GameManager.current_battle_manager != null:
+		if ally:
+			GameManager.current_battle_manager.allies.append(self)
+		else:
+			GameManager.current_battle_manager.enemiess.append(self)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

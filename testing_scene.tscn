@@ -1,12 +1,22 @@
 [gd_scene format=3 uid="uid://huqox1hkg73g"]
 
+[ext_resource type="Script" uid="uid://cj1wf602ob7tw" path="res://battle_manager.gd" id="1_j6xku"]
 [ext_resource type="PackedScene" uid="uid://csobhijpiws8k" path="res://player_archer.tscn" id="1_k6s54"]
 [ext_resource type="PackedScene" uid="uid://b8vkidbd1vvgm" path="res://small_enemy.tscn" id="2_7tmfp"]
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_h5qqk"]
+vertices = PackedVector2Array(2286.6172, 1294.1719, -229.57031, 1341.7891, -166.39063, -182.32031, 2389.289, -269.6328)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-176, -192, 2400, -280, 2296, 1304, -240, 1352)])
+
 [node name="Testing Scene" type="Node2D" unique_id=421939933]
+script = ExtResource("1_j6xku")
 
 [node name="PlayerArcher" parent="." unique_id=882159276 instance=ExtResource("1_k6s54")]
 position = Vector2(32, 24)
 
 [node name="SmallEnemy" parent="." unique_id=1235497243 instance=ExtResource("2_7tmfp")]
 position = Vector2(448, 208)
+
+[node name="BattleNavigation" type="NavigationRegion2D" parent="." unique_id=1889172775]
+navigation_polygon = SubResource("NavigationPolygon_h5qqk")
