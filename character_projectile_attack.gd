@@ -5,6 +5,7 @@ extends Node
 @export var attack_cooldown: float = 0.2
 @export var projectile_attack_damage: float = 3
 @export var projectile_attack_speed: float = 5
+@export var projectile_range: float = 100
 
 var current_attack_cooldown: float = 0
 
@@ -20,7 +21,7 @@ func _process(delta):
 	if current_attack_cooldown > 0:
 		current_attack_cooldown -= delta
 
-func attack():
+func attack(target_position: Vector2):
 	if not current_attack_cooldown <= 0:
 		return
 		
@@ -32,7 +33,7 @@ func attack():
 	
 	
 	var parent_transform: Vector2 = shooter.global_position
-	var direction_to_head: Vector2 = parent_transform.direction_to(GameManager.mouse_pos)
+	var direction_to_head: Vector2 = parent_transform.direction_to(target_position)
 	
 	var projectile = projectile_to_fire.instantiate() as Projectile
 	projectile.projectile_attack_damage = projectile_attack_damage
@@ -43,3 +44,9 @@ func attack():
 	
 	projectile.global_position = parent_transform
 	projectile.global_rotation = direction_to_head.angle()
+
+func can_attack(target: Character) -> bool:
+	if shooter.global_position.distance_to(target.global_position) < projectile_range:
+		return true
+		
+	return false

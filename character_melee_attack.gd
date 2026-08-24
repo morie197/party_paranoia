@@ -1,6 +1,6 @@
 extends Area2D
 
-@export var attack_cooldown: float = 0.4
+@export var attack_cooldown: float = 0.7
 @export var attack_damage: float = 8
 
 var current_attack_cooldown: float = 0
@@ -43,7 +43,7 @@ func _remove_target(body):
 		if targets.has(character):
 			targets.erase(character)
 
-func attack():
+func attack(target_position: Vector2):
 	if not current_attack_cooldown <= 0:
 		return
 		
@@ -52,6 +52,12 @@ func attack():
 		
 	current_attack_cooldown = attack_cooldown
 	
-	look_at(GameManager.mouse_pos)
+	look_at(target_position)
 	
 	queud_attack = 2
+
+func can_attack(target: Character) -> bool:
+	#if targets.has(target):
+	return true
+		
+	#return false

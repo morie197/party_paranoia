@@ -41,3 +41,49 @@ func find_closest_goodguy(searcher: Character, search_range: float = 9999, prefe
 			closest_ally = ally
 	
 	return closest_ally
+	
+func find_closest_badguy(searcher: Character, search_range: float = 9999, preference: String = "", preference_strength: float = 2.0) -> Character:
+	var shortest_distance: float = search_range
+	var closest_ally: Character
+	
+	for enemy in enemiess:
+		if searcher == enemy:
+			continue
+			
+		if enemy == null:
+			print("Hanging reference for enemy!")
+			enemiess.erase(enemy)
+			continue
+			
+		var current_distance: float = enemy.global_position.distance_to(searcher.global_position)
+		
+		if current_distance < shortest_distance:
+			if not preference == "":
+				if (enemy.character_role == preference) or (preference == "preference" and enemy.support) or (preference == "frontline" and not enemy.support):
+					current_distance = current_distance / preference_strength
+			else:
+				current_distance = current_distance / enemy.character_importantness
+			shortest_distance = current_distance
+			closest_ally = enemy
+	
+	return closest_ally
+
+func find_highest_priority_character_in_array(characters: Array[Character]) -> Character:
+	var highest_priority: float = 0
+	var highest_priority_target: Character = null
+	for character in characters:
+		if highest_priority < character.character_importantness:
+			highest_priority = character.character_importantness
+			highest_priority_target = character
+			
+	return highest_priority_target
+
+func remove_character(character_to_remove: Character):
+	if allies.has(character_to_remove):
+		allies.erase(character_to_remove)
+	if enemiess.has(character_to_remove):
+		enemiess.erase(character_to_remove)
+	if support_allies.has(character_to_remove):
+		support_allies.erase(character_to_remove)
+	if frontline_allies.has(character_to_remove):
+		frontline_allies.erase(character_to_remove)

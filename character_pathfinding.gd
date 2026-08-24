@@ -8,12 +8,17 @@ var character_to_control: Character
 @export var enemy_detection_range: float = 9999
 
 var accumulator: float = 0
-var time_until_next_pathfinding: float = 0.2
+var time_until_next_pathfinding: float = 0.3
+
+var target_character: Character = null
+
+var attack_position: Vector2 = Vector2.ZERO
+
+var is_attacking: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	character_to_control = get_parent() as Character
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -35,4 +40,24 @@ func _physics_process(delta):
 		next_pathfinding()
 		
 func next_pathfinding():
-	target_position = GameManager.current_battle_manager.find_closest_goodguy(character_to_control, enemy_detection_range).global_position
+	if not character_to_control:
+		return
+	if character_to_control.character_block and character_to_control.character_block.blocked:
+		target_character = GameManager.current_battle_manager.find_highest_priority_character_in_array(character_to_control.character_block.blocking)
+		target_position = character_to_control.global_position
+	else:
+		if character_to_control.ally:
+			target_character = GameManager.current_battle_manager.find_closest_badguy(character_to_control, enemy_detection_range)
+		else:
+			target_character = GameManager.current_battle_manager.find_closest_goodguy(character_to_control, enemy_detection_range)
+		if target_character and not (character_to_control.ally and character_to_control.support):
+			target_position = target_character.global_position
+		
+	attack_position = target_position
+	if target_character:
+		if character_to_control.character_attack:
+			print(character_to_control.character_attack.can_attack(target_character))
+			if character_to_control.character_attack.can_attack(target_character):
+				is_attacking = true
+			else:
+				is_attacking = false

@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://b7agwitcmj45v" path="res://character_pathfinding.gd" id="5_74pum"]
 [ext_resource type="Script" uid="uid://c15iunfn6p2qk" path="res://character_health.gd" id="5_g2n3m"]
 [ext_resource type="Script" uid="uid://b0vxrdxqpajqr" path="res://character_block.gd" id="6_2t75u"]
+[ext_resource type="Script" uid="uid://3vpk7ho4jj33" path="res://character_melee_attack.gd" id="7_rcvvi"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_33ipd"]
 albedo_color = Color(1, 0, 0, 1)
@@ -21,14 +22,21 @@ material = SubResource("StandardMaterial3D_33ipd")
 [sub_resource type="CircleShape2D" id="CircleShape2D_bj0nv"]
 radius = 16.0
 
-[node name="SmallEnemy" type="CharacterBody2D" unique_id=1235497243 node_paths=PackedStringArray("movement_input_controller", "character_move", "character_aim_visuals", "character_health", "character_health_bar", "character_block")]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g2n3m"]
+radius = 16.0
+height = 64.0
+
+[node name="SmallEnemy" type="CharacterBody2D" unique_id=1235497243 node_paths=PackedStringArray("movement_input_controller", "attack_input_controller", "character_move", "character_attack", "character_aim_visuals", "character_health", "character_health_bar", "character_block", "character_attack_target_controller")]
 script = ExtResource("1_35gl2")
 movement_input_controller = NodePath("CharacterPathfinding")
+attack_input_controller = NodePath("CharacterPathfinding")
 character_move = NodePath("CharacterMove")
+character_attack = NodePath("CharacterMeleeAttack")
 character_aim_visuals = NodePath("AimVisuals")
 character_health = NodePath("CharacterHealth")
 character_health_bar = NodePath("CharacterHPBar")
 character_block = NodePath("CharacterBlock")
+character_attack_target_controller = NodePath("CharacterPathfinding")
 ally = false
 metadata/_custom_type_script = "uid://c6883obyp1ilb"
 
@@ -66,3 +74,10 @@ script = ExtResource("5_74pum")
 [node name="CharacterBlock" type="Area2D" parent="." unique_id=1228230607]
 script = ExtResource("6_2t75u")
 metadata/_custom_type_script = "uid://b0vxrdxqpajqr"
+
+[node name="CharacterMeleeAttack" type="Area2D" parent="." unique_id=757945094]
+script = ExtResource("7_rcvvi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterMeleeAttack" unique_id=1127510741]
+position = Vector2(40, 0)
+shape = SubResource("CapsuleShape2D_g2n3m")

@@ -10,6 +10,7 @@ class_name Character
 @export var character_health: CharacterHealth
 @export var character_health_bar: CharacterHealthBar
 @export var character_block: CharacterBlock
+@export var character_attack_target_controller: Node
 
 @export var ally: bool = true
 @export var support: bool = true
@@ -41,7 +42,7 @@ func _ready():
 		character_attack.shooter = self
 		
 	if character_block:
-		character_block.ally = ally
+		character_block.character_to_control = self
 		
 	if character_move:
 		character_move.character_to_move = self
@@ -49,6 +50,7 @@ func _ready():
 	if character_health and character_health_bar:
 		character_health.hp_changed.connect(character_health_bar.update_hp)
 		character_health.died.connect(queue_free)
+		character_health.died.connect(GameManager.current_battle_manager.remove_character.bind(self))
 		
 	if GameManager.current_battle_manager != null:
 		if ally:
@@ -62,17 +64,20 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if (not attack_input_controller) or (not character_attack):
+	if (not attack_input_controller) or (not character_attack) or (not character_attack_target_controller):
 		return
 	
 	if attack_input_controller.is_attacking:
-		character_attack.attack()
-		
-	character_aim_visuals.look_at(GameManager.mouse_pos)
+		character_attack.attack(character_attack_target_controller.attack_position)
+	
+	character_aim_visuals.look_at(character_attack_target_controller.attack_position)
 		
 
 func _physics_process(delta):
 	if (not movement_input_controller) or (not character_move):
+		return
+		
+	if ally and support:
 		return
 		
 	if character_block:
@@ -98,9 +103,10 @@ func get_block_weight() -> int:
 		
 	return -1
 		
-func block_character() -> bool:
+func block_character(blocker: Character) -> bool:
 	if character_block:
 		if not character_block.blocked:
+			
 			character_block.blocked = true
 			return true
 			

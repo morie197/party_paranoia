@@ -8,6 +8,8 @@ var facing_direction: Vector2 = Vector2.ZERO
 var is_attacking: bool = false
 var pressed_special: bool = false
 
+var attack_position: Vector2 = Vector2.ZERO
+
 #var scroll_axis: int = 0
 
 func _ready():
@@ -19,6 +21,8 @@ func _process(_delta) -> void:
 	
 	is_attacking = Input.is_action_pressed("attack")
 	pressed_special = Input.is_action_just_pressed("special")
+	
+	attack_position = GameManager.mouse_pos
 	
 	#if Input.is_action_just_pressed("zoom_in"):
 		#scroll_axis = -1
