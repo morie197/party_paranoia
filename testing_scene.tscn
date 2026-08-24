@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://huqox1hkg73g"]
+
+[ext_resource type="PackedScene" uid="uid://csobhijpiws8k" path="res://player_archer.tscn" id="1_k6s54"]
+
+[node name="Testing Scene" type="Node2D" unique_id=421939933]
+
+[node name="PlayerArcher" parent="." unique_id=882159276 instance=ExtResource("1_k6s54")]
+position = Vector2(32, 24)

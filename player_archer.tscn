@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://csobhijpiws8k"]
+
+[ext_resource type="Script" uid="uid://c6883obyp1ilb" path="res://character.gd" id="1_yyhkc"]
+[ext_resource type="Script" uid="uid://chdaesq4yyh0h" path="res://character_move.gd" id="2_5fqsj"]
+[ext_resource type="Script" uid="uid://cictflrbxlmv3" path="res://player_input.gd" id="2_yyhkc"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_h5qqk"]
+radius = 1.0
+height = 2.0
+
+[sub_resource type="PrismMesh" id="PrismMesh_h5qqk"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_h5qqk"]
+radius = 16.0
+
+[node name="PlayerArcher" type="CharacterBody2D" unique_id=882159276 node_paths=PackedStringArray("movement_input_controller", "character_move")]
+script = ExtResource("1_yyhkc")
+movement_input_controller = NodePath("PlayerInput")
+character_move = NodePath("CharacterMove")
+
+[node name="CharacterVisuals" type="Node2D" parent="." unique_id=268260858]
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="CharacterVisuals" unique_id=1661056562]
+scale = Vector2(16.018143, 16)
+mesh = SubResource("SphereMesh_h5qqk")
+
+[node name="MeshInstance2D2" type="MeshInstance2D" parent="CharacterVisuals" unique_id=1219332382]
+position = Vector2(0, 8)
+scale = Vector2(32, 24)
+mesh = SubResource("PrismMesh_h5qqk")
+
+[node name="CharacterMove" type="Node" parent="." unique_id=1845476671]
+script = ExtResource("2_5fqsj")
+
+[node name="PlayerCollision" type="CollisionShape2D" parent="." unique_id=1436767257]
+shape = SubResource("CircleShape2D_h5qqk")
+
+[node name="PlayerInput" type="Node" parent="." unique_id=379284341]
+script = ExtResource("2_yyhkc")
+metadata/_custom_type_script = "uid://cictflrbxlmv3"
