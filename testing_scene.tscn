@@ -1,8 +1,12 @@
 [gd_scene format=3 uid="uid://huqox1hkg73g"]
 
 [ext_resource type="PackedScene" uid="uid://csobhijpiws8k" path="res://player_archer.tscn" id="1_k6s54"]
+[ext_resource type="PackedScene" uid="uid://b8vkidbd1vvgm" path="res://small_enemy.tscn" id="2_7tmfp"]
 
 [node name="Testing Scene" type="Node2D" unique_id=421939933]
 
 [node name="PlayerArcher" parent="." unique_id=882159276 instance=ExtResource("1_k6s54")]
 position = Vector2(32, 24)
+
+[node name="SmallEnemy" parent="." unique_id=1235497243 instance=ExtResource("2_7tmfp")]
+position = Vector2(448, 208)

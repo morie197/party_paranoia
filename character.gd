@@ -7,6 +7,9 @@ class_name Character
 @export var character_move: CharacterMove
 @export var character_attack: Node
 @export var character_aim_visuals: Node2D
+@export var character_health: CharacterHealth
+
+@export var ally: bool = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -30,6 +33,8 @@ func _ready():
 			print("No attack module for character!")
 			character_attack = null
 		
+		character_attack.shooter = self
+		
 	if character_move:
 		character_move.character_to_move = self
 
@@ -52,3 +57,11 @@ func _physics_process(delta):
 	character_move.move_character(movement_input_controller.move_vector)
 		
 	move_and_slide()
+	
+func damage(amount: float, damager: Character):
+	if damager.ally == ally: # no friendly fire
+		return
+	if character_health:
+		character_health.damage(amount)
+	else:
+		print("No HP component for character!")
