@@ -1,5 +1,8 @@
-extends TextureProgressBar
+extends Control
 class_name CharacterHealthBar
+
+@onready var actual_health_bar = %ActualHealthBar
+@onready var fancy_shmancy = %FancyShmancy
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -11,4 +14,4 @@ func _process(delta):
 	pass
 
 func update_hp(new_hp_percent: float):
-	value = new_hp_percent
+	actual_health_bar.value = new_hp_percent
