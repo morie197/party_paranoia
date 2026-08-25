@@ -20,6 +20,8 @@ func _process(delta):
 
 func damage(amount: float):
 	var damage_taken: float = clampf(amount - defense, 1, 9999)
+	if amount <= 0:
+		damage_taken = amount
 	current_hp = clampf(current_hp - damage_taken, 0, max_hp)
 	if current_hp <= 0:
 		died.emit()

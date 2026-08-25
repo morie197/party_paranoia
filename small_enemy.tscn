@@ -65,6 +65,9 @@ polygon = PackedVector2Array(16, -16, 32, 0, 16, 16, 24, 0)
 
 [node name="CharacterHealth" type="Node" parent="." unique_id=451289663]
 script = ExtResource("5_g2n3m")
+max_hp = 60.0
+current_hp = 60.0
+defense = 7.0
 
 [node name="CharacterHPBar" parent="." unique_id=361129362 instance=ExtResource("4_n8qhk")]
 
@@ -77,6 +80,8 @@ metadata/_custom_type_script = "uid://b0vxrdxqpajqr"
 
 [node name="CharacterMeleeAttack" type="Area2D" parent="." unique_id=757945094]
 script = ExtResource("7_rcvvi")
+attack_cooldown = 2.0
+attack_damage = 3.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterMeleeAttack" unique_id=1127510741]
 position = Vector2(40, 0)

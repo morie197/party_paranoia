@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://csobhijpiws8k" path="res://player_archer.tscn" id="1_k6s54"]
 [ext_resource type="PackedScene" uid="uid://b8vkidbd1vvgm" path="res://small_enemy.tscn" id="2_7tmfp"]
 [ext_resource type="PackedScene" uid="uid://sgwgiv4jxgcl" path="res://warrior.tscn" id="3_j6xku"]
+[ext_resource type="PackedScene" uid="uid://b0cgq36e4w8ir" path="res://healer.tscn" id="5_y47j6"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_h5qqk"]
 vertices = PackedVector2Array(2286.6172, 1294.1719, -229.57031, 1341.7891, -166.39063, -182.32031, 2389.289, -269.6328)
@@ -19,9 +20,11 @@ position = Vector2(448, 208)
 [node name="BattleNavigation" type="NavigationRegion2D" parent="." unique_id=1889172775]
 navigation_polygon = SubResource("NavigationPolygon_h5qqk")
 
-[node name="PlayerArcher" parent="." unique_id=882159276 instance=ExtResource("3_j6xku")]
-position = Vector2(200, 240)
-support = false
-
-[node name="PlayerArcher2" parent="." unique_id=457729495 instance=ExtResource("1_k6s54")]
+[node name="PlayerArcher" parent="." unique_id=457729495 instance=ExtResource("1_k6s54")]
 position = Vector2(192, 80)
+
+[node name="Warrior" parent="." unique_id=882159276 instance=ExtResource("3_j6xku")]
+position = Vector2(312, 224)
+
+[node name="Healer" parent="." unique_id=2046218235 instance=ExtResource("5_y47j6")]
+position = Vector2(56, 160)

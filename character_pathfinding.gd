@@ -16,6 +16,8 @@ var attack_position: Vector2 = Vector2.ZERO
 
 var is_attacking: bool = false
 
+@export var healer: bool = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	character_to_control = get_parent() as Character
@@ -42,21 +44,25 @@ func _physics_process(delta):
 func next_pathfinding():
 	if not character_to_control:
 		return
-	if character_to_control.character_block and character_to_control.character_block.blocked:
-		target_character = GameManager.current_battle_manager.find_highest_priority_character_in_array(character_to_control.character_block.blocking)
-		target_position = character_to_control.global_position
-	else:
+		
+	if healer:
 		if character_to_control.ally:
-			target_character = GameManager.current_battle_manager.find_closest_badguy(character_to_control, enemy_detection_range)
+			target_character = GameManager.current_battle_manager.find_lowest_health_percent_ally()
+	else:
+		if character_to_control.character_block and character_to_control.character_block.blocked:
+			target_character = GameManager.current_battle_manager.find_highest_priority_character_in_array(character_to_control.character_block.blocking)
+			target_position = character_to_control.global_position
 		else:
-			target_character = GameManager.current_battle_manager.find_closest_goodguy(character_to_control, enemy_detection_range)
-		if target_character and not (character_to_control.ally and character_to_control.support):
-			target_position = target_character.global_position
+			if character_to_control.ally:
+				target_character = GameManager.current_battle_manager.find_closest_badguy(character_to_control, enemy_detection_range)
+			else:
+				target_character = GameManager.current_battle_manager.find_closest_goodguy(character_to_control, enemy_detection_range)
+			if target_character and not (character_to_control.ally and character_to_control.support):
+				target_position = target_character.global_position
 		
 	attack_position = target_position
 	if target_character:
 		if character_to_control.character_attack:
-			print(character_to_control.character_attack.can_attack(target_character))
 			if character_to_control.character_attack.can_attack(target_character):
 				is_attacking = true
 			else:

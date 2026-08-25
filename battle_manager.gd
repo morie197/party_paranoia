@@ -78,6 +78,19 @@ func find_highest_priority_character_in_array(characters: Array[Character]) -> C
 			
 	return highest_priority_target
 
+func find_lowest_health_percent_ally() -> Character:
+	var lowest_health_percentage: float = 100
+	var lowest_health_percentage_ally: Character = null
+	for ally in allies:
+		if ally.character_health:
+			var health_percantage: float = ally.character_health.current_hp / ally.character_health.max_hp
+			if health_percantage < lowest_health_percentage:
+				lowest_health_percentage_ally = ally
+				lowest_health_percentage = health_percantage
+				
+	return lowest_health_percentage_ally
+	
+
 func remove_character(character_to_remove: Character):
 	if allies.has(character_to_remove):
 		allies.erase(character_to_remove)

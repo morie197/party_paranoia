@@ -78,6 +78,7 @@ func _physics_process(delta):
 		return
 		
 	if ally and support:
+		#print(character_role)
 		return
 		
 	if character_block:
@@ -90,7 +91,7 @@ func _physics_process(delta):
 	move_and_slide()
 	
 func damage(amount: float, damager: Character):
-	if damager.ally == ally: # no friendly fire
+	if amount > 0 and damager.ally == ally: # no friendly fire
 		return
 	if character_health:
 		character_health.damage(amount)
