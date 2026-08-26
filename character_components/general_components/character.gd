@@ -67,7 +67,7 @@ func _physics_process(delta):
 		return
 		
 	if character_block:
-		if character_block.blocked:
+		if character_block.currently_blocking:
 			velocity = Vector2.ZERO
 			return
 		
@@ -91,9 +91,8 @@ func get_block_weight() -> int:
 		
 func block_character(blocker: Character) -> bool:
 	if character_block:
-		if not character_block.blocked:
-			
-			character_block.blocked = true
+		if not character_block.currently_blocking:
+			character_block.currently_blocking = true
 			return true
 			
 	return false

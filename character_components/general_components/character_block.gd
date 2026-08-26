@@ -7,6 +7,7 @@ class_name CharacterBlock
 var current_block: int = 0
 
 var blocked: bool = false
+var currently_blocking: bool = false
 
 var character_to_control: Character
 
@@ -36,11 +37,13 @@ func _block(body):
 		return
 	else:
 		if not character.block_character(character_to_control):
-			print("Failed to block character!")
+			#print("Failed to block character!")
 			return
 	
 	if new_current_block == max_block:
 		blocked = true
+		
+	currently_blocking = true
 	
 	current_block = new_current_block
 	if not blocking.has(character):
@@ -58,9 +61,9 @@ func _unblock(body):
 	if character.ally == character_to_control. ally:
 		return
 		
-	if not blocked and (character.character_block and character.character_block.blocked):
-		print("Block mismatch?")
-		return
+	#if not blocked and (character.character_block and character.character_block.blocked):
+	#	print("Block mismatch?")
+	#	return
 	
 	var enemy_weight: int = character.get_block_weight()
 	if enemy_weight == -1:
@@ -77,3 +80,6 @@ func _unblock(body):
 		if character.character_block.blocking.has(character_to_control):
 			character.character_block.blocking.erase(character_to_control)
 		blocking.erase(character)
+
+	if blocking.size() <= 0:
+		currently_blocking = false

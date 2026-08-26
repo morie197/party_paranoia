@@ -56,7 +56,7 @@ func next_pathfinding():
 		if character_to_control.ally:
 			target_character = GameManager.current_battle_manager.find_lowest_health_percent_ally()
 	else:
-		if character_to_control.character_block and character_to_control.character_block.blocked:
+		if character_to_control.character_block and character_to_control.character_block.currently_blocking:
 			target_character = GameManager.current_battle_manager.find_highest_priority_character_in_array(character_to_control.character_block.blocking)
 			target_position = character_to_control.global_position
 		else:
