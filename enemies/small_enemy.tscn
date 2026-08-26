@@ -42,6 +42,7 @@ mesh = SubResource("SphereMesh_we8ff")
 
 [node name="CharacterMove" type="Node" parent="." unique_id=1205528765]
 script = ExtResource("2_74pum")
+character_movement_speed = 100.0
 
 [node name="PlayerCollision" type="CollisionShape2D" parent="." unique_id=1880721788]
 shape = SubResource("CircleShape2D_bj0nv")
@@ -53,9 +54,6 @@ polygon = PackedVector2Array(16, -16, 32, 0, 16, 16, 24, 0)
 
 [node name="CharacterHealth" type="Node" parent="." unique_id=451289663]
 script = ExtResource("5_g2n3m")
-max_hp = 60.0
-current_hp = 60.0
-defense = 7.0
 
 [node name="CharacterHPBar" parent="." unique_id=361129362 instance=ExtResource("4_n8qhk")]
 

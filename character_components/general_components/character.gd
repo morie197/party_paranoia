@@ -19,6 +19,7 @@ class_name Character
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	collision_mask = 0
 	
 	if character_attack:
 		character_attack.shooter = self

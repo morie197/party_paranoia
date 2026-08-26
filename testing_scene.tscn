@@ -32,6 +32,18 @@ position = Vector2(720, 392)
 [node name="SmallEnemy5" parent="." unique_id=1344386078 instance=ExtResource("2_7tmfp")]
 position = Vector2(672, 96)
 
+[node name="SmallEnemy6" parent="." unique_id=1699156806 instance=ExtResource("2_7tmfp")]
+position = Vector2(624, 232)
+
+[node name="SmallEnemy7" parent="." unique_id=427642911 instance=ExtResource("2_7tmfp")]
+position = Vector2(568, 48)
+
+[node name="SmallEnemy8" parent="." unique_id=1296709944 instance=ExtResource("2_7tmfp")]
+position = Vector2(808, 112)
+
+[node name="SmallEnemy9" parent="." unique_id=876622447 instance=ExtResource("2_7tmfp")]
+position = Vector2(648, 352)
+
 [node name="BattleNavigation" type="NavigationRegion2D" parent="." unique_id=1889172775]
 visible = false
 navigation_polygon = SubResource("NavigationPolygon_h5qqk")

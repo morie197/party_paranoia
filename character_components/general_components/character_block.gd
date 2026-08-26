@@ -12,15 +12,9 @@ var character_to_control: Character
 
 var blocking: Array[Character]
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	body_entered.connect(_block)
 	body_exited.connect(_unblock)
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
 
 func _block(body):
 	if body is not Character:
@@ -64,7 +58,7 @@ func _unblock(body):
 	if character.ally == character_to_control. ally:
 		return
 		
-	if not blocked and character.character_block and character.character_block.blocked:
+	if not blocked and (character.character_block and character.character_block.blocked):
 		print("Block mismatch?")
 		return
 	

@@ -30,6 +30,7 @@ character_health_bar = NodePath("CharacterHPBar")
 character_block = NodePath("CharacterBlock")
 character_attack_target_controller = NodePath("CharacterPathfinding")
 character_role = "Healer"
+character_importantness = 5.0
 
 [node name="CharacterVisuals" type="Node2D" parent="." unique_id=268260858]
 
@@ -54,6 +55,7 @@ polygon = PackedVector2Array(16, -16, 32, 0, 16, 16, 24, 0)
 
 [node name="CharacterHealth" type="Node" parent="." unique_id=1527748649]
 script = ExtResource("6_mncj0")
+defense = 2.0
 
 [node name="CharacterHPBar" parent="." unique_id=361129362 instance=ExtResource("7_6kryf")]
 

@@ -18,9 +18,16 @@ var is_attacking: bool = false
 
 @export var healer: bool = false
 
+var initial_position: Vector2
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	debug_enabled = true
+	target_desired_distance = 30
+	
 	character_to_control = get_parent() as Character
+	if character_to_control:
+		initial_position = character_to_control.global_position
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -68,5 +75,7 @@ func next_pathfinding():
 			else:
 				is_attacking = false
 	else:
-		target_position = character_to_control.global_position
+		#target_position = character_to_control.global_position
+		attack_position = initial_position
+		target_position = initial_position
 		is_attacking = false

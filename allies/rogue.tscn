@@ -35,6 +35,7 @@ character_block = NodePath("CharacterBlock")
 character_attack_target_controller = NodePath("CharacterPathfinding")
 support = false
 character_role = "Rogue"
+character_importantness = 0.5
 
 [node name="CharacterVisuals" type="Node2D" parent="." unique_id=268260858]
 
@@ -45,6 +46,7 @@ mesh = SubResource("SphereMesh_h5qqk")
 
 [node name="CharacterMove" type="Node" parent="." unique_id=1845476671]
 script = ExtResource("2_uol7f")
+character_movement_speed = 100.0
 
 [node name="PlayerCollision" type="CollisionShape2D" parent="." unique_id=1436767257]
 shape = SubResource("CircleShape2D_h5qqk")

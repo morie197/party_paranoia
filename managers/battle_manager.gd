@@ -26,6 +26,7 @@ func _process(delta):
 func find_closest_goodguy(searcher: Character, search_range: float = 9999, preference: String = "", preference_strength: float = 2.0) -> Character:
 	var shortest_distance: float = search_range
 	var closest_ally: Character
+	var lowest_score: float = 9999
 	
 	for ally in allies:
 		if searcher == ally:
@@ -34,19 +35,29 @@ func find_closest_goodguy(searcher: Character, search_range: float = 9999, prefe
 		var current_distance: float = ally.global_position.distance_to(searcher.global_position)
 		
 		if current_distance < shortest_distance:
+			var target_value: float = 0
 			if not preference == "":
 				if (ally.character_role == preference) or (preference == "preference" and ally.support) or (preference == "frontline" and not ally.support):
-					current_distance = current_distance / preference_strength
+					target_value = preference_strength
 			else:
-				current_distance = current_distance / ally.character_importantness
-			shortest_distance = current_distance
-			closest_ally = ally
+				target_value = ally.character_importantness
+			
+			if ally.character_block and ally.character_block.blocked: # ignore targets already fully blocked
+				continue
+			
+			if current_distance / target_value < lowest_score:
+				lowest_score = current_distance / target_value
+				#shortest_distance = current_distance
+				closest_ally = ally
+	
+			
 	
 	return closest_ally
 	
 func find_closest_badguy(searcher: Character, search_range: float = 9999, preference: String = "", preference_strength: float = 2.0) -> Character:
 	var shortest_distance: float = search_range
-	var closest_ally: Character
+	var closest_enemy: Character
+	var lowest_score: float = 9999
 	
 	for enemy in enemiess:
 		if searcher == enemy:
@@ -60,15 +71,22 @@ func find_closest_badguy(searcher: Character, search_range: float = 9999, prefer
 		var current_distance: float = enemy.global_position.distance_to(searcher.global_position)
 		
 		if current_distance < shortest_distance:
+			var target_value: float = 0
 			if not preference == "":
 				if (enemy.character_role == preference) or (preference == "preference" and enemy.support) or (preference == "frontline" and not enemy.support):
-					current_distance = current_distance / preference_strength
+					target_value = preference_strength
 			else:
-				current_distance = current_distance / enemy.character_importantness
-			shortest_distance = current_distance
-			closest_ally = enemy
+				target_value = enemy.character_importantness
+			
+			if enemy.character_block and enemy.character_block.blocked: # ignore targets already fully blocked
+				continue
+			
+			if current_distance / target_value < lowest_score:
+				lowest_score = current_distance / target_value
+				#shortest_distance = current_distance
+				closest_enemy = enemy
 	
-	return closest_ally
+	return closest_enemy
 	
 func find_closest_opposing_character_by_position(search_position: Vector2, ally: bool, search_range: float = 9999, preference: String = "", preference_strength: float = 2.0) -> Character:
 	var shortest_distance: float = search_range
