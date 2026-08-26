@@ -64,7 +64,7 @@ func _unblock(body):
 	if character.ally == character_to_control. ally:
 		return
 		
-	if not blocked and character.blocked:
+	if not blocked and character.character_block and character.character_block.blocked:
 		print("Block mismatch?")
 		return
 	

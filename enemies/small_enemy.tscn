@@ -1,23 +1,16 @@
 [gd_scene format=3 uid="uid://b8vkidbd1vvgm"]
 
-[ext_resource type="Script" uid="uid://c6883obyp1ilb" path="res://character.gd" id="1_35gl2"]
-[ext_resource type="Script" uid="uid://chdaesq4yyh0h" path="res://character_move.gd" id="2_74pum"]
-[ext_resource type="PackedScene" uid="uid://cd1f3cufc3x8p" path="res://character_hp_bar.tscn" id="4_n8qhk"]
-[ext_resource type="Script" uid="uid://b7agwitcmj45v" path="res://character_pathfinding.gd" id="5_74pum"]
-[ext_resource type="Script" uid="uid://c15iunfn6p2qk" path="res://character_health.gd" id="5_g2n3m"]
-[ext_resource type="Script" uid="uid://b0vxrdxqpajqr" path="res://character_block.gd" id="6_2t75u"]
-[ext_resource type="Script" uid="uid://3vpk7ho4jj33" path="res://character_melee_attack.gd" id="7_rcvvi"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_33ipd"]
-albedo_color = Color(1, 0, 0, 1)
+[ext_resource type="Script" uid="uid://c6883obyp1ilb" path="res://character_components/general_components/character.gd" id="1_35gl2"]
+[ext_resource type="Script" uid="uid://chdaesq4yyh0h" path="res://character_components/general_components/character_move.gd" id="2_74pum"]
+[ext_resource type="PackedScene" uid="uid://cd1f3cufc3x8p" path="res://character_components/hp_bar/character_hp_bar.tscn" id="4_n8qhk"]
+[ext_resource type="Script" uid="uid://b7agwitcmj45v" path="res://character_components/general_components/character_pathfinding.gd" id="5_74pum"]
+[ext_resource type="Script" uid="uid://c15iunfn6p2qk" path="res://character_components/general_components/character_health.gd" id="5_g2n3m"]
+[ext_resource type="Script" uid="uid://b0vxrdxqpajqr" path="res://character_components/general_components/character_block.gd" id="6_2t75u"]
+[ext_resource type="Script" uid="uid://3vpk7ho4jj33" path="res://character_components/attacks/character_melee_attack.gd" id="7_rcvvi"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_we8ff"]
-material = SubResource("StandardMaterial3D_33ipd")
 radius = 1.0
 height = 2.0
-
-[sub_resource type="PrismMesh" id="PrismMesh_6il6n"]
-material = SubResource("StandardMaterial3D_33ipd")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bj0nv"]
 radius = 16.0
@@ -43,14 +36,9 @@ metadata/_custom_type_script = "uid://c6883obyp1ilb"
 [node name="CharacterVisuals" type="Node2D" parent="." unique_id=816173349]
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="CharacterVisuals" unique_id=1132985853]
+modulate = Color(1, 0, 0, 1)
 scale = Vector2(16.018143, 16)
 mesh = SubResource("SphereMesh_we8ff")
-
-[node name="MeshInstance2D2" type="MeshInstance2D" parent="CharacterVisuals" unique_id=170589426]
-position = Vector2(8, 0)
-rotation = -1.5707964
-scale = Vector2(32, 24)
-mesh = SubResource("PrismMesh_6il6n")
 
 [node name="CharacterMove" type="Node" parent="." unique_id=1205528765]
 script = ExtResource("2_74pum")

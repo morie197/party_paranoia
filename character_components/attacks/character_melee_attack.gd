@@ -25,9 +25,9 @@ func _physics_process(delta):
 	if queud_attack > 0:
 		queud_attack -= 1
 	if queud_attack == 1:
-		print("Attacked")
+		#print("Attacked")
 		for character in targets:
-			print("Damaged enemy!")
+			#print("Damaged enemy!")
 			character.damage(attack_damage, shooter)
 
 func _new_target(body):

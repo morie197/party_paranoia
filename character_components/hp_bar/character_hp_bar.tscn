@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://cd1f3cufc3x8p"]
 
-[ext_resource type="Texture2D" uid="uid://s4sb106gr1ge" path="res://red_bar_smaller.png" id="1_lwj68"]
-[ext_resource type="Script" uid="uid://6ijdn8d7nx5q" path="res://health_bar.gd" id="1_qox0y"]
-[ext_resource type="Texture2D" uid="uid://btbftnls5qbv3" path="res://bar_background-export.png" id="2_qox0y"]
-[ext_resource type="Texture2D" uid="uid://qaopffehxs6n" path="res://bar_over-export.png" id="3_7s8gc"]
+[ext_resource type="Texture2D" uid="uid://s4sb106gr1ge" path="res://character_components/hp_bar/red_bar_smaller.png" id="1_lwj68"]
+[ext_resource type="Script" uid="uid://6ijdn8d7nx5q" path="res://character_components/hp_bar/health_bar.gd" id="1_qox0y"]
+[ext_resource type="Texture2D" uid="uid://btbftnls5qbv3" path="res://character_components/hp_bar/bar_background-export.png" id="2_qox0y"]
+[ext_resource type="Texture2D" uid="uid://qaopffehxs6n" path="res://character_components/hp_bar/bar_over-export.png" id="3_7s8gc"]
 
 [node name="CharacterHPBar" type="Control" unique_id=171970079]
 layout_mode = 3

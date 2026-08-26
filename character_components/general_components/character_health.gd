@@ -29,4 +29,4 @@ func damage(amount: float):
 	
 	hp_changed.emit(current_hp/max_hp * 100)
 	
-	print(current_hp)
+	#print(current_hp)

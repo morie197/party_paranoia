@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://myde0rbm00g4"]
+
+[ext_resource type="Script" uid="uid://c6883obyp1ilb" path="res://character_components/general_components/character.gd" id="1_n14h4"]
+[ext_resource type="Script" uid="uid://chdaesq4yyh0h" path="res://character_components/general_components/character_move.gd" id="2_0ler0"]
+[ext_resource type="Script" uid="uid://c4ce50nrk6ade" path="res://character_components/attacks/character_projectile_attack.gd" id="3_e5co2"]
+[ext_resource type="PackedScene" uid="uid://f5cuyi6a858t" path="res://projectiles/mage/mage_projectile.tscn" id="4_wy5gp"]
+[ext_resource type="Script" uid="uid://c15iunfn6p2qk" path="res://character_components/general_components/character_health.gd" id="6_fj3sj"]
+[ext_resource type="PackedScene" uid="uid://cd1f3cufc3x8p" path="res://character_components/hp_bar/character_hp_bar.tscn" id="7_2deag"]
+[ext_resource type="Script" uid="uid://b0vxrdxqpajqr" path="res://character_components/general_components/character_block.gd" id="8_a3nql"]
+[ext_resource type="Script" uid="uid://b7agwitcmj45v" path="res://character_components/general_components/character_pathfinding.gd" id="8_wy5gp"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_h5qqk"]
+radius = 1.0
+height = 2.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_h5qqk"]
+radius = 16.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sgtvy"]
+radius = 32.0
+
+[node name="Mage" type="CharacterBody2D" unique_id=882159276 node_paths=PackedStringArray("movement_input_controller", "attack_input_controller", "character_move", "character_attack", "character_aim_visuals", "character_health", "character_health_bar", "character_block", "character_attack_target_controller")]
+script = ExtResource("1_n14h4")
+movement_input_controller = NodePath("CharacterPathfinding")
+attack_input_controller = NodePath("CharacterPathfinding")
+character_move = NodePath("CharacterMove")
+character_attack = NodePath("CharacterProjectileAttack")
+character_aim_visuals = NodePath("AimVisuals")
+character_health = NodePath("CharacterHealth")
+character_health_bar = NodePath("CharacterHPBar")
+character_block = NodePath("CharacterBlock")
+character_attack_target_controller = NodePath("CharacterPathfinding")
+character_role = "Mage"
+
+[node name="CharacterVisuals" type="Node2D" parent="." unique_id=268260858]
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="CharacterVisuals" unique_id=1661056562]
+modulate = Color(0.6477824, 0.40800944, 0.99457556, 1)
+scale = Vector2(16.018143, 16)
+mesh = SubResource("SphereMesh_h5qqk")
+
+[node name="CharacterMove" type="Node" parent="." unique_id=1845476671]
+script = ExtResource("2_0ler0")
+
+[node name="PlayerCollision" type="CollisionShape2D" parent="." unique_id=1436767257]
+shape = SubResource("CircleShape2D_h5qqk")
+
+[node name="CharacterProjectileAttack" type="Node" parent="." unique_id=1523114842]
+script = ExtResource("3_e5co2")
+projectile_to_fire = ExtResource("4_wy5gp")
+attack_cooldown = 1.0
+projectile_attack_damage = 10.0
+projectile_range = 500.0
+
+[node name="AimVisuals" type="Node2D" parent="." unique_id=990575795]
+
+[node name="Polygon2D" type="Polygon2D" parent="AimVisuals" unique_id=1787561655]
+polygon = PackedVector2Array(16, -16, 32, 0, 16, 16, 24, 0)
+
+[node name="CharacterHealth" type="Node" parent="." unique_id=1527748649]
+script = ExtResource("6_fj3sj")
+
+[node name="CharacterHPBar" parent="." unique_id=361129362 instance=ExtResource("7_2deag")]
+
+[node name="CharacterBlock" type="Area2D" parent="." unique_id=1935040815]
+script = ExtResource("8_a3nql")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBlock" unique_id=1558963342]
+shape = SubResource("CircleShape2D_sgtvy")
+
+[node name="CharacterPathfinding" type="NavigationAgent2D" parent="." unique_id=1443102643]
+script = ExtResource("8_wy5gp")
+metadata/_custom_type_script = "uid://b7agwitcmj45v"

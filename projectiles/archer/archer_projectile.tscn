@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c5f5543jot8m1"]
 
-[ext_resource type="Script" uid="uid://c1rq7b12fj7gi" path="res://archer_projectile.gd" id="1_a4rfu"]
+[ext_resource type="Script" uid="uid://c1rq7b12fj7gi" path="res://projectiles/archer/archer_projectile.gd" id="1_vxemq"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_5fqsj"]
 size = Vector3(1, 0.5, 1)
@@ -9,7 +9,7 @@ size = Vector3(1, 0.5, 1)
 radius = 8.0
 
 [node name="ArcherProjectile" type="Node2D" unique_id=155385979]
-script = ExtResource("1_a4rfu")
+script = ExtResource("1_vxemq")
 
 [node name="ProjectileVisuals" type="Node2D" parent="." unique_id=425731625]
 

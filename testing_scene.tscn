@@ -1,10 +1,13 @@
 [gd_scene format=3 uid="uid://huqox1hkg73g"]
 
-[ext_resource type="Script" uid="uid://cj1wf602ob7tw" path="res://battle_manager.gd" id="1_j6xku"]
-[ext_resource type="PackedScene" uid="uid://csobhijpiws8k" path="res://player_archer.tscn" id="1_k6s54"]
-[ext_resource type="PackedScene" uid="uid://b8vkidbd1vvgm" path="res://small_enemy.tscn" id="2_7tmfp"]
-[ext_resource type="PackedScene" uid="uid://sgwgiv4jxgcl" path="res://warrior.tscn" id="3_j6xku"]
-[ext_resource type="PackedScene" uid="uid://b0cgq36e4w8ir" path="res://healer.tscn" id="5_y47j6"]
+[ext_resource type="Script" uid="uid://cj1wf602ob7tw" path="res://managers/battle_manager.gd" id="1_j6xku"]
+[ext_resource type="PackedScene" uid="uid://csobhijpiws8k" path="res://allies/player_archer.tscn" id="1_k6s54"]
+[ext_resource type="PackedScene" uid="uid://b8vkidbd1vvgm" path="res://enemies/small_enemy.tscn" id="2_7tmfp"]
+[ext_resource type="PackedScene" uid="uid://sgwgiv4jxgcl" path="res://allies/warrior.tscn" id="3_j6xku"]
+[ext_resource type="PackedScene" uid="uid://b0cgq36e4w8ir" path="res://allies/healer.tscn" id="5_y47j6"]
+[ext_resource type="PackedScene" uid="uid://myde0rbm00g4" path="res://allies/mage.tscn" id="6_uxw26"]
+[ext_resource type="PackedScene" uid="uid://b4eas3wbgdjfc" path="res://allies/rogue.tscn" id="7_7yy31"]
+[ext_resource type="PackedScene" uid="uid://dgtou5mcf2wkl" path="res://allies/tank.tscn" id="8_wlvp0"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_h5qqk"]
 vertices = PackedVector2Array(2286.6172, 1294.1719, -229.57031, 1341.7891, -166.39063, -182.32031, 2389.289, -269.6328)
@@ -15,16 +18,38 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(-176, -192, 2400, -280,
 script = ExtResource("1_j6xku")
 
 [node name="SmallEnemy" parent="." unique_id=1235497243 instance=ExtResource("2_7tmfp")]
-position = Vector2(448, 208)
+position = Vector2(488, 136)
+
+[node name="SmallEnemy2" parent="." unique_id=542232509 instance=ExtResource("2_7tmfp")]
+position = Vector2(760, 224)
+
+[node name="SmallEnemy3" parent="." unique_id=1851830970 instance=ExtResource("2_7tmfp")]
+position = Vector2(520, 352)
+
+[node name="SmallEnemy4" parent="." unique_id=428857823 instance=ExtResource("2_7tmfp")]
+position = Vector2(720, 392)
+
+[node name="SmallEnemy5" parent="." unique_id=1344386078 instance=ExtResource("2_7tmfp")]
+position = Vector2(672, 96)
 
 [node name="BattleNavigation" type="NavigationRegion2D" parent="." unique_id=1889172775]
+visible = false
 navigation_polygon = SubResource("NavigationPolygon_h5qqk")
 
 [node name="PlayerArcher" parent="." unique_id=457729495 instance=ExtResource("1_k6s54")]
-position = Vector2(192, 80)
+position = Vector2(40, 256)
 
 [node name="Warrior" parent="." unique_id=882159276 instance=ExtResource("3_j6xku")]
-position = Vector2(312, 224)
+position = Vector2(200, 168)
 
 [node name="Healer" parent="." unique_id=2046218235 instance=ExtResource("5_y47j6")]
-position = Vector2(56, 160)
+position = Vector2(40, 104)
+
+[node name="Mage" parent="." unique_id=1067034344 instance=ExtResource("6_uxw26")]
+position = Vector2(40, 400)
+
+[node name="Rogue" parent="." unique_id=658558371 instance=ExtResource("7_7yy31")]
+position = Vector2(200, 328)
+
+[node name="Tank" parent="." unique_id=227405942 instance=ExtResource("8_wlvp0")]
+position = Vector2(328, 248)

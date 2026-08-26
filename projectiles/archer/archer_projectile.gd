@@ -11,7 +11,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _physics_process(delta):
 	position += projectile_direction * projectile_attack_speed * delta * arrow_speed
 
 func _hit(body):

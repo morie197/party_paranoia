@@ -19,26 +19,8 @@ class_name Character
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	if movement_input_controller:
-		if not "move_vector" in movement_input_controller:
-			print("No movement vector for character!")
-			movement_input_controller = null
-			
-	if direction_controller:
-		if not "facing_direction" in direction_controller:
-			print("No facing vector for character!")
-			direction_controller = null
-		
-	if attack_input_controller:
-		if not "is_attacking" in attack_input_controller:
-			print("No attacking for character!")
-			attack_input_controller = null
 	
 	if character_attack:
-		if not character_attack.has_method("attack"):
-			print("No attack module for character!")
-			character_attack = null
-		
 		character_attack.shooter = self
 		
 	if character_block:
@@ -49,10 +31,11 @@ func _ready():
 		
 	if character_health and character_health_bar:
 		character_health.hp_changed.connect(character_health_bar.update_hp)
-		character_health.died.connect(queue_free)
+		#character_health.died.connect(queue_free)
 		character_health.died.connect(GameManager.current_battle_manager.remove_character.bind(self))
 		
 	if GameManager.current_battle_manager != null:
+		GameManager.current_battle_manager.all_characters.append(self)
 		if ally:
 			GameManager.current_battle_manager.allies.append(self)
 			if support:

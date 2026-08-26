@@ -1,18 +1,16 @@
 [gd_scene format=3 uid="uid://sgwgiv4jxgcl"]
 
-[ext_resource type="Script" uid="uid://c6883obyp1ilb" path="res://character.gd" id="1_c5i84"]
-[ext_resource type="Script" uid="uid://chdaesq4yyh0h" path="res://character_move.gd" id="2_6rioa"]
-[ext_resource type="Script" uid="uid://c15iunfn6p2qk" path="res://character_health.gd" id="6_0w1sp"]
-[ext_resource type="Script" uid="uid://3vpk7ho4jj33" path="res://character_melee_attack.gd" id="7_b3obm"]
-[ext_resource type="Script" uid="uid://b7agwitcmj45v" path="res://character_pathfinding.gd" id="7_c5i84"]
-[ext_resource type="PackedScene" uid="uid://cd1f3cufc3x8p" path="res://character_hp_bar.tscn" id="7_sbkwi"]
-[ext_resource type="Script" uid="uid://b0vxrdxqpajqr" path="res://character_block.gd" id="8_0ffui"]
+[ext_resource type="Script" uid="uid://c6883obyp1ilb" path="res://character_components/general_components/character.gd" id="1_p2wc0"]
+[ext_resource type="Script" uid="uid://chdaesq4yyh0h" path="res://character_components/general_components/character_move.gd" id="2_6rioa"]
+[ext_resource type="Script" uid="uid://c15iunfn6p2qk" path="res://character_components/general_components/character_health.gd" id="6_0w1sp"]
+[ext_resource type="Script" uid="uid://3vpk7ho4jj33" path="res://character_components/attacks/character_melee_attack.gd" id="7_b3obm"]
+[ext_resource type="Script" uid="uid://b7agwitcmj45v" path="res://character_components/general_components/character_pathfinding.gd" id="7_c5i84"]
+[ext_resource type="PackedScene" uid="uid://cd1f3cufc3x8p" path="res://character_components/hp_bar/character_hp_bar.tscn" id="7_sbkwi"]
+[ext_resource type="Script" uid="uid://b0vxrdxqpajqr" path="res://character_components/general_components/character_block.gd" id="8_0ffui"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_h5qqk"]
 radius = 1.0
 height = 2.0
-
-[sub_resource type="PrismMesh" id="PrismMesh_h5qqk"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_h5qqk"]
 radius = 16.0
@@ -25,7 +23,7 @@ radius = 16.0
 height = 64.0
 
 [node name="Warrior" type="CharacterBody2D" unique_id=882159276 node_paths=PackedStringArray("movement_input_controller", "attack_input_controller", "character_move", "character_attack", "character_aim_visuals", "character_health", "character_health_bar", "character_block", "character_attack_target_controller")]
-script = ExtResource("1_c5i84")
+script = ExtResource("1_p2wc0")
 movement_input_controller = NodePath("CharacterPathfinding")
 attack_input_controller = NodePath("CharacterPathfinding")
 character_move = NodePath("CharacterMove")
@@ -41,14 +39,9 @@ character_role = "Warrior"
 [node name="CharacterVisuals" type="Node2D" parent="." unique_id=268260858]
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="CharacterVisuals" unique_id=1661056562]
+modulate = Color(0.16862746, 0.25882354, 1, 1)
 scale = Vector2(16.018143, 16)
 mesh = SubResource("SphereMesh_h5qqk")
-
-[node name="MeshInstance2D2" type="MeshInstance2D" parent="CharacterVisuals" unique_id=1219332382]
-position = Vector2(8, 0)
-rotation = -1.5707964
-scale = Vector2(32, 24)
-mesh = SubResource("PrismMesh_h5qqk")
 
 [node name="CharacterMove" type="Node" parent="." unique_id=1845476671]
 script = ExtResource("2_6rioa")
