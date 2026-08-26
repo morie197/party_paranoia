@@ -54,6 +54,8 @@ func _process(delta):
 		character_attack.attack(character_attack_target_controller.attack_position)
 	
 	character_aim_visuals.look_at(character_attack_target_controller.attack_position)
+	if character_role == "Healer":
+		print(character_attack_target_controller.attack_position)
 		
 
 func _physics_process(delta):

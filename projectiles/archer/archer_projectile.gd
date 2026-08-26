@@ -20,4 +20,6 @@ func _hit(body):
 		return
 		
 	var character = body as Character
-	character.damage(projectile_attack_damage, shooter)
+	if character.ally != shooter.ally:
+		character.damage(projectile_attack_damage, shooter)
+		queue_free()

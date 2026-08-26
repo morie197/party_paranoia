@@ -49,7 +49,7 @@ func attack(target_position: Vector2):
 	#projectile.global_rotation = direction_to_head.angle()
 
 func can_attack(target: Character) -> bool:
-	#if shooter.global_position.distance_to(target.global_position) < projectile_range:
-	return true
+	if current_attack_cooldown <= 0:
+		return true
 		
-	#return false
+	return false

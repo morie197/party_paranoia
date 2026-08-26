@@ -57,13 +57,13 @@ func next_pathfinding():
 				target_character = GameManager.current_battle_manager.find_closest_badguy(character_to_control, enemy_detection_range)
 			else:
 				target_character = GameManager.current_battle_manager.find_closest_goodguy(character_to_control, enemy_detection_range)
-			if target_character and ((not (character_to_control.ally and character_to_control.support)) or (character_to_control.character_role == "Mage")):
+			if target_character and (not (character_to_control.ally and character_to_control.support)):
 				target_position = target_character.global_position
-		
-	attack_position = target_position
+	
 	if target_character:
 		if character_to_control.character_attack:
 			if character_to_control.character_attack.can_attack(target_character):
+				attack_position = target_character.global_position
 				is_attacking = true
 			else:
 				is_attacking = false

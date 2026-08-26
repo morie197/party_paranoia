@@ -125,6 +125,9 @@ func find_lowest_health_percent_ally() -> Character:
 				lowest_health_percentage_ally = ally
 				lowest_health_percentage = health_percantage
 				
+	if lowest_health_percentage_ally.character_health and (lowest_health_percentage_ally.character_health.max_hp == lowest_health_percentage_ally.character_health.current_hp):
+		return null
+				
 	return lowest_health_percentage_ally
 	
 
