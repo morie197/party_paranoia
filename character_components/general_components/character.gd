@@ -31,6 +31,7 @@ func _ready():
 		
 	if character_health and character_health_bar:
 		character_health.hp_changed.connect(character_health_bar.update_hp)
+		character_health_bar.initialize_health_bar(ally) 
 		#character_health.died.connect(queue_free)
 		character_health.died.connect(GameManager.current_battle_manager.remove_character.bind(self))
 		
@@ -54,8 +55,6 @@ func _process(delta):
 		character_attack.attack(character_attack_target_controller.attack_position)
 	
 	character_aim_visuals.look_at(character_attack_target_controller.attack_position)
-	if character_role == "Healer":
-		print(character_attack_target_controller.attack_position)
 		
 
 func _physics_process(delta):

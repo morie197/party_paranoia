@@ -40,6 +40,7 @@ func attack(target_position: Vector2):
 	projectile.projectile_attack_speed = projectile_attack_speed
 	projectile.projectile_direction = direction_to_head
 	projectile.shooter = shooter
+	projectile.projectile_range = projectile_range
 	shooter.add_sibling(projectile)
 	
 	projectile.global_position = parent_transform

@@ -5,15 +5,20 @@ class_name ArcherProjectile
 
 var arrow_speed: float = 100
 
-# Called when the node enters the scene tree for the first time.
+var distance_traveled: float = 0
+
 func _ready():
 	projectile_hit_box.body_entered.connect(_hit)
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
+	var old_position = position
 	position += projectile_direction * projectile_attack_speed * delta * arrow_speed
-
+	
+	distance_traveled += old_position.distance_to(position)
+	if distance_traveled >= projectile_range:
+		queue_free()
+	
 func _hit(body):
 	if body is not Character:
 		print("Invalid target!")

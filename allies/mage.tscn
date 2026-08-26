@@ -48,8 +48,8 @@ shape = SubResource("CircleShape2D_h5qqk")
 [node name="CharacterProjectileAttack" type="Node" parent="." unique_id=1523114842]
 script = ExtResource("3_e5co2")
 projectile_to_fire = ExtResource("4_wy5gp")
-attack_cooldown = 1.0
-projectile_attack_damage = 10.0
+attack_cooldown = 2.0
+projectile_attack_damage = 13.0
 projectile_range = 500.0
 
 [node name="AimVisuals" type="Node2D" parent="." unique_id=990575795]

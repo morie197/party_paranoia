@@ -11,6 +11,8 @@ var current_closest_opposing_character: Character
 var closest_character_check_accumulator: float = 0
 var closest_character_check_delay: float = 0.5
 
+var distance_traveled: float = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	projectile_hit_box.body_entered.connect(_hit)
@@ -24,7 +26,12 @@ func _process(delta):
 		
 	
 func _physics_process(delta):
+	var old_position = position
 	position += projectile_direction * projectile_attack_speed * delta * orb_speed
+	
+	distance_traveled += old_position.distance_to(position)
+	if distance_traveled >= projectile_range:
+		queue_free()
 	
 	if not current_closest_opposing_character:
 		return
