@@ -9,6 +9,7 @@ var character_attack: Node
 var character_move: CharacterMove
 var character_health: CharacterHealth
 var character_block: CharacterBlock
+var character_visuals: CharacterVisuals
 
 var debuff_timers: Dictionary[String, Timer]
 
@@ -23,6 +24,7 @@ func init_stats():
 	character_move = character.character_move
 	character_health = character.character_health
 	character_block = character.character_block
+	character_visuals = character.character_visuals
 	
 	
 	character.character_importantness = stats.character_importantness
@@ -44,6 +46,9 @@ func init_stats():
 
 	if character_block:
 		character_block.max_block = stats.character_max_block
+		
+	if character_visuals:
+		character_visuals.character_icon = stats.character_visual
 	
 func set_move_speed(value: float):
 	if character_move:

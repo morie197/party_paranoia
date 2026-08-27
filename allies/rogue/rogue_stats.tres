@@ -1,9 +1,11 @@
 [gd_resource type="Resource" script_class="CharacterStat" format=3 uid="uid://13i5627f7w4q"]
 
+[ext_resource type="Texture2D" uid="uid://clqsy2bs0artm" path="res://allies/rogue/rogue_visual.tres" id="1_lo43a"]
 [ext_resource type="Script" uid="uid://d4hcg1hl08rya" path="res://character_stat_template.gd" id="1_tbgpx"]
 
 [resource]
 script = ExtResource("1_tbgpx")
+character_visual = ExtResource("1_lo43a")
 character_move_speed = 120.0
 character_max_hp = 300.0
 character_defense = 10.0

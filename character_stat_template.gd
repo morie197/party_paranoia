@@ -1,6 +1,8 @@
 extends Resource
 class_name CharacterStat
 
+@export var character_visual: Texture2D
+
 @export var character_move_speed: float = 0
 @export var character_max_hp: float = 0
 @export var character_defense: float = 0

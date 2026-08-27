@@ -1,9 +1,11 @@
 [gd_resource type="Resource" script_class="CharacterStat" format=3 uid="uid://cxc80sudipscn"]
 
+[ext_resource type="Texture2D" uid="uid://pktiffoxrlxs" path="res://enemies/fast_enemy/fast_enemy_visual.tres" id="1_4sag4"]
 [ext_resource type="Script" uid="uid://d4hcg1hl08rya" path="res://character_stat_template.gd" id="1_fkkob"]
 
 [resource]
 script = ExtResource("1_fkkob")
+character_visual = ExtResource("1_4sag4")
 character_move_speed = 100.0
 character_max_hp = 50.0
 character_defense = 4.0

@@ -1,9 +1,11 @@
 [gd_resource type="Resource" script_class="CharacterStat" format=3 uid="uid://hx614t3xon8j"]
 
 [ext_resource type="Script" uid="uid://d4hcg1hl08rya" path="res://character_stat_template.gd" id="1_bj3fm"]
+[ext_resource type="Texture2D" uid="uid://ce640m3p6g2p6" path="res://allies/mage/mage_visual.tres" id="1_edmoh"]
 
 [resource]
 script = ExtResource("1_bj3fm")
+character_visual = ExtResource("1_edmoh")
 character_max_hp = 20.0
 character_defense = 3.0
 character_max_block = 1

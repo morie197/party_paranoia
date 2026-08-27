@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c6883obyp1ilb" path="res://character_components/general_components/character.gd" id="1_cwd7j"]
 [ext_resource type="Script" uid="uid://chdaesq4yyh0h" path="res://character_components/general_components/character_move.gd" id="2_dnfio"]
+[ext_resource type="Script" uid="uid://brqc1li40llt0" path="res://character_components/general_components/character_visuals.gd" id="2_g6xod"]
 [ext_resource type="Script" uid="uid://c15iunfn6p2qk" path="res://character_components/general_components/character_health.gd" id="3_8hk1l"]
 [ext_resource type="PackedScene" uid="uid://cd1f3cufc3x8p" path="res://character_components/hp_bar/character_hp_bar.tscn" id="4_e362h"]
 [ext_resource type="Script" uid="uid://b0vxrdxqpajqr" path="res://character_components/general_components/character_block.gd" id="5_cwd7j"]
@@ -9,10 +10,6 @@
 [ext_resource type="Script" uid="uid://b7agwitcmj45v" path="res://character_components/general_components/character_pathfinding.gd" id="7_l1n1c"]
 [ext_resource type="Script" uid="uid://blvkhb3u4rf07" path="res://character_components/general_components/character_stats.gd" id="8_coomu"]
 [ext_resource type="Resource" uid="uid://j8f5wapsykl5" path="res://allies/tank/tank_stats.tres" id="9_g6xod"]
-
-[sub_resource type="SphereMesh" id="SphereMesh_h5qqk"]
-radius = 1.0
-height = 2.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_h5qqk"]
 radius = 16.0
@@ -24,7 +21,7 @@ radius = 32.0
 radius = 16.0
 height = 64.0
 
-[node name="Tank" type="CharacterBody2D" unique_id=882159276 node_paths=PackedStringArray("movement_input_controller", "attack_input_controller", "character_move", "character_attack", "character_aim_visuals", "character_health", "character_health_bar", "character_block", "character_attack_target_controller", "character_stats")]
+[node name="Tank" type="CharacterBody2D" unique_id=882159276 node_paths=PackedStringArray("movement_input_controller", "attack_input_controller", "character_move", "character_attack", "character_aim_visuals", "character_health", "character_health_bar", "character_block", "character_attack_target_controller", "character_stats", "character_visuals")]
 script = ExtResource("1_cwd7j")
 movement_input_controller = NodePath("CharacterPathfinding")
 attack_input_controller = NodePath("CharacterPathfinding")
@@ -36,13 +33,11 @@ character_health_bar = NodePath("CharacterHPBar")
 character_block = NodePath("CharacterBlock")
 character_attack_target_controller = NodePath("CharacterPathfinding")
 character_stats = NodePath("CharacterStats")
+character_visuals = NodePath("CharacterVisuals")
 
-[node name="CharacterVisuals" type="Node2D" parent="." unique_id=268260858]
-
-[node name="MeshInstance2D" type="MeshInstance2D" parent="CharacterVisuals" unique_id=1661056562]
-modulate = Color(0.074402444, 0.8457133, 0.84368825, 1)
-scale = Vector2(16.018143, 16)
-mesh = SubResource("SphereMesh_h5qqk")
+[node name="CharacterVisuals" type="Node2D" parent="." unique_id=1192315886]
+script = ExtResource("2_g6xod")
+metadata/_custom_type_script = "uid://brqc1li40llt0"
 
 [node name="CharacterMove" type="Node" parent="." unique_id=1845476671]
 script = ExtResource("2_dnfio")

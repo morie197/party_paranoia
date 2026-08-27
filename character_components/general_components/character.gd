@@ -2,7 +2,6 @@ extends CharacterBody2D
 class_name Character
 
 @export var movement_input_controller: Node
-@export var direction_controller: Node
 @export var attack_input_controller: Node
 @export var character_move: CharacterMove
 @export var character_attack: Node
@@ -12,6 +11,7 @@ class_name Character
 @export var character_block: CharacterBlock
 @export var character_attack_target_controller: Node
 @export var character_stats: CharacterStats
+@export var character_visuals: CharacterVisuals
 
 var ally: bool = true
 var support: bool = true
@@ -34,6 +34,9 @@ func _ready():
 		
 	if character_move:
 		character_move.character_to_move = self
+		
+	if character_visuals:
+		character_visuals.init_visuals()
 		
 	if character_health:
 		character_health.init_health()
@@ -62,6 +65,9 @@ func _process(delta):
 		character_attack.attack(character_attack_target_controller.attack_position)
 	
 	character_aim_visuals.look_at(character_attack_target_controller.attack_position)
+	
+	if character_visuals:
+		character_visuals.face(character_attack_target_controller.attack_position)
 		
 
 func _physics_process(delta):
