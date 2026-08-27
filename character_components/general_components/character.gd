@@ -11,15 +11,20 @@ class_name Character
 @export var character_health_bar: CharacterHealthBar
 @export var character_block: CharacterBlock
 @export var character_attack_target_controller: Node
+@export var character_stats: CharacterStats
 
-@export var ally: bool = true
-@export var support: bool = true
-@export var character_role: String = ""
-@export var character_importantness: float = 1.0
+var ally: bool = true
+var support: bool = true
+var character_role: String = ""
+var character_importantness: float = 1.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	collision_mask = 0
+	
+	if character_stats:
+		character_stats.character = self
+		character_stats.apply_stats()
 	
 	if character_attack:
 		character_attack.shooter = self
@@ -30,11 +35,12 @@ func _ready():
 	if character_move:
 		character_move.character_to_move = self
 		
-	if character_health and character_health_bar:
-		character_health.hp_changed.connect(character_health_bar.update_hp)
-		character_health_bar.initialize_health_bar(ally) 
-		#character_health.died.connect(queue_free)
+	if character_health:
+		character_health.init_health()
 		character_health.died.connect(GameManager.current_battle_manager.remove_character.bind(self))
+		if character_health_bar:
+			character_health.hp_changed.connect(character_health_bar.update_hp)
+			character_health_bar.initialize_health_bar(ally) 
 		
 	if GameManager.current_battle_manager != null:
 		GameManager.current_battle_manager.all_characters.append(self)

@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CharacterStat" format=3 uid="uid://bip051ptoqbq3"]
+
+[ext_resource type="Script" uid="uid://d4hcg1hl08rya" path="res://character_stat_template.gd" id="1_5wm2m"]
+
+[resource]
+script = ExtResource("1_5wm2m")
+character_max_hp = 100.0
+character_defense = 5.0
+character_max_block = 1
+character_importantness = 1.0
+character_role_name = "Archer"
+character_ally = true
+character_support = true
+character_attack = 10.0
+character_attack_cooldown = 1.2
+character_attack_range = 450.0
+character_attack_speed = 15.0
+metadata/_custom_type_script = "uid://d4hcg1hl08rya"

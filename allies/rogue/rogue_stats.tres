@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CharacterStat" format=3 uid="uid://13i5627f7w4q"]
+
+[ext_resource type="Script" uid="uid://d4hcg1hl08rya" path="res://character_stat_template.gd" id="1_tbgpx"]
+
+[resource]
+script = ExtResource("1_tbgpx")
+character_move_speed = 120.0
+character_max_hp = 300.0
+character_defense = 10.0
+character_max_block = 1
+character_importantness = 0.5
+character_role_name = "Rogue"
+character_ally = true
+character_attack = 5.0
+character_attack_cooldown = 0.5
+character_attack_range = 20.0
+character_attack_speed = 5.0
+metadata/_custom_type_script = "uid://d4hcg1hl08rya"

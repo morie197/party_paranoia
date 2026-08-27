@@ -1,7 +1,7 @@
 extends Node
 class_name CharacterMove
 
-@export var character_movement_speed: float = 50
+var character_movement_speed: float = 50
 
 var character_to_move: Character = null
 

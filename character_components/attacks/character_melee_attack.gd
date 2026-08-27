@@ -1,7 +1,9 @@
 extends Area2D
 
-@export var attack_cooldown: float = 0.7
-@export var attack_damage: float = 8
+var attack_cooldown: float = 0.7
+var attack_damage: float = 8
+var attack_speed: float = 5
+var attack_range: float = 100
 
 var current_attack_cooldown: float = 0
 

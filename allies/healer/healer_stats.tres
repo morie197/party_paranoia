@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CharacterStat" format=3 uid="uid://dno7io8wvy1ia"]
+
+[ext_resource type="Script" uid="uid://d4hcg1hl08rya" path="res://character_stat_template.gd" id="1_ddqsa"]
+
+[resource]
+script = ExtResource("1_ddqsa")
+character_max_hp = 100.0
+character_defense = 5.0
+character_max_block = 1
+character_importantness = 5.0
+character_role_name = "Healer"
+character_ally = true
+character_support = true
+character_attack = 3.0
+character_attack_cooldown = 0.7
+character_attack_range = 500.0
+character_attack_speed = 3.0
+metadata/_custom_type_script = "uid://d4hcg1hl08rya"

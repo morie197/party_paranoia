@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CharacterStat" format=3 uid="uid://j8f5wapsykl5"]
+
+[ext_resource type="Script" uid="uid://d4hcg1hl08rya" path="res://character_stat_template.gd" id="1_6e2gf"]
+
+[resource]
+script = ExtResource("1_6e2gf")
+character_move_speed = 20.0
+character_max_hp = 500.0
+character_defense = 20.0
+character_max_block = 3
+character_importantness = 1.0
+character_role_name = "Tank"
+character_ally = true
+character_attack = 5.0
+character_attack_cooldown = 1.0
+character_attack_range = 20.0
+character_attack_speed = 5.0
+metadata/_custom_type_script = "uid://d4hcg1hl08rya"

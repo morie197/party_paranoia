@@ -8,6 +8,8 @@
 [ext_resource type="Script" uid="uid://c15iunfn6p2qk" path="res://character_components/general_components/character_health.gd" id="6_egkd7"]
 [ext_resource type="PackedScene" uid="uid://cd1f3cufc3x8p" path="res://character_components/hp_bar/character_hp_bar.tscn" id="7_tg05m"]
 [ext_resource type="Script" uid="uid://b0vxrdxqpajqr" path="res://character_components/general_components/character_block.gd" id="9_2voeo"]
+[ext_resource type="Script" uid="uid://blvkhb3u4rf07" path="res://character_components/general_components/character_stats.gd" id="9_4btwq"]
+[ext_resource type="Resource" uid="uid://bip051ptoqbq3" path="res://allies/archer/archer_stats.tres" id="10_36uvm"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_h5qqk"]
 radius = 1.0
@@ -19,7 +21,7 @@ radius = 16.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_sgtvy"]
 radius = 32.0
 
-[node name="PlayerArcher" type="CharacterBody2D" unique_id=882159276 node_paths=PackedStringArray("movement_input_controller", "direction_controller", "attack_input_controller", "character_move", "character_attack", "character_aim_visuals", "character_health", "character_health_bar", "character_block", "character_attack_target_controller")]
+[node name="PlayerArcher" type="CharacterBody2D" unique_id=882159276 node_paths=PackedStringArray("movement_input_controller", "direction_controller", "attack_input_controller", "character_move", "character_attack", "character_aim_visuals", "character_health", "character_health_bar", "character_block", "character_attack_target_controller", "character_stats")]
 script = ExtResource("1_26rrc")
 movement_input_controller = NodePath("PlayerInput")
 direction_controller = NodePath("PlayerInput")
@@ -31,7 +33,7 @@ character_health = NodePath("CharacterHealth")
 character_health_bar = NodePath("CharacterHPBar")
 character_block = NodePath("CharacterBlock")
 character_attack_target_controller = NodePath("PlayerInput")
-character_role = "Archer"
+character_stats = NodePath("CharacterStats")
 
 [node name="CharacterVisuals" type="Node2D" parent="." unique_id=268260858]
 
@@ -49,10 +51,6 @@ shape = SubResource("CircleShape2D_h5qqk")
 [node name="CharacterProjectileAttack" type="Node" parent="." unique_id=1523114842]
 script = ExtResource("4_5fqsj")
 projectile_to_fire = ExtResource("5_4d32p")
-attack_cooldown = 0.7
-projectile_attack_damage = 8.0
-projectile_attack_speed = 10.0
-projectile_range = 600.0
 
 [node name="PlayerInput" type="Node2D" parent="." unique_id=826694354]
 script = ExtResource("2_yyhkc")
@@ -73,3 +71,8 @@ script = ExtResource("9_2voeo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBlock" unique_id=1558963342]
 shape = SubResource("CircleShape2D_sgtvy")
+
+[node name="CharacterStats" type="Node" parent="." unique_id=1299088053]
+script = ExtResource("9_4btwq")
+stats = ExtResource("10_36uvm")
+metadata/_custom_type_script = "uid://blvkhb3u4rf07"

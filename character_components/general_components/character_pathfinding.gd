@@ -32,7 +32,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if not character_to_control:
-		#print("No character to control!")
+		print("No character to control!")
 		return
 		
 	if is_navigation_finished():

@@ -11,7 +11,7 @@ material = SubResource("StandardMaterial3D_q0g84")
 [sub_resource type="CircleShape2D" id="CircleShape2D_pofft"]
 radius = 8.0
 
-[node name="ArcherProjectile" type="Node2D" unique_id=155385979]
+[node name="MageProjectile" type="Node2D" unique_id=155385979]
 script = ExtResource("1_t2qcg")
 
 [node name="ProjectileVisuals" type="Node2D" parent="." unique_id=425731625]

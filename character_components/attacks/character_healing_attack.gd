@@ -2,8 +2,10 @@ extends Node
 
 @export var healing_effects: PackedScene
 
-@export var attack_cooldown: float = 1
-@export var healing_amount: float = 3
+var attack_cooldown: float = 1
+var attack_damage: float = 3
+var attack_speed: float = 5
+var attack_range: float = 100
 
 var current_attack_cooldown: float = 0
 
@@ -30,7 +32,7 @@ func attack(target_position: Vector2):
 	if not shooter.character_attack_target_controller:
 		return
 		
-	shooter.character_attack_target_controller.target_character.damage(-healing_amount, shooter)
+	shooter.character_attack_target_controller.target_character.damage(-attack_damage, shooter)
 		
 	current_attack_cooldown = attack_cooldown
 	
