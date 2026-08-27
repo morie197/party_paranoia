@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="NodeType" format=3 uid="uid://bx2wxo1ufvlto"]
+
+[ext_resource type="Texture2D" uid="uid://bvgxnuxclexee" path="res://map/node_types/shop/shop_bag.tres" id="1_3nv54"]
+[ext_resource type="Script" uid="uid://ckupupbrhe43e" path="res://map/node_types/node_type.gd" id="1_m65us"]
+
+[resource]
+script = ExtResource("1_m65us")
+node_icon = ExtResource("1_3nv54")
+node_name = "Shop"
+metadata/_custom_type_script = "uid://ckupupbrhe43e"

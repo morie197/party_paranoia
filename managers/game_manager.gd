@@ -4,11 +4,9 @@ var mouse_pos: Vector2
 
 var current_battle_manager: BattleManager = null
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+var current_node_manager: NodeManager = null
 
+var current_map_stage: int = 0
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func reset_data():
+	current_map_stage = 0

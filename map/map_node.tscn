@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://cjhfgwlgyr4x4"]
+
+[ext_resource type="Script" uid="uid://bdmivdh0gc28h" path="res://map/map_icon.gd" id="1_hiwl2"]
+[ext_resource type="Texture2D" uid="uid://0cfpsuxjvga4" path="res://map/node_types/battle/map_fight_sword_half.tres" id="3_i6iu7"]
+[ext_resource type="StyleBox" uid="uid://briiuobl55ga3" path="res://map/node_types/selected_node_panel.tres" id="4_0qay6"]
+
+[node name="MapNode" type="Control" unique_id=577351018]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 32.0
+offset_bottom = 32.0
+script = ExtResource("1_hiwl2")
+
+[node name="NormalTexture" type="TextureRect" parent="." unique_id=921222581]
+unique_name_in_owner = true
+z_index = 2
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 32.0
+texture = ExtResource("3_i6iu7")
+stretch_mode = 2
+
+[node name="AddedTexture" type="TextureRect" parent="." unique_id=2066689426]
+unique_name_in_owner = true
+z_index = 1
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 32.0
+texture = ExtResource("3_i6iu7")
+stretch_mode = 2
+flip_h = true
+
+[node name="MapNodePanel" type="Panel" parent="." unique_id=2110284172]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -14.0
+offset_top = -14.0
+offset_right = 14.0
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme_override_styles/panel = ExtResource("4_0qay6")

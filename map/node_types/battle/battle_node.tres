@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="NodeType" format=3 uid="uid://cxvlyhnc5ajc4"]
+
+[ext_resource type="Script" uid="uid://ckupupbrhe43e" path="res://map/node_types/node_type.gd" id="1_bikxw"]
+[ext_resource type="Texture2D" uid="uid://0cfpsuxjvga4" path="res://map/node_types/battle/map_fight_sword_half.tres" id="1_w074r"]
+
+[resource]
+script = ExtResource("1_bikxw")
+node_icon = ExtResource("1_w074r")
+mirror_icon = true
+node_name = "Battle"
+metadata/_custom_type_script = "uid://ckupupbrhe43e"
