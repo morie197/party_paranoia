@@ -3,9 +3,6 @@
 [ext_resource type="Script" uid="uid://c1rq7b12fj7gi" path="res://projectiles/archer/archer_projectile.gd" id="1_vxemq"]
 [ext_resource type="Texture2D" uid="uid://jsuyk2wt0fnc" path="res://projectiles/archer/normal_arrow.tres" id="2_vftnc"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_pofft"]
-radius = 8.0
-
 [node name="ArcherProjectile" type="Node2D" unique_id=155385979]
 script = ExtResource("1_vxemq")
 
@@ -15,8 +12,7 @@ script = ExtResource("1_vxemq")
 rotation = 2.3561945
 texture = ExtResource("2_vftnc")
 
-[node name="ProjectileHitBox" type="Area2D" parent="." unique_id=1980277344]
+[node name="ProjectileRayCast" type="RayCast2D" parent="." unique_id=896325726]
 unique_name_in_owner = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ProjectileHitBox" unique_id=1564093604]
-shape = SubResource("CircleShape2D_pofft")
+target_position = Vector2(50, 0)
+hit_from_inside = true

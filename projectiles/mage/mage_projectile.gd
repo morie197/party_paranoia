@@ -13,25 +13,27 @@ var closest_character_check_delay: float = 0.5
 
 var distance_traveled: float = 0
 
+var max_hits: int = 1
+var hits: int = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	projectile_hit_box.body_entered.connect(_hit)
 	check_closest_character()
 	
-func _process(delta):
+func _physics_process(delta):
 	closest_character_check_accumulator += delta
 	if closest_character_check_accumulator > closest_character_check_delay:
 		closest_character_check_accumulator = 0
 		check_closest_character()
-		
 	
-func _physics_process(delta):
 	var old_position = position
 	position += projectile_direction * projectile_attack_speed * delta * orb_speed
 	
 	distance_traveled += old_position.distance_to(position)
-	if distance_traveled >= projectile_range:
-		queue_free()
+	if distance_traveled >= projectile_range or hits >= max_hits:
+		if not is_queued_for_deletion():
+			queue_free()
 	
 	if not current_closest_opposing_character:
 		return
@@ -47,12 +49,22 @@ func check_closest_character():
 		current_closest_opposing_character = GameManager.current_battle_manager.find_closest_opposing_character_by_position(global_position, shooter.ally, homing_search_range)
 		#print(current_closest_opposing_character)
 
-func _hit(body):
-	if body is not Character:
+func _hit(hit_body):
+	if hits >= max_hits:
+		return
+		
+	var bodies = projectile_hit_box.get_overlapping_bodies()
+	var shortest_distance: float = 9999
+	for body in bodies:
+		if global_position.distance_to(body.global_position) < shortest_distance:
+			hit_body = body
+	
+	if hit_body is not Character:
 		print("Invalid target!")
 		return
 		
-	var character = body as Character
+	var character = hit_body as Character
 	if character.ally != shooter.ally:
 		character.damage(projectile_attack_damage, shooter)
+		hits += 1
 		queue_free()
