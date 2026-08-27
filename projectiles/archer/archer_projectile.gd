@@ -27,4 +27,5 @@ func _hit(body):
 	var character = body as Character
 	if character.ally != shooter.ally:
 		character.damage(projectile_attack_damage, shooter)
+		character.apply_debuff(1.0, "slow")
 		queue_free()

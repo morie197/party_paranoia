@@ -24,7 +24,7 @@ func _ready():
 	
 	if character_stats:
 		character_stats.character = self
-		character_stats.apply_stats()
+		character_stats.init_stats()
 	
 	if character_attack:
 		character_attack.shooter = self
@@ -102,3 +102,13 @@ func block_character(blocker: Character) -> bool:
 			return true
 			
 	return false
+
+func apply_debuff(duration: float, debuff_name: String):
+	if not character_stats:
+		print("Can't apply debuff as " + character_role + " has no stats!")
+		return
+	
+	match debuff_name.to_lower():
+		"slow":
+			character_stats.apply_slow_debuff(duration)
+			
