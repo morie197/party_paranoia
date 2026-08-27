@@ -2,11 +2,17 @@
 
 [ext_resource type="Script" uid="uid://63ehojstmujk" path="res://projectiles/mage/mage_projectile.gd" id="1_t2qcg"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q0g84"]
-albedo_color = Color(0.74077123, 0.48575526, 1, 1)
+[sub_resource type="Gradient" id="Gradient_q0cx6"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.53015876, 0.6603175, 1)
+colors = PackedColorArray(0, 0.92941177, 1, 1, 0, 0.93333316, 1, 0.4745098, 0.62, 0.9746666, 1, 0, 1, 1, 1, 0)
 
-[sub_resource type="SphereMesh" id="SphereMesh_rcdi0"]
-material = SubResource("StandardMaterial3D_q0g84")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_q4323"]
+gradient = SubResource("Gradient_q0cx6")
+width = 16
+height = 16
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pofft"]
 radius = 8.0
@@ -16,10 +22,8 @@ script = ExtResource("1_t2qcg")
 
 [node name="ProjectileVisuals" type="Node2D" parent="." unique_id=425731625]
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="ProjectileVisuals" unique_id=1387698132]
-position = Vector2(4.7683716e-07, 3.33786e-06)
-scale = Vector2(16.018145, 16.000002)
-mesh = SubResource("SphereMesh_rcdi0")
+[node name="Sprite2D" type="Sprite2D" parent="ProjectileVisuals" unique_id=1401151769]
+texture = SubResource("GradientTexture2D_q4323")
 
 [node name="ProjectileHitBox" type="Area2D" parent="." unique_id=1980277344]
 unique_name_in_owner = true

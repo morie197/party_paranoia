@@ -49,19 +49,19 @@ visible = false
 navigation_polygon = SubResource("NavigationPolygon_h5qqk")
 
 [node name="PlayerArcher" parent="." unique_id=457729495 instance=ExtResource("1_k6s54")]
-position = Vector2(40, 352)
-
-[node name="Warrior" parent="." unique_id=882159276 instance=ExtResource("3_j6xku")]
-position = Vector2(200, 168)
-
-[node name="Healer" parent="." unique_id=2046218235 instance=ExtResource("5_y47j6")]
 position = Vector2(40, 256)
 
+[node name="Warrior" parent="." unique_id=882159276 instance=ExtResource("3_j6xku")]
+position = Vector2(152, 64)
+
+[node name="Healer" parent="." unique_id=2046218235 instance=ExtResource("5_y47j6")]
+position = Vector2(40, 184)
+
 [node name="Mage" parent="." unique_id=1067034344 instance=ExtResource("6_uxw26")]
-position = Vector2(40, 160)
+position = Vector2(40, 112)
 
 [node name="Rogue" parent="." unique_id=658558371 instance=ExtResource("7_7yy31")]
-position = Vector2(200, 328)
+position = Vector2(160, 296)
 
 [node name="Tank" parent="." unique_id=227405942 instance=ExtResource("8_wlvp0")]
-position = Vector2(328, 248)
+position = Vector2(280, 176)
