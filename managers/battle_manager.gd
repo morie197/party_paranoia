@@ -32,6 +32,11 @@ func find_closest_goodguy(searcher: Character, search_range: float = 9999, prefe
 		if searcher == ally:
 			continue
 			
+		if ally == null:
+			print("Hanging reference for enemy!")
+			#allies.erase(ally)
+			continue
+			
 		var current_distance: float = ally.global_position.distance_to(searcher.global_position)
 		
 		if current_distance < shortest_distance:
@@ -42,8 +47,8 @@ func find_closest_goodguy(searcher: Character, search_range: float = 9999, prefe
 			else:
 				target_value = ally.character_importantness
 			
-			if ally.character_block and ally.character_block.blocked: # ignore targets already fully blocked
-				continue
+			if ally.character_block and ally.character_block.blocked: # value fully blocked targets less
+				target_value /= 1.5
 			
 			if current_distance / target_value < lowest_score:
 				lowest_score = current_distance / target_value
@@ -65,7 +70,7 @@ func find_closest_badguy(searcher: Character, search_range: float = 9999, prefer
 			
 		if enemy == null:
 			print("Hanging reference for enemy!")
-			enemiess.erase(enemy)
+			#enemiess.erase(enemy)
 			continue
 			
 		var current_distance: float = enemy.global_position.distance_to(searcher.global_position)
@@ -93,9 +98,9 @@ func find_closest_opposing_character_by_position(search_position: Vector2, ally:
 	var closest_character: Character
 	
 	for character in all_characters:
-		if character == null or character.is_queued_for_deletion():
+		if character == null:
 			print("Hanging reference for character!")
-			#remove_character(character)
+			#all_characters.erase(character)
 			continue
 			
 		if character.ally == ally:

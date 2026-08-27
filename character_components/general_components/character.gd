@@ -117,4 +117,3 @@ func apply_debuff(duration: float, debuff_name: String):
 	match debuff_name.to_lower():
 		"slow":
 			character_stats.apply_slow_debuff(duration)
-			

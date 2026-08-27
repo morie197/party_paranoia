@@ -4,8 +4,8 @@
 
 [sub_resource type="Gradient" id="Gradient_q0cx6"]
 interpolation_mode = 1
-offsets = PackedFloat32Array(0, 0.53015876, 0.6603175, 1)
-colors = PackedColorArray(0, 0.92941177, 1, 1, 0, 0.93333316, 1, 0.4745098, 0.62, 0.9746666, 1, 0, 1, 1, 1, 0)
+offsets = PackedFloat32Array(0, 0.3904762, 0.53015876, 0.60634923, 0.6603175, 1)
+colors = PackedColorArray(0, 0.92941177, 1, 1, 0, 0.93333316, 1, 0.6862745, 0, 0.93333316, 1, 0.4745098, 0, 0.93333316, 1, 0.25882354, 0.62, 0.9746666, 1, 0, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_q4323"]
 gradient = SubResource("Gradient_q0cx6")

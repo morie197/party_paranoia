@@ -10,6 +10,7 @@ var character_move: CharacterMove
 var character_health: CharacterHealth
 var character_block: CharacterBlock
 var character_visuals: CharacterVisuals
+var character_attack_target_controller: Node
 
 var debuff_timers: Dictionary[String, Timer]
 
@@ -25,6 +26,7 @@ func init_stats():
 	character_health = character.character_health
 	character_block = character.character_block
 	character_visuals = character.character_visuals
+	character_attack_target_controller = character.character_attack_target_controller
 	
 	
 	character.character_importantness = stats.character_importantness
@@ -49,6 +51,11 @@ func init_stats():
 		
 	if character_visuals:
 		character_visuals.character_icon = stats.character_visual
+		
+	if character_attack_target_controller is NavigationAgent2D:
+		character_attack_target_controller.enemy_detection_range = stats.character_search_range
+		character_attack_target_controller.enemy_preference = stats.character_role_attack_preference
+		character_attack_target_controller.enemy_preference_strength = stats.character_role_attack_preference_strength
 	
 func set_move_speed(value: float):
 	if character_move:

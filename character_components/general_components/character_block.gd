@@ -58,7 +58,7 @@ func _unblock(body):
 		
 	var character = body as Character
 	
-	if character.ally == character_to_control. ally:
+	if character.ally == character_to_control.ally:
 		return
 		
 	#if not blocked and (character.character_block and character.character_block.blocked):
@@ -83,3 +83,5 @@ func _unblock(body):
 
 	if blocking.size() <= 0:
 		currently_blocking = false
+		
+	character.character_block.currently_blocking = false

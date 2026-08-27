@@ -5,8 +5,6 @@ var move_vector: Vector2 = Vector2.ZERO
 
 var character_to_control: Character
 
-@export var enemy_detection_range: float = 9999
-
 var accumulator: float = 0
 var time_until_next_pathfinding: float = 0.3
 
@@ -16,13 +14,18 @@ var attack_position: Vector2 = Vector2.ZERO
 
 var is_attacking: bool = false
 
-@export var healer: bool = false
+var healer: bool = false
 
 var initial_position: Vector2
 
+var enemy_detection_range: float = 9999
+var enemy_preference: String = ""
+var enemy_preference_strength: float = 2.0
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	debug_enabled = true
+	#debug_enabled = true
 	target_desired_distance = 30
 	
 	character_to_control = get_parent() as Character
@@ -61,9 +64,9 @@ func next_pathfinding():
 			target_position = character_to_control.global_position
 		else:
 			if character_to_control.ally:
-				target_character = GameManager.current_battle_manager.find_closest_badguy(character_to_control, enemy_detection_range)
+				target_character = GameManager.current_battle_manager.find_closest_badguy(character_to_control, enemy_detection_range, enemy_preference, enemy_preference_strength)
 			else:
-				target_character = GameManager.current_battle_manager.find_closest_goodguy(character_to_control, enemy_detection_range)
+				target_character = GameManager.current_battle_manager.find_closest_goodguy(character_to_control, enemy_detection_range, enemy_preference, enemy_preference_strength)
 			if target_character and (not (character_to_control.ally and character_to_control.support)):
 				target_position = target_character.global_position
 	
