@@ -31,6 +31,8 @@ func _ready():
 	character_to_control = get_parent() as Character
 	if character_to_control:
 		initial_position = character_to_control.global_position
+		if character_to_control.ally:
+			navigation_layers = 2
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -69,6 +71,11 @@ func next_pathfinding():
 				target_character = GameManager.current_battle_manager.find_closest_goodguy(character_to_control, enemy_detection_range, enemy_preference, enemy_preference_strength)
 			if target_character and (not (character_to_control.ally and character_to_control.support)):
 				target_position = target_character.global_position
+				if not is_target_reachable():
+					if character_to_control.ally:
+						target_position = initial_position
+					else:
+						target_position = Vector2(target_position.x, character_to_control.global_position.y)
 	
 	if target_character:
 		if character_to_control.character_attack:

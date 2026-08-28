@@ -10,6 +10,7 @@ var frontline_allies: Array[Character]
 var all_characters: Array[Character]
 
 @export var battle_navigation: NavigationRegion2D
+@export var ally_navigation: NavigationRegion2D
 
 var current_battle_time: float = 0
 

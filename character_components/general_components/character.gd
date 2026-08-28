@@ -37,6 +37,8 @@ func _ready():
 		
 	if character_visuals:
 		character_visuals.init_visuals()
+		if ally:
+			character_visuals.z_index += 1
 		
 	if character_health:
 		character_health.init_health()
