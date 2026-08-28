@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://dmmtjbt16qh7s"]
+
+[ext_resource type="Script" uid="uid://c1rq7b12fj7gi" path="res://projectiles/archer/archer_projectile.gd" id="1_nuu8d"]
+[ext_resource type="Texture2D" uid="uid://qi2npa2j76eq" path="res://projectiles/archer/ice_arrow.tres" id="2_nuu8d"]
+
+[node name="ArcherProjectile" type="Node2D" unique_id=155385979]
+script = ExtResource("1_nuu8d")
+
+[node name="ProjectileVisuals" type="Node2D" parent="." unique_id=425731625]
+
+[node name="Sprite2D" type="Sprite2D" parent="ProjectileVisuals" unique_id=614616270]
+rotation = 2.3561945
+texture = ExtResource("2_nuu8d")
+
+[node name="ProjectileRayCast" type="RayCast2D" parent="." unique_id=896325726]
+unique_name_in_owner = true
+target_position = Vector2(50, 0)
+hit_from_inside = true

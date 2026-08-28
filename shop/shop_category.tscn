@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://df71p3lk4msui"]
+
+[ext_resource type="StyleBox" uid="uid://drtpjh1toky1v" path="res://shop/shop_background_panel.tres" id="1_7yb8h"]
+[ext_resource type="Script" uid="uid://b0asp23kileyh" path="res://shop/shop_category.gd" id="2_1mf3y"]
+
+[node name="ShopCategory" type="PanelContainer" unique_id=1743100164]
+theme_override_styles/panel = ExtResource("1_7yb8h")
+script = ExtResource("2_1mf3y")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=94984953]
+unique_name_in_owner = true
+layout_mode = 2

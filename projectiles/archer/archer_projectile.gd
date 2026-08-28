@@ -10,6 +10,11 @@ var distance_traveled: float = 0
 var max_hits: int = 1
 var hits: int = 0
 
+var debuff: String = ""
+var debuff_length: float = 0
+
+var healing: bool = false
+
 func _ready():
 	pass
 
@@ -37,6 +42,11 @@ func _hit(body):
 	var character = body as Character
 	if character.ally != shooter.ally:
 		character.damage(projectile_attack_damage, shooter)
-		character.apply_debuff(1.0, "slow")
+		if debuff != "" and debuff_length > 0:
+			character.apply_debuff(debuff_length, debuff)
+		hits += 1
+		queue_free()
+	elif healing:
+		character.damage(-projectile_attack_damage, shooter)
 		hits += 1
 		queue_free()

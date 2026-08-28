@@ -11,6 +11,9 @@ var current_attack_cooldown: float = 0
 
 var shooter: Character = null
 
+var debuff: String = ""
+var debuff_length: float = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -40,6 +43,8 @@ func attack(target_position: Vector2):
 	projectile.projectile_attack_speed = attack_speed
 	projectile.projectile_direction = direction_to_head
 	projectile.shooter = shooter
+	projectile.debuff = debuff
+	projectile.debuff_length = debuff_length
 	projectile.projectile_range = attack_range
 	shooter.add_sibling(projectile)
 	

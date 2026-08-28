@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" format=3 uid="uid://dlfujlwmlbjt4"]
+
+[ext_resource type="Texture2D" uid="uid://c787ecetyyqtb" path="res://imported_art/items-palette-swaps.png" id="1_33slq"]
+
+[resource]
+atlas = ExtResource("1_33slq")
+region = Rect2(96, 1024, 32, 32)

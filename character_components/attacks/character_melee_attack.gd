@@ -13,6 +13,15 @@ var targets: Array[Character]
 
 var queud_attack: int = 0
 
+var debuff: String = ""
+var debuff_length: float = 0
+
+var max_hits: int = 1
+var hits: int = 0
+
+var healing: bool = false
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	body_entered.connect(_new_target)
@@ -29,8 +38,12 @@ func _physics_process(delta):
 	if queud_attack == 1:
 		#print("Attacked")
 		for character in targets:
-			#print("Damaged enemy!")
+			if hits > max_hits:
+				return
+			hits += 1
 			character.damage(attack_damage, shooter)
+			if debuff != "" and debuff_length > 0:
+				character.apply_debuff(debuff_length, debuff)
 
 func _new_target(body):
 	if body is Character:

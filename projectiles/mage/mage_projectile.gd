@@ -16,6 +16,11 @@ var distance_traveled: float = 0
 var max_hits: int = 1
 var hits: int = 0
 
+var debuff: String = ""
+var debuff_length: float = 0
+
+var healing: bool = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	projectile_hit_box.body_entered.connect(_hit)
@@ -66,5 +71,11 @@ func _hit(hit_body):
 	var character = hit_body as Character
 	if character.ally != shooter.ally:
 		character.damage(projectile_attack_damage, shooter)
+		if debuff != "" and debuff_length > 0:
+			character.apply_debuff(debuff_length, debuff)
+		hits += 1
+		queue_free()
+	elif healing:
+		character.damage(-projectile_attack_damage, shooter)
 		hits += 1
 		queue_free()

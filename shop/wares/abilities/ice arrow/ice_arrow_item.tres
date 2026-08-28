@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ShopItem" format=3 uid="uid://br6ejqs75pa8b"]
+
+[ext_resource type="Texture2D" uid="uid://b8wcagt5kqt1g" path="res://shop/wares/abilities/ice arrow/ice_arrow_icon.tres" id="1_fjhp8"]
+[ext_resource type="Script" uid="uid://den3a56qy88sg" path="res://shop/wares/shop_item.gd" id="1_lmip7"]
+[ext_resource type="PackedScene" uid="uid://dmmtjbt16qh7s" path="res://projectiles/archer/ice_arrow.tscn" id="2_6y68e"]
+
+[resource]
+script = ExtResource("1_lmip7")
+item_name = "Ice Arrow"
+item_icon = ExtResource("1_fjhp8")
+item_description = "Freezes enemies in place for 3 seconds; 8 second cooldown."
+item_cooldown = 8.0
+projectile_to_use = ExtResource("2_6y68e")
+debuff_to_apply = "slow"
+debuff_length = 3.0
+metadata/_custom_type_script = "uid://den3a56qy88sg"

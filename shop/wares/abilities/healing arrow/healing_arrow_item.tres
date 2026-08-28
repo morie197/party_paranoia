@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="ShopItem" format=3 uid="uid://de3heagio4wti"]
+
+[ext_resource type="Texture2D" uid="uid://dlfujlwmlbjt4" path="res://shop/wares/abilities/healing arrow/healing_arrow_icon.tres" id="1_mvqnc"]
+[ext_resource type="PackedScene" uid="uid://cw6e7ln4dcbv1" path="res://projectiles/archer/healing_arrow.tscn" id="2_a1hyj"]
+[ext_resource type="Script" uid="uid://den3a56qy88sg" path="res://shop/wares/shop_item.gd" id="2_oyymq"]
+
+[resource]
+script = ExtResource("2_oyymq")
+item_name = "Healing Arrow"
+item_icon = ExtResource("1_mvqnc")
+item_price = 500.0
+item_description = "Heals allies by 50 HP; 3 second cooldown"
+item_attack = 50.0
+item_cooldown = 3.0
+projectile_to_use = ExtResource("2_a1hyj")
+healing = true
+metadata/_custom_type_script = "uid://den3a56qy88sg"

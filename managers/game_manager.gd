@@ -8,5 +8,9 @@ var current_node_manager: NodeManager = null
 
 var current_map_stage: int = 0
 
+var gold: float = 1000
+
+var inventory: Dictionary[ShopItem, int]
+
 func reset_data():
 	current_map_stage = 0

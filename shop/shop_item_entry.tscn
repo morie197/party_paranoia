@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://cuv7g5gro2lvp"]
+
+[ext_resource type="Script" uid="uid://cde57g7jiltvy" path="res://shop/shop_item_entry.gd" id="1_knkf2"]
+[ext_resource type="Texture2D" uid="uid://b8wcagt5kqt1g" path="res://shop/wares/abilities/ice arrow/ice_arrow_icon.tres" id="2_kajpy"]
+[ext_resource type="StyleBox" uid="uid://jxayas3fr48k" path="res://shop/shop_item_entry_background.tres" id="2_px01r"]
+[ext_resource type="Texture2D" uid="uid://bckgbxbpaxb4a" path="res://items/gold/gold.tres" id="3_px01r"]
+[ext_resource type="StyleBox" uid="uid://bt1ljfnuowhm4" path="res://shop/shop_item_entry_background_inactive.tres" id="5_px01r"]
+
+[node name="ShopItemEntry" type="HBoxContainer" unique_id=1380364680]
+mouse_filter = 0
+script = ExtResource("1_knkf2")
+
+[node name="ItemPanel" type="PanelContainer" parent="." unique_id=1174590060]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = ExtResource("2_px01r")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ItemPanel" unique_id=380622164]
+layout_mode = 2
+
+[node name="ItemIcon" type="TextureRect" parent="ItemPanel/HBoxContainer" unique_id=1401254138]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("2_kajpy")
+
+[node name="ItemName" type="RichTextLabel" parent="ItemPanel/HBoxContainer" unique_id=1964754126]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 1
+text = "Ice Arrows"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ItemPanel/HBoxContainer" unique_id=400459370]
+layout_mode = 2
+
+[node name="GoldIcon" type="TextureRect" parent="ItemPanel/HBoxContainer/HBoxContainer" unique_id=373837332]
+layout_mode = 2
+texture = ExtResource("3_px01r")
+
+[node name="GoldPrice" type="RichTextLabel" parent="ItemPanel/HBoxContainer/HBoxContainer" unique_id=200583198]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 1
+text = "100"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AmountPanelContainer" type="PanelContainer" parent="." unique_id=1109341423]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = ExtResource("5_px01r")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="AmountPanelContainer" unique_id=1773499134]
+layout_mode = 2
+
+[node name="AmountText" type="RichTextLabel" parent="AmountPanelContainer/HBoxContainer" unique_id=458809394]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+mouse_filter = 1
+text = "x5"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
