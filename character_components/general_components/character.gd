@@ -18,7 +18,8 @@ var support: bool = true
 var character_role: String = ""
 var character_importantness: float = 1.0
 
-# Called when the node enters the scene tree for the first time.
+var gold_given_on_death: float = 0
+
 func _ready():
 	collision_mask = 0
 	
@@ -42,7 +43,7 @@ func _ready():
 		
 	if character_health:
 		character_health.init_health()
-		character_health.died.connect(GameManager.current_battle_manager.remove_character.bind(self))
+		character_health.died.connect(died)
 		if character_health_bar:
 			character_health.hp_changed.connect(character_health_bar.update_hp)
 			character_health_bar.initialize_health_bar(ally) 
@@ -58,7 +59,6 @@ func _ready():
 		else:
 			GameManager.current_battle_manager.enemiess.append(self)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if (not attack_input_controller) or (not character_attack) or (not character_attack_target_controller):
 		return
@@ -119,3 +119,10 @@ func apply_debuff(duration: float, debuff_name: String):
 	match debuff_name.to_lower():
 		"slow":
 			character_stats.apply_slow_debuff(duration)
+		"gold":
+			character_stats.apply_extra_gold_debuff(duration)
+		_:
+			print("Unknown debuff: " + debuff_name.to_lower())
+	
+func died():
+	GameManager.current_battle_manager.kill_character(self, gold_given_on_death)

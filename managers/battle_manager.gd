@@ -223,3 +223,8 @@ func remove_character(character_to_remove: Character):
 
 	if not character_to_remove.is_queued_for_deletion():
 		character_to_remove.queue_free()
+		
+func kill_character(character_to_kill: Character, gold_given: float = 0):
+	GameManager.gold += gold_given
+	print(gold_given)
+	remove_character(character_to_kill)

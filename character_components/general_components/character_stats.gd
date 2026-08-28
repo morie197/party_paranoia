@@ -15,6 +15,7 @@ var character_attack_target_controller: Node
 var debuff_timers: Dictionary[String, Timer]
 
 var slow_amount: float = 0.5
+var extra_gold_amount: float = 1.5
 
 func init_stats():
 	if not character:
@@ -33,6 +34,7 @@ func init_stats():
 	character.character_role = stats.character_role_name
 	character.ally = stats.character_ally
 	character.support = stats.character_support
+	character.gold_given_on_death = stats.gold_when_killed
 		
 	if character_attack:
 		character_attack.attack_cooldown = stats.character_attack_cooldown
@@ -60,6 +62,10 @@ func init_stats():
 func set_move_speed(value: float):
 	if character_move:
 		character_move.character_movement_speed = value
+		
+func set_gold_given(value: float):
+	if character:
+		character.gold_given_on_death = value
 	
 func create_debuff_timer(duration: float, timer_name: String) -> Timer:
 	if debuff_timers.has(timer_name):
@@ -85,4 +91,10 @@ func apply_slow_debuff(duration: float):
 	slow_timer.timeout.connect(set_move_speed.bind(base_move_speed))
 	slow_timer.start()
 	
+func apply_extra_gold_debuff(duration: float):
+	var base_gold: float = stats.gold_when_killed
+	set_gold_given(base_gold * extra_gold_amount)
+	var extra_gold_timer: Timer = create_debuff_timer(duration, "gold")
+	extra_gold_timer.timeout.connect(set_gold_given.bind(base_gold))
+	extra_gold_timer.start()
 	
