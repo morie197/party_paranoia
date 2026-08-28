@@ -10,6 +10,7 @@ character_move_speed = 100.0
 character_max_hp = 50.0
 character_defense = 4.0
 character_max_block = 1
+gold_when_killed = 10.0
 character_importantness = 2.0
 character_role_name = "Fast"
 character_attack = 8.0

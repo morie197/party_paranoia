@@ -1,13 +1,13 @@
-[gd_scene format=4 uid="uid://huqox1hkg73g"]
+[gd_scene format=4 uid="uid://b86a68cfqfqoc"]
 
-[ext_resource type="Script" uid="uid://cj1wf602ob7tw" path="res://managers/battle_manager.gd" id="1_j6xku"]
-[ext_resource type="PackedScene" uid="uid://csobhijpiws8k" path="res://allies/archer/player_archer.tscn" id="1_k6s54"]
-[ext_resource type="PackedScene" uid="uid://sgwgiv4jxgcl" path="res://allies/warrior/warrior.tscn" id="3_j6xku"]
-[ext_resource type="PackedScene" uid="uid://b0cgq36e4w8ir" path="res://allies/healer/healer.tscn" id="5_y47j6"]
-[ext_resource type="PackedScene" uid="uid://myde0rbm00g4" path="res://allies/mage/mage.tscn" id="6_uxw26"]
-[ext_resource type="PackedScene" uid="uid://b4eas3wbgdjfc" path="res://allies/rogue/rogue.tscn" id="7_7yy31"]
-[ext_resource type="PackedScene" uid="uid://dgtou5mcf2wkl" path="res://allies/tank/tank.tscn" id="8_wlvp0"]
-[ext_resource type="Texture2D" uid="uid://dpampxyw0iufj" path="res://imported_art/tiles.png" id="9_wlvp0"]
+[ext_resource type="Script" uid="uid://cj1wf602ob7tw" path="res://managers/battle_manager.gd" id="1_j2uw5"]
+[ext_resource type="Texture2D" uid="uid://dpampxyw0iufj" path="res://imported_art/tiles.png" id="2_koqtm"]
+[ext_resource type="PackedScene" uid="uid://csobhijpiws8k" path="res://allies/archer/player_archer.tscn" id="3_xv7js"]
+[ext_resource type="PackedScene" uid="uid://sgwgiv4jxgcl" path="res://allies/warrior/warrior.tscn" id="4_hvhbm"]
+[ext_resource type="PackedScene" uid="uid://b0cgq36e4w8ir" path="res://allies/healer/healer.tscn" id="5_jhcha"]
+[ext_resource type="PackedScene" uid="uid://myde0rbm00g4" path="res://allies/mage/mage.tscn" id="6_bgp2t"]
+[ext_resource type="PackedScene" uid="uid://b4eas3wbgdjfc" path="res://allies/rogue/rogue.tscn" id="7_2v853"]
+[ext_resource type="PackedScene" uid="uid://dgtou5mcf2wkl" path="res://allies/tank/tank.tscn" id="8_ff4ld"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_h5qqk"]
 vertices = PackedVector2Array(1014, 10, 1014, 374, 650, 374, 650, 310, 458, 310, 458, 278, 490, 74, 650, 42, 394, 278, 394, 246, 246, 74, 342, 246, 342, 278, 278, 278, 106, 74, 278, 310, 106, 310, 106, 278, 10, 278, 10, 74, 106, 42, 246, 42, 342, 74, 342, 106, 394, 106, 394, 74, 490, 42, 650, 10)
@@ -46,7 +46,7 @@ agent_radius = 0.0
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_6787c"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fhslk"]
-texture = ExtResource("9_wlvp0")
+texture = ExtResource("2_koqtm")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
@@ -248,8 +248,9 @@ physics_layer_0/collision_layer = 1
 navigation_layer_0/layers = 1
 sources/1 = SubResource("TileSetAtlasSource_fhslk")
 
-[node name="Testing Scene" type="Node2D" unique_id=421939933]
-script = ExtResource("1_j6xku")
+[node name="ForestBattleGround" type="Node2D" unique_id=421939933 node_paths=PackedStringArray("battle_navigation")]
+script = ExtResource("1_j2uw5")
+battle_navigation = NodePath("BattleNavigation")
 
 [node name="BattleNavigation" type="NavigationRegion2D" parent="." unique_id=1889172775]
 navigation_polygon = SubResource("NavigationPolygon_h5qqk")
@@ -265,20 +266,20 @@ z_index = -4
 tile_map_data = PackedByteArray("AAAAAAEAAQADABgAAAABAAEAAQADABgAAAACAAEAAQADABgAAAADAAAAAQADABgAAAAEAAAAAQADABgAAAAFAAAAAQADABgAAAAGAAAAAQADABgAAAAHAAAAAQADABgAAAAAAAkAAQADABgAAAABAAkAAQADABgAAAACAAkAAQADABgAAAADAAoAAQADABgAAAAEAAoAAQADABgAAAAFAAoAAQADABgAAAAGAAoAAQADABgAAAAHAAoAAQADABgAAAACAAoAAQADABgAAAABAAoAAQADABgAAAAAAAoAAQADABgAAAAAAAsAAQADABgAAAABAAsAAQADABgAAAACAAsAAQADABgAAAADAAsAAQADABgAAAAEAAsAAQADABgAAAAFAAsAAQADABgAAAAGAAsAAQADABgAAAAHAAsAAQADABgAAAACAAAAAQADABgAAAABAAAAAQADABgAAAAAAAAAAQADABgAAAAIAAAAAQADABgAAAAJAAAAAQADABgAAAAKAAAAAQADABgAAAALAAAAAQADABgAAAAMAAAAAQADABgAAAANAAAAAQADABgAAAAOAAAAAQADABgAAAAPAAAAAQADABgAAAAQAAAAAQADABgAAAARAAAAAQADABgAAAASAAAAAQADABgAAAATAAAAAQADABgAAAAIAAoAAQADABgAAAAJAAoAAQADABgAAAAKAAoAAQADABgAAAALAAoAAQADABgAAAAMAAoAAQADABgAAAANAAoAAQADABgAAAAOAAoAAQADABgAAAAPAAoAAQADABgAAAAQAAoAAQADABgAAAARAAoAAQADABgAAAASAAoAAQADABgAAAATAAoAAQADABgAAAATAAsAAQADABgAAAASAAsAAQADABgAAAARAAsAAQADABgAAAAQAAsAAQADABgAAAAPAAsAAQADABgAAAAOAAsAAQADABgAAAANAAsAAQADABgAAAAMAAsAAQADABgAAAALAAsAAQADABgAAAAKAAsAAQADABgAAAAJAAsAAQADABgAAAAIAAsAAQADABgAAAAKAAEAAQADABgAAAALAAEAAQADABgAAAAMAAEAAQADABgAAAALAAIAAQADABgAAAANAAEAAQADABgAAAAOAAEAAQADABgAAAAKAAkAAQADABgAAAALAAkAAQADABgAAAALAAgAAQADABgAAAAMAAkAAQADABgAAAANAAkAAQADABgAAAAJAAkAAQADABgAAAAJAAEAAQADABgAAAAIAAEAAQADABgAAAA=")
 tile_set = SubResource("TileSet_h5qqk")
 
-[node name="PlayerArcher" parent="." unique_id=457729495 instance=ExtResource("1_k6s54")]
+[node name="PlayerArcher" parent="." unique_id=457729495 instance=ExtResource("3_xv7js")]
 position = Vector2(40, 240)
 
-[node name="Warrior" parent="." unique_id=882159276 instance=ExtResource("3_j6xku")]
+[node name="Warrior" parent="." unique_id=882159276 instance=ExtResource("4_hvhbm")]
 position = Vector2(160, 90)
 
-[node name="Healer" parent="." unique_id=2046218235 instance=ExtResource("5_y47j6")]
+[node name="Healer" parent="." unique_id=2046218235 instance=ExtResource("5_jhcha")]
 position = Vector2(40, 180)
 
-[node name="Mage" parent="." unique_id=1067034344 instance=ExtResource("6_uxw26")]
+[node name="Mage" parent="." unique_id=1067034344 instance=ExtResource("6_bgp2t")]
 position = Vector2(40, 120)
 
-[node name="Rogue" parent="." unique_id=658558371 instance=ExtResource("7_7yy31")]
+[node name="Rogue" parent="." unique_id=658558371 instance=ExtResource("7_2v853")]
 position = Vector2(160, 270)
 
-[node name="Tank" parent="." unique_id=227405942 instance=ExtResource("8_wlvp0")]
+[node name="Tank" parent="." unique_id=227405942 instance=ExtResource("8_ff4ld")]
 position = Vector2(270, 180)

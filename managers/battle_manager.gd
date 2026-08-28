@@ -11,17 +11,68 @@ var all_characters: Array[Character]
 
 @export var battle_navigation: NavigationRegion2D
 
+var current_battle_time: float = 0
+
+const ENEMY_INDIVIDUAL_OFFSET: float = 50
+const SPAWN_AT_X: float = 680
+const SPAWN_Y_WINDOW: float = 360
+
+var battle: Battle
+var battle_spawn_times: Array[float]
+var next_spawn_time: float
+
 func _init():
 	GameManager.current_battle_manager = self
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	tree_exited.connect(func(): GameManager.current_battle_manager = null)
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+	battle = GameManager.current_battle
+	battle_spawn_times = battle.waves.keys()
+	next_spawn_time = battle_spawn_times[0]
+	
 func _process(delta):
-	pass
+	if not battle:
+		print("No battle to spawn!")
+		return
+	
+	current_battle_time += delta
+	
+	if next_spawn_time >= current_battle_time:
+		if not battle.waves.has(next_spawn_time):
+			print("Invalid spawn time: " + str(next_spawn_time))
+			return
+		spawn_wave(battle.waves[next_spawn_time])
+
+
+func spawn_wave(wave_to_spawn: Wave):
+	var groups: Dictionary = wave_to_spawn.enemy_groups
+	for pos in groups.keys():
+		var y_segment: float = SPAWN_Y_WINDOW/5.0
+		var spawn_at_y: float = y_segment * pos
+		spawn_group(groups[pos], spawn_at_y)
+		
+	battle_spawn_times.erase(next_spawn_time)
+	if battle_spawn_times.size() > 0:
+		next_spawn_time = battle_spawn_times[0]
+	else:
+		next_spawn_time = -1
+		
+func spawn_group(enemy_group: EnemyGroup, y_pos: float):
+	var enemies: Dictionary = enemy_group.enemies
+	for enemy in enemies.keys():
+		if enemy is not PackedScene:
+			continue
+		
+		var offset: float = 0
+		for count in range(enemies[enemy]):
+			var spawned_enemy = enemy.instantiate()
+			spawned_enemy.global_position = Vector2(SPAWN_AT_X + offset, y_pos)
+			offset += ENEMY_INDIVIDUAL_OFFSET
+			add_child(spawned_enemy)
+			
+			
+
+
 
 func find_closest_goodguy(searcher: Character, search_range: float = 9999, preference: String = "", preference_strength: float = 2.0) -> Character:
 	var shortest_distance: float = search_range

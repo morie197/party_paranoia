@@ -34,16 +34,19 @@ func _process(delta):
 
 func _physics_process(delta):
 	if queud_attack > 0:
+		hits = 0
 		queud_attack -= 1
 	if queud_attack == 1:
 		#print("Attacked")
 		for character in targets:
-			if hits > max_hits:
-				return
+			if hits >= max_hits:
+				continue
 			hits += 1
 			character.damage(attack_damage, shooter)
+			print("Melee attack")
 			if debuff != "" and debuff_length > 0:
 				character.apply_debuff(debuff_length, debuff)
+				
 
 func _new_target(body):
 	if body is Character:

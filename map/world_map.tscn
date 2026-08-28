@@ -4,7 +4,8 @@
 [ext_resource type="Script" uid="uid://csw01pcibofhe" path="res://map/node_manager.gd" id="2_ax41i"]
 [ext_resource type="PackedScene" uid="uid://cjhfgwlgyr4x4" path="res://map/map_node.tscn" id="3_2e2sl"]
 [ext_resource type="Resource" uid="uid://cxvlyhnc5ajc4" path="res://map/node_types/battle/battle_node.tres" id="4_2e2sl"]
-[ext_resource type="Resource" uid="uid://bx2wxo1ufvlto" path="res://map/node_types/shop/shop_node.tres" id="4_pe27t"]
+[ext_resource type="Resource" uid="uid://bpbsh4wk0dxll" path="res://enemies/battles/starting_battle.tres" id="5_1sh4k"]
+[ext_resource type="PackedScene" uid="uid://b86a68cfqfqoc" path="res://battle grounds/forest_battle_ground.tscn" id="6_81uqm"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_kedo2"]
 vertices = PackedVector2Array(16, 16, -16, 16, -16, -16, 16, -16)
@@ -54,7 +55,7 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)])
 agent_radius = 0.0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gcdvf"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pe27t"]
 texture = ExtResource("1_cx3fk")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
@@ -254,7 +255,7 @@ texture_region_size = Vector2i(32, 32)
 tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 1
 navigation_layer_0/layers = 1
-sources/1 = SubResource("TileSetAtlasSource_gcdvf")
+sources/1 = SubResource("TileSetAtlasSource_pe27t")
 
 [node name="world_map" type="Node2D" unique_id=80374433]
 
@@ -282,7 +283,9 @@ offset_left = 64.0
 offset_top = 192.0
 offset_right = 96.0
 offset_bottom = 224.0
-node_type = ExtResource("4_pe27t")
+node_type = ExtResource("4_2e2sl")
+battle = ExtResource("5_1sh4k")
+battle_ground = ExtResource("6_81uqm")
 
 [node name="MapNode2" parent="NodeManager" unique_id=1104125190 instance=ExtResource("3_2e2sl")]
 layout_mode = 0

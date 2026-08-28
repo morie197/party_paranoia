@@ -5,6 +5,8 @@ var mouse_is_entered: bool = false
 
 @export var node_type: NodeType
 @export var stage: int = 0
+@export var battle: Battle
+@export var battle_ground: PackedScene
 
 @onready var normal_texture = %NormalTexture
 @onready var added_texture = %AddedTexture
@@ -40,8 +42,17 @@ func _process(delta):
 			if not is_current_stage:
 				return
 			if node_type:
-				print(node_type.node_name)
-
+				if node_type.node_name == "Battle":
+					if not battle:
+						print("No battle assigned!")
+						return
+					if not battle_ground:
+						print("No battleground assigned!")
+						return
+					
+					GameManager.current_battle = battle
+					get_tree().change_scene_to_packed(battle_ground)
+					
 func _mouse_enter():
 	mouse_is_entered = true
 	if is_current_stage:

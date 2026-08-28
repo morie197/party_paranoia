@@ -8,6 +8,8 @@ var current_node_manager: NodeManager = null
 
 var current_map_stage: int = 0
 
+var current_battle: Battle
+
 var gold: float = 1000
 
 var inventory: Dictionary[ShopItem, int]

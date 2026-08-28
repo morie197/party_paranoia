@@ -8,6 +8,8 @@ class_name CharacterStat
 @export var character_defense: float = 0
 @export var character_max_block: int = 0
 
+@export var gold_when_killed: float = 0
+
 @export_group("Character Info")
 @export var character_importantness: float = 0
 @export var character_role_name: String = ""
