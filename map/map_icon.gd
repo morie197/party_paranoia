@@ -5,6 +5,7 @@ var mouse_is_entered: bool = false
 
 @export var node_type: NodeType
 @export var stage: int = 0
+@export var path: int = 0
 @export var battle: Battle
 @export var battle_ground: PackedScene
 
@@ -15,6 +16,8 @@ var mouse_is_entered: bool = false
 const ACTIVE_NODE_PANEL = preload("uid://b5lpgqtaam0ti")
 const INACTIVE_NODE_PANEL = preload("uid://bt3xic7w6aqkj")
 const SELECTED_NODE_PANEL = preload("uid://briiuobl55ga3")
+
+const SHOP = preload("uid://dj72w1f50un10")
 
 var is_current_stage: bool = false
 
@@ -28,8 +31,8 @@ func _ready():
 		normal_texture.texture = node_type.node_icon
 		added_texture.texture = node_type.node_icon
 
-func init_node(current_stage):
-	if current_stage == stage:
+func init_node(current_stage, current_path):
+	if current_stage == stage and (current_path == path or path == 0):
 		is_current_stage = true
 		map_node_panel.add_theme_stylebox_override("panel", ACTIVE_NODE_PANEL)  
 	else:
@@ -52,6 +55,8 @@ func _process(delta):
 					
 					GameManager.current_battle = battle
 					get_tree().change_scene_to_packed(battle_ground)
+				elif node_type.node_name == "Shop":
+					get_tree().change_scene_to_packed(SHOP)
 					
 func _mouse_enter():
 	mouse_is_entered = true

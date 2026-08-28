@@ -22,19 +22,18 @@ var enemy_detection_range: float = 9999
 var enemy_preference: String = ""
 var enemy_preference_strength: float = 2.0
 
+var ally_x_limit: float = 400
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	#debug_enabled = true
+	debug_enabled = true
 	target_desired_distance = 30
 	
 	character_to_control = get_parent() as Character
 	if character_to_control:
 		initial_position = character_to_control.global_position
-		if character_to_control.ally:
-			navigation_layers = 2
+		
+	accumulator += randf_range(0, time_until_next_pathfinding)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if not character_to_control:
 		print("No character to control!")
@@ -57,6 +56,9 @@ func next_pathfinding():
 	if not character_to_control:
 		return
 		
+	if not GameManager.current_battle_manager:
+		return
+		
 	if healer:
 		if character_to_control.ally:
 			target_character = GameManager.current_battle_manager.find_lowest_health_percent_ally()
@@ -70,22 +72,26 @@ func next_pathfinding():
 			else:
 				target_character = GameManager.current_battle_manager.find_closest_goodguy(character_to_control, enemy_detection_range, enemy_preference, enemy_preference_strength)
 			if target_character and (not (character_to_control.ally and character_to_control.support)):
-				target_position = target_character.global_position
-				if not is_target_reachable():
-					if character_to_control.ally:
+				if character_to_control.ally:
+					if target_character.global_position.x > ally_x_limit:
 						target_position = initial_position
 					else:
-						target_position = Vector2(target_position.x, character_to_control.global_position.y)
-	
+						target_position = target_character.global_position
+				else:
+					if character_to_control.global_position.x > 660:
+						target_position = Vector2(target_character.global_position.x, character_to_control.global_position.y)
+					else:
+						target_position = target_character.global_position
+
 	if target_character:
 		if character_to_control.character_attack:
 			if character_to_control.character_attack.can_attack(target_character):
 				attack_position = target_character.global_position
 				is_attacking = true
 			else:
+				attack_position = target_position
 				is_attacking = false
 	else:
-		#target_position = character_to_control.global_position
 		attack_position = initial_position
 		target_position = initial_position
 		is_attacking = false

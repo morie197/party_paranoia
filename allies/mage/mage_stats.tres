@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_bj3fm")
 character_visual = ExtResource("1_edmoh")
-character_max_hp = 20.0
+character_max_hp = 200.0
 character_defense = 3.0
 character_max_block = 1
 character_importantness = 1.0

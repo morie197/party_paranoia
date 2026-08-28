@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://bckgbxbpaxb4a" path="res://items/gold/gold.tres" id="2_yttr2"]
 [ext_resource type="PackedScene" uid="uid://df71p3lk4msui" path="res://shop/shop_category.tscn" id="4_mrnko"]
 [ext_resource type="Script" uid="uid://den3a56qy88sg" path="res://shop/wares/shop_item.gd" id="5_2wf2a"]
+[ext_resource type="StyleBox" uid="uid://djotla8lep23k" path="res://shop/shop_button_normal.tres" id="5_bv5vx"]
+[ext_resource type="StyleBox" uid="uid://rge205efwt3x" path="res://shop/shop_button_pressed.tres" id="6_mmyc1"]
 [ext_resource type="Resource" uid="uid://br6ejqs75pa8b" path="res://shop/wares/abilities/ice arrow/ice_arrow_item.tres" id="6_xad5q"]
 [ext_resource type="Resource" uid="uid://de3heagio4wti" path="res://shop/wares/abilities/healing arrow/healing_arrow_item.tres" id="7_ljlg5"]
 
@@ -328,6 +330,16 @@ fit_content = true
 autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="ExitShop" type="Button" parent="ShopMenu/VBoxContainer/ShopInfo/HBoxContainer" unique_id=581828178]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_styles/normal = ExtResource("5_bv5vx")
+theme_override_styles/pressed = ExtResource("6_mmyc1")
+theme_override_styles/hover = ExtResource("6_mmyc1")
+theme_override_styles/disabled = ExtResource("5_bv5vx")
+theme_override_styles/focus = ExtResource("6_mmyc1")
+text = "Exit Shop >"
 
 [node name="PanelContainer" type="PanelContainer" parent="ShopMenu/VBoxContainer" unique_id=381982689]
 layout_mode = 2

@@ -10,7 +10,8 @@ var frontline_allies: Array[Character]
 var all_characters: Array[Character]
 
 @export var battle_navigation: NavigationRegion2D
-@export var ally_navigation: NavigationRegion2D
+
+const BATTLE_OVER_SCREEN = preload("uid://dtqwnrtyexdg0")
 
 var current_battle_time: float = 0
 
@@ -22,14 +23,19 @@ var battle: Battle
 var battle_spawn_times: Array[float]
 var next_spawn_time: float
 
+var starting_gold: float
+
 func _init():
 	GameManager.current_battle_manager = self
 
 func _ready():
-	tree_exited.connect(func(): GameManager.current_battle_manager = null)
+	#tree_exited.connect(func(): GameManager.current_battle_manager = null)
+	#if not GameManager.current_battle_manager:
+	#	GameManager.current_battle_manager = self
 	battle = GameManager.current_battle
 	battle_spawn_times = battle.waves.keys()
 	next_spawn_time = battle_spawn_times[0]
+	starting_gold = GameManager.gold
 	
 func _process(delta):
 	if not battle:
@@ -200,7 +206,7 @@ func find_lowest_health_percent_ally() -> Character:
 				lowest_health_percentage_ally = ally
 				lowest_health_percentage = health_percantage
 				
-	if lowest_health_percentage_ally.character_health and (lowest_health_percentage_ally.character_health.max_hp == lowest_health_percentage_ally.character_health.current_hp):
+	if lowest_health_percentage_ally and lowest_health_percentage_ally.character_health and (lowest_health_percentage_ally.character_health.max_hp == lowest_health_percentage_ally.character_health.current_hp):
 		return null
 				
 	return lowest_health_percentage_ally
@@ -224,7 +230,18 @@ func remove_character(character_to_remove: Character):
 	if not character_to_remove.is_queued_for_deletion():
 		character_to_remove.queue_free()
 		
+		
 func kill_character(character_to_kill: Character, gold_given: float = 0):
 	GameManager.gold += gold_given
-	print(gold_given)
+	
+	if character_to_kill.ally:
+		var battle_over_screen = BATTLE_OVER_SCREEN.instantiate()
+		battle_over_screen.won = false
+		add_child(battle_over_screen)
+	else:
+		if enemiess.size() == 1:
+			var battle_over_screen = BATTLE_OVER_SCREEN.instantiate()
+			battle_over_screen.won = true
+			add_child(battle_over_screen)
+	
 	remove_character(character_to_kill)

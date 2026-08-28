@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://csw01pcibofhe" path="res://map/node_manager.gd" id="2_ax41i"]
 [ext_resource type="PackedScene" uid="uid://cjhfgwlgyr4x4" path="res://map/map_node.tscn" id="3_2e2sl"]
 [ext_resource type="Resource" uid="uid://cxvlyhnc5ajc4" path="res://map/node_types/battle/battle_node.tres" id="4_2e2sl"]
+[ext_resource type="Resource" uid="uid://bx2wxo1ufvlto" path="res://map/node_types/shop/shop_node.tres" id="4_pe27t"]
 [ext_resource type="Resource" uid="uid://bpbsh4wk0dxll" path="res://enemies/battles/starting_battle.tres" id="5_1sh4k"]
 [ext_resource type="PackedScene" uid="uid://b86a68cfqfqoc" path="res://battle grounds/forest_battle_ground.tscn" id="6_81uqm"]
 
@@ -283,7 +284,7 @@ offset_left = 64.0
 offset_top = 192.0
 offset_right = 96.0
 offset_bottom = 224.0
-node_type = ExtResource("4_2e2sl")
+node_type = ExtResource("4_pe27t")
 battle = ExtResource("5_1sh4k")
 battle_ground = ExtResource("6_81uqm")
 
@@ -295,6 +296,8 @@ offset_right = 192.0
 offset_bottom = 160.0
 node_type = ExtResource("4_2e2sl")
 stage = 1
+battle = ExtResource("5_1sh4k")
+battle_ground = ExtResource("6_81uqm")
 
 [node name="MapNode3" parent="NodeManager" unique_id=1730315205 instance=ExtResource("3_2e2sl")]
 layout_mode = 0
@@ -302,7 +305,7 @@ offset_left = 160.0
 offset_top = 256.0
 offset_right = 192.0
 offset_bottom = 288.0
-node_type = ExtResource("4_2e2sl")
+node_type = ExtResource("4_pe27t")
 stage = 1
 
 [node name="MapNode4" parent="NodeManager" unique_id=1872574182 instance=ExtResource("3_2e2sl")]

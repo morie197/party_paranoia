@@ -43,7 +43,7 @@ func _physics_process(delta):
 				continue
 			hits += 1
 			character.damage(attack_damage, shooter)
-			print("Melee attack")
+			#print("Melee attack")
 			if debuff != "" and debuff_length > 0:
 				character.apply_debuff(debuff_length, debuff)
 				
@@ -75,7 +75,6 @@ func attack(target_position: Vector2):
 	queud_attack = 2
 
 func can_attack(target: Character) -> bool:
-	#if targets.has(target):
 	return true
-		
-	#return false
+
+	#return false	

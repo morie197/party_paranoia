@@ -3,6 +3,9 @@ class_name ShopMenu
 
 @onready var shop_items = %ShopItems
 @onready var gold_amount = %GoldAmount
+@onready var exit_shop = %ExitShop
+
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -16,11 +19,17 @@ func _ready():
 		category.init_category()
 		
 	refresh_shop()
+	
+	exit_shop.pressed.connect(_exit_shop)
 		
 		
 
 func refresh_shop():
 	gold_amount.text = str(roundi(GameManager.gold))
+	
+func _exit_shop():
+	GameManager.current_map_stage += 1
+	GameManager.load_map()
 
 func buy_item(item: ShopItem):
 	if item.item_price > GameManager.gold:

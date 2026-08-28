@@ -1,0 +1,125 @@
+[gd_scene format=3 uid="uid://dtqwnrtyexdg0"]
+
+[ext_resource type="Script" uid="uid://b6yjmdu2xlnj8" path="res://battle grounds/battle_over_screen.gd" id="1_x1hyo"]
+[ext_resource type="Texture2D" uid="uid://bckgbxbpaxb4a" path="res://items/gold/gold.tres" id="2_leqwm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x1hyo"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0, 0, 0, 0.6)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jhcha"]
+content_margin_left = 5.0
+content_margin_right = 5.0
+bg_color = Color(0.12591082, 0.12591085, 0.12591076, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.3143161, 0.31431615, 0.31431586, 1)
+expand_margin_right = 3.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bgp2t"]
+content_margin_left = 5.0
+content_margin_right = 5.0
+bg_color = Color(0.288518, 0.288518, 0.28851795, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.73300564, 0.73300534, 0.7330054, 1)
+expand_margin_right = 3.0
+
+[node name="BattleOverScreen" type="Control" unique_id=1752703321]
+z_index = 15
+custom_minimum_size = Vector2(640, 360)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 640.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_x1hyo")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=321124684]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_x1hyo")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=1359113704]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="BattleText" type="RichTextLabel" parent="PanelContainer/VBoxContainer" unique_id=748205482]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 32
+text = "Battle won!"
+fit_content = true
+autowrap_mode = 0
+
+[node name="GoldContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=1929830813]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = -4
+alignment = 1
+
+[node name="GoldGained" type="RichTextLabel" parent="PanelContainer/VBoxContainer/GoldContainer" unique_id=1022464688]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 32
+text = "+100"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/VBoxContainer/GoldContainer" unique_id=878994024]
+layout_mode = 2
+texture = ExtResource("2_leqwm")
+expand_mode = 2
+
+[node name="ContinueButton" type="Button" parent="PanelContainer/VBoxContainer" unique_id=803889381]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_jhcha")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_bgp2t")
+theme_override_styles/hover = SubResource("StyleBoxFlat_bgp2t")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_jhcha")
+theme_override_styles/focus = SubResource("StyleBoxFlat_bgp2t")
+text = "Continue"
+
+[node name="MenuButton" type="Button" parent="PanelContainer/VBoxContainer" unique_id=509896211]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_jhcha")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_bgp2t")
+theme_override_styles/hover = SubResource("StyleBoxFlat_bgp2t")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_jhcha")
+theme_override_styles/focus = SubResource("StyleBoxFlat_bgp2t")
+text = "Give up"

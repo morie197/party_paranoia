@@ -18,6 +18,11 @@ const SHOP_ITEM_ENTRY_BACKGROUND = preload("uid://jxayas3fr48k")
 const SHOP_ITEM_ENTRY_BACKGROUND_INACTIVE = preload("uid://bt1ljfnuowhm4")
 
 func init_display(item: ShopItem):
+	if item.only_once:
+		if GameManager.inventory.has(item):
+			queue_free()
+			return
+	
 	item_to_display = item
 	
 	item_icon.texture = item_to_display.item_icon
