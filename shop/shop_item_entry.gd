@@ -7,6 +7,7 @@ class_name ShopItemEntry
 @onready var amount_panel_container = %AmountPanelContainer
 @onready var amount_text = %AmountText
 @onready var item_panel = %ItemPanel
+@onready var class_icon = %ClassIcon
 
 var item_to_display: ShopItem
 
@@ -29,7 +30,15 @@ func init_display(item: ShopItem):
 	item_name.text = item_to_display.item_name
 	gold_price.text = str(roundi(item_to_display.item_price))
 	
-	amount_panel_container.visible = not item_to_display.only_once
+	amount_text.visible = not item_to_display.only_once
+	class_icon.visible = item_to_display.only_once
+	
+	if item_to_display.only_once:
+		if item_to_display.for_role == "":
+			print("Empty role for item!")
+			amount_panel_container.visible = false
+		else:
+			class_icon.texture = GameManager.get_class_icon(item_to_display.for_role)
 	
 	if GameManager.inventory.has(item_to_display):
 		amount_text.text = "x" + str(GameManager.inventory[item_to_display])

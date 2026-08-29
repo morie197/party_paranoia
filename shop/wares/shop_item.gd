@@ -7,6 +7,7 @@ class_name ShopItem
 @export var item_description: String = ""
 @export var only_once: bool = true
 @export var item_slot: String = ""
+@export var for_role: String = ""
 
 @export_group("Stats")
 @export var item_defense: float = 0
