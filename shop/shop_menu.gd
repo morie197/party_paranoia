@@ -38,13 +38,7 @@ func buy_item(item: ShopItem):
 		
 	GameManager.gold -= item.item_price
 	
-	if GameManager.inventory.has(item):
-		if item.only_once and GameManager.inventory[item] > 0:
-			print("Cannot buy more than once!")
-			return
-	else:
-		GameManager.inventory[item] = 0
-		
-	GameManager.inventory[item] += 1
+	if not GameManager.add_item(item):
+		return
 
 	refresh_shop()

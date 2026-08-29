@@ -22,6 +22,7 @@ class_name CharacterStat
 @export var character_attack_cooldown: float = 0
 @export var character_attack_range: float = 0
 @export var character_attack_speed: float = 0
+@export var character_hit: int = 1
 
 @export_group("Pathfinding")
 @export var character_role_attack_preference: String = ""

@@ -15,6 +15,12 @@ var gold: float = 1000
 
 var inventory: Dictionary[ShopItem, int]
 
+var current_equipment: Dictionary[String, Dictionary]
+var available_equipment: Dictionary[String, Array]
+
+const ally_classes: Array[String] = ["archer", "healer", "mage", "rogue", "tank", "warrior"]
+const equipment_slots: Array[String] = ["equipment", "ability"]
+
 const WORLD_MAP = preload("uid://c1b3t0ot01b35")
 
 const ARCHER_VISUAL = preload("uid://c484br5rmt0rr")
@@ -53,6 +59,92 @@ func get_class_icon(role_class: String) -> Texture2D:
 				
 	return class_icon
 
+func add_item(item: ShopItem) -> bool:
+	if inventory.has(item):
+		if item.only_once and inventory[item] > 0:
+			print("Cannot have more than one!")
+			return false
+	else:
+		inventory[item] = 0
+		
+	if item.item_slot != "":
+		if not add_equipment(item):
+			return false
+		
+	inventory[item] += 1
+	
+	return true
+
+func add_equipment(item: ShopItem) -> bool:
+	if not ally_classes.has(item.for_role):
+		print("Invalid role: " + item.for_role)
+		return false
+		
+	if available_equipment.has(item.for_role):
+		if available_equipment[item.for_role].has(item):
+			print("Already has equipment!!")
+			return false
+	else:
+		available_equipment[item.for_role] = []
+		
+	available_equipment[item.for_role].append(item)
+	
+	return true
+
+func get_compatible_equipment_for_class_slot(role_class: String, item_slot: String) -> Array:
+	role_class = role_class.to_lower()
+	if not available_equipment.has(role_class):
+		print("No available equipment for: " + role_class)
+		print(available_equipment)
+		return []
+		
+	var compatible_equipment: Array[ShopItem]
+		
+	for equipment in available_equipment[role_class]:
+		if equipment.item_slot == item_slot:
+			compatible_equipment.append(equipment)
+	
+	return compatible_equipment
+	
+func equip_equipment(equipment: ShopItem) -> bool:
+	var equip_slot = equipment.item_slot
+	var equip_class = equipment.for_role
+	
+	if not equipment_slots.has(equip_slot):
+		print("Invalid equipment slot: " + equip_slot)
+		return false
+		
+	if not ally_classes.has(equip_class):
+		print("Invalid class: " + equip_class)
+		return false
+				
+	if not current_equipment.has(equip_class):
+		current_equipment[equip_class] = {}
+		
+	current_equipment[equip_class][equip_slot] = equipment
+		
+	return true
+
+func is_current_equipment(equipment: ShopItem) -> bool:
+	var equip_slot = equipment.item_slot
+	var equip_class = equipment.for_role
+	
+	if current_equipment.has(equip_class):
+		if current_equipment[equip_class].has(equip_slot):
+			return current_equipment[equip_class][equip_slot] == equipment
+	
+	return false
+
+func get_current_equipment_in_slot(role_class: String, item_slot: String) -> ShopItem:
+	role_class = role_class.to_lower()
+	if not current_equipment.has(role_class):
+		return null
+		
+	if not current_equipment[role_class].has(item_slot):
+		return null
+		
+	return current_equipment[role_class][item_slot]
+		
 func load_map():
 	get_tree().change_scene_to_packed(WORLD_MAP)
 
