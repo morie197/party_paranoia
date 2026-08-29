@@ -23,6 +23,8 @@ const equipment_slots: Array[String] = ["equipment", "ability"]
 
 const WORLD_MAP = preload("uid://c1b3t0ot01b35")
 
+const EQUIPMENT_SELECTION_MENU = preload("uid://cvfffdw8ty2wr")
+
 const ARCHER_VISUAL = preload("uid://c484br5rmt0rr")
 const HEALER_VISUAL = preload("uid://bgpihtxi41w44")
 const MAGE_VISUAL = preload("uid://ce640m3p6g2p6")
@@ -30,14 +32,27 @@ const ROGUE_VISUAL = preload("uid://clqsy2bs0artm")
 const TANK_VISUAL = preload("uid://cjj0ogryuukgc")
 const WARRIOR_VISUAL = preload("uid://5oa1hrynm2gj")
 
+var equipment_menu: EquipmentSelectManager
+
 func reset_data():
 	current_map_stage = 0
+	current_map_path = 0
+	
 	inventory = {}
+	current_equipment = {}
+	available_equipment = {}
+	
 	gold = 1000
 	current_battle = null
 	current_node_manager = null
 	current_battle_manager = null
 	mouse_pos = Vector2.ZERO
+	
+func popup_equipment_menu(scene_to_load: PackedScene):
+	equipment_menu = EQUIPMENT_SELECTION_MENU.instantiate()
+	equipment_menu.scene_to_load_afterwards = scene_to_load
+	if current_node_manager and not current_node_manager.is_queued_for_deletion():
+		current_node_manager.add_sibling(equipment_menu)
 	
 func get_class_icon(role_class: String) -> Texture2D:
 	var class_icon: Texture2D

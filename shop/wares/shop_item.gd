@@ -18,7 +18,6 @@ class_name ShopItem
 @export_group("Attack Stats")
 @export var item_attack: float = 0
 @export var item_attack_speed: float = 0
-@export var item_attack_projectile_speed: float = 0
 @export var item_cooldown: float = 0
 @export var item_range: float = 0
 @export var projectile_to_use: PackedScene

@@ -39,6 +39,9 @@ func _hit(body):
 		print("Invalid target!")
 		return
 		
+	if body == shooter:
+		return
+		
 	var character = body as Character
 	if character.ally != shooter.ally:
 		character.damage(projectile_attack_damage, shooter)

@@ -6,7 +6,7 @@ var move_vector: Vector2 = Vector2.ZERO
 var facing_direction: Vector2 = Vector2.ZERO
 
 var is_attacking: bool = false
-var pressed_special: bool = false
+var special_attacking: bool = false
 
 var attack_position: Vector2 = Vector2.ZERO
 
@@ -20,7 +20,7 @@ func _process(_delta) -> void:
 	move_vector = Input.get_vector("left", "right", "up", "down")
 	
 	is_attacking = Input.is_action_pressed("attack")
-	pressed_special = Input.is_action_just_pressed("special")
+	special_attacking = Input.is_action_pressed("special")
 	
 	attack_position = GameManager.mouse_pos
 	

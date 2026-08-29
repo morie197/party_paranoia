@@ -17,18 +17,68 @@ var debuff_timers: Dictionary[String, Timer]
 var slow_amount: float = 0.5
 var extra_gold_amount: float = 1.5
 
+var base_movement_speed: float = 0
+
 func init_stats():
 	if not character:
 		print("No character to apply stats to!")
 		return
 		
-	character_attack = character.character_attack
-	character_move = character.character_move
+	var equipment: ShopItem = GameManager.get_current_equipment_in_slot(stats.character_role_name, "equipment")
+	var ability: ShopItem = GameManager.get_current_equipment_in_slot(stats.character_role_name, "ability")
+		
+	character_attack = character.character_attack 
+	character_move = character.character_move 
 	character_health = character.character_health
 	character_block = character.character_block
 	character_visuals = character.character_visuals
 	character_attack_target_controller = character.character_attack_target_controller
 	
+	if ability and ability.projectile_to_use != null:
+		var projectile_attack = CharacterProjectileAttack.new()
+		projectile_attack.shooter = character
+		character.add_child(projectile_attack)
+		
+		projectile_attack.projectile_to_fire = ability.projectile_to_use
+		projectile_attack.attack_damage = ability.item_attack
+		if ability.item_range > 0:
+			projectile_attack.attack_range = ability.item_range
+		else:
+			projectile_attack.attack_range = stats.character_attack_range
+		projectile_attack.attack_speed = ability.item_attack_speed
+		projectile_attack.attack_cooldown = ability.item_cooldown
+		projectile_attack.debuff = ability.debuff_to_apply
+		projectile_attack.debuff_length = ability.debuff_length
+		if ability.healing:
+			projectile_attack.attack_damage = -projectile_attack.attack_damage
+		
+		if equipment: # so skills are affected by equipment stat bonuses
+			projectile_attack.attack_damage += equipment.item_attack
+			projectile_attack.attack_range += equipment.item_range
+			projectile_attack.attack_speed += equipment.item_attack_speed
+			projectile_attack.attack_cooldown += equipment.item_cooldown
+		
+		character.character_special_attack = projectile_attack
+		
+	elif ability:
+		var melee_attack = CharacterMeleeAttack.new()
+		melee_attack.shooter = character
+		character.add_child(melee_attack)
+		
+		melee_attack.attack_damage = ability.item_attack
+		melee_attack.attack_range = ability.item_range
+		melee_attack.attack_speed = ability.item_attack_speed
+		melee_attack.attack_cooldown = ability.item_cooldown
+		melee_attack.debuff = ability.debuff_to_apply
+		melee_attack.debuff_length = ability.debuff_length
+		
+		if equipment: # so skills are affected by equipment stat bonuses
+			melee_attack.attack_damage += equipment.item_attack
+			melee_attack.attack_range += equipment.item_range
+			melee_attack.attack_speed += equipment.item_attack_speed
+			melee_attack.attack_cooldown += equipment.item_cooldown
+		
+		character.character_special_attack = melee_attack
 	
 	character.character_importantness = stats.character_importantness
 	character.character_role = stats.character_role_name
@@ -41,15 +91,32 @@ func init_stats():
 		character_attack.attack_damage = stats.character_attack
 		character_attack.attack_speed = stats.character_attack_speed
 		character_attack.attack_range = stats.character_attack_range
+		
+		if equipment:
+			character_attack.attack_damage += equipment.item_attack
+			character_attack.attack_speed += equipment.item_attack_projectile_speed
+			character_attack.attack_range += equipment.item_range
+			
 	
-	set_move_speed(stats.character_move_speed)
+	base_movement_speed = stats.character_move_speed
+	if equipment:
+		base_movement_speed += equipment.item_agility
+		
+	set_move_speed(base_movement_speed)
 	
 	if character_health:
 		character_health.max_hp = stats.character_max_hp
 		character_health.defense = stats.character_defense
 
+		if equipment:
+			character_health.max_hp += equipment.item_hp
+			character_health.defense += equipment.item_defense
+
 	if character_block:
 		character_block.max_block = stats.character_max_block
+		
+		if equipment:
+			character_block.max_block += equipment.item_block
 		
 	if character_visuals:
 		character_visuals.character_icon = stats.character_visual
@@ -85,7 +152,7 @@ func create_debuff_timer(duration: float, timer_name: String) -> Timer:
 	return new_timer
 	
 func apply_slow_debuff(duration: float):
-	var base_move_speed: float = stats.character_move_speed
+	var base_move_speed: float = base_movement_speed
 	set_move_speed(base_move_speed * slow_amount)
 	var slow_timer: Timer = create_debuff_timer(duration, "slow")
 	slow_timer.timeout.connect(set_move_speed.bind(base_move_speed))

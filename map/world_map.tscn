@@ -7,14 +7,6 @@
 [ext_resource type="Resource" uid="uid://bx2wxo1ufvlto" path="res://map/node_types/shop/shop_node.tres" id="4_pe27t"]
 [ext_resource type="Resource" uid="uid://bpbsh4wk0dxll" path="res://enemies/battles/starting_battle.tres" id="5_1sh4k"]
 [ext_resource type="PackedScene" uid="uid://b86a68cfqfqoc" path="res://battle grounds/forest_battle_ground.tscn" id="6_81uqm"]
-[ext_resource type="StyleBox" uid="uid://drtpjh1toky1v" path="res://shop/shop_background_panel.tres" id="8_2conx"]
-[ext_resource type="Script" uid="uid://detfprpxavkwq" path="res://equipment_select_manager.gd" id="8_a7svd"]
-[ext_resource type="Script" uid="uid://d4hcg1hl08rya" path="res://character_stat_template.gd" id="9_8kolk"]
-[ext_resource type="Resource" uid="uid://j8f5wapsykl5" path="res://allies/tank/tank_stats.tres" id="10_yphtc"]
-[ext_resource type="Resource" uid="uid://1e66fh5a3f21" path="res://allies/warrior/warrior_stats.tres" id="11_6vees"]
-[ext_resource type="Resource" uid="uid://13i5627f7w4q" path="res://allies/rogue/rogue_stats.tres" id="12_57v4m"]
-[ext_resource type="Resource" uid="uid://bip051ptoqbq3" path="res://allies/archer/archer_stats.tres" id="13_3v6tv"]
-[ext_resource type="Resource" uid="uid://hx614t3xon8j" path="res://allies/mage/mage_stats.tres" id="14_oc4fb"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_kedo2"]
 vertices = PackedVector2Array(16, 16, -16, 16, -16, -16, 16, -16)
@@ -324,51 +316,5 @@ offset_right = 288.0
 offset_bottom = 224.0
 node_type = ExtResource("4_2e2sl")
 stage = 2
-
-[node name="Control" type="Control" parent="." unique_id=541621943]
-custom_minimum_size = Vector2(640, 360)
-layout_mode = 3
-anchors_preset = 0
-offset_right = 640.0
-offset_bottom = 360.0
-mouse_filter = 2
-script = ExtResource("8_a7svd")
-equip_characters = Array[ExtResource("9_8kolk")]([ExtResource("10_yphtc"), ExtResource("11_6vees"), ExtResource("12_57v4m"), ExtResource("13_3v6tv"), ExtResource("14_oc4fb"), ExtResource("10_yphtc")])
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Control" unique_id=524678574]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -45.5
-offset_top = -97.5
-offset_right = 45.5
-offset_bottom = 97.5
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="PanelContainer" type="PanelContainer" parent="Control/VBoxContainer" unique_id=373845225]
-layout_mode = 2
-theme_override_styles/panel = ExtResource("8_2conx")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/VBoxContainer/PanelContainer" unique_id=2008503001]
-layout_mode = 2
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Control/VBoxContainer/PanelContainer/VBoxContainer" unique_id=2002051993]
-layout_mode = 2
-text = "Choose Equipment"
-fit_content = true
-autowrap_mode = 0
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="ConfirmButton" type="Button" parent="Control/VBoxContainer/PanelContainer/VBoxContainer" unique_id=385530963]
-layout_mode = 2
-text = "Apply Equipment"
-
-[node name="Characters" type="HBoxContainer" parent="Control/VBoxContainer/PanelContainer/VBoxContainer" unique_id=490453970]
-unique_name_in_owner = true
-layout_mode = 2
-alignment = 1
+battle = ExtResource("5_1sh4k")
+battle_ground = ExtResource("6_81uqm")

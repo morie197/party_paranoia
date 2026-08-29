@@ -12,6 +12,9 @@ class_name Character
 @export var character_attack_target_controller: Node
 @export var character_stats: CharacterStats
 @export var character_visuals: CharacterVisuals
+@export var special_attack_input_controller: Node
+
+var character_special_attack: Node
 
 var ally: bool = true
 var support: bool = true
@@ -65,6 +68,10 @@ func _process(delta):
 	
 	if attack_input_controller.is_attacking:
 		character_attack.attack(character_attack_target_controller.attack_position)
+	
+	if special_attack_input_controller and special_attack_input_controller.special_attacking:
+		if character_special_attack:
+			character_special_attack.attack(special_attack_input_controller.attack_position)
 	
 	character_aim_visuals.look_at(character_attack_target_controller.attack_position)
 	

@@ -1,4 +1,5 @@
 extends Area2D
+class_name CharacterMeleeAttack
 
 var attack_cooldown: float = 0.7
 var attack_damage: float = 8

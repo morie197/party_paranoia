@@ -54,7 +54,8 @@ func _process(delta):
 						return
 					
 					GameManager.current_battle = battle
-					get_tree().change_scene_to_packed(battle_ground)
+					GameManager.popup_equipment_menu(battle_ground)
+					#get_tree().change_scene_to_packed(battle_ground)
 				elif node_type.node_name == "Shop":
 					get_tree().change_scene_to_packed(SHOP)
 					
