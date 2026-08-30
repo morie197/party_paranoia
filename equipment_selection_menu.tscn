@@ -2,11 +2,7 @@
 
 [ext_resource type="Script" uid="uid://detfprpxavkwq" path="res://equipment_select_manager.gd" id="1_g5ay5"]
 [ext_resource type="Script" uid="uid://d4hcg1hl08rya" path="res://character_stat_template.gd" id="2_ivotn"]
-[ext_resource type="Resource" uid="uid://j8f5wapsykl5" path="res://allies/tank/tank_stats.tres" id="3_8fb5l"]
-[ext_resource type="Resource" uid="uid://1e66fh5a3f21" path="res://allies/warrior/warrior_stats.tres" id="4_hnpnj"]
-[ext_resource type="Resource" uid="uid://13i5627f7w4q" path="res://allies/rogue/rogue_stats.tres" id="5_sw0fe"]
 [ext_resource type="Resource" uid="uid://bip051ptoqbq3" path="res://allies/archer/archer_stats.tres" id="6_cdkb4"]
-[ext_resource type="Resource" uid="uid://hx614t3xon8j" path="res://allies/mage/mage_stats.tres" id="7_b3mp2"]
 [ext_resource type="StyleBox" uid="uid://drtpjh1toky1v" path="res://shop/shop_background_panel.tres" id="8_fy8s4"]
 [ext_resource type="StyleBox" uid="uid://cr2m2rrms6kog" path="res://equipment_menu_background_dark.tres" id="8_hnpnj"]
 [ext_resource type="StyleBox" uid="uid://djotla8lep23k" path="res://shop/shop_button_normal.tres" id="9_sw0fe"]
@@ -21,7 +17,7 @@ offset_right = 640.0
 offset_bottom = 360.0
 mouse_filter = 2
 script = ExtResource("1_g5ay5")
-equip_characters = Array[ExtResource("2_ivotn")]([ExtResource("3_8fb5l"), ExtResource("4_hnpnj"), ExtResource("5_sw0fe"), ExtResource("6_cdkb4"), ExtResource("7_b3mp2"), ExtResource("3_8fb5l")])
+equip_characters = Array[ExtResource("2_ivotn")]([ExtResource("6_cdkb4")])
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=327960759]
 layout_mode = 1

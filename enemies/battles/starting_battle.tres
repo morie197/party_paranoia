@@ -10,7 +10,7 @@
 script = ExtResource("1_av7yr")
 waves = Dictionary[float, ExtResource("2_joore")]({
 1.0: ExtResource("3_joore"),
-3.0: ExtResource("5_ll0hi"),
-6.0: ExtResource("4_4vc1a")
+6.0: ExtResource("4_4vc1a"),
+9.0: ExtResource("5_ll0hi")
 })
 metadata/_custom_type_script = "uid://t27xo8w46cb7"

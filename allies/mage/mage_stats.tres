@@ -6,14 +6,14 @@
 [resource]
 script = ExtResource("1_bj3fm")
 character_visual = ExtResource("1_edmoh")
-character_max_hp = 200.0
-character_defense = 3.0
+character_max_hp = 300.0
+character_defense = 15.0
 character_max_block = 1
 character_importantness = 1.0
 character_role_name = "Mage"
 character_ally = true
 character_support = true
-character_attack = 13.0
+character_attack = 65.0
 character_attack_cooldown = 1.4
 character_attack_range = 500.0
 character_attack_speed = 14.0

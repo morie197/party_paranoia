@@ -14,7 +14,7 @@ class_name Character
 @export var character_visuals: CharacterVisuals
 @export var special_attack_input_controller: Node
 
-var character_special_attack: Node
+@export var character_special_attack: Node
 
 var ally: bool = true
 var support: bool = true
@@ -46,11 +46,9 @@ func _ready():
 			character_visuals.z_index += 1
 		
 	if character_health:
-		character_health.init_health()
 		character_health.died.connect(died)
 		if character_health_bar:
 			character_health.hp_changed.connect(character_health_bar.update_hp)
-			character_health_bar.initialize_health_bar(ally) 
 		
 	if GameManager.current_battle_manager != null:
 		GameManager.current_battle_manager.all_characters.append(self)
@@ -62,11 +60,6 @@ func _ready():
 				GameManager.current_battle_manager.frontline_allies.append(self)
 		else:
 			GameManager.current_battle_manager.enemiess.append(self)
-			
-	if ally:
-		set_collision_layer_value(4, true)
-	else:
-		set_collision_layer_value(3, true)
 
 func _process(delta):
 	if (not attack_input_controller) or (not character_attack) or (not character_attack_target_controller):

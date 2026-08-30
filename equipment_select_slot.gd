@@ -36,6 +36,8 @@ func init_slot(item: ShopItem, is_current: bool):
 		add_theme_stylebox_override("panel", EQUIPMENT_SELECT_SLOT_INACTIVE)
 		
 	ability_icon.texture = item.item_icon
+	
+	ability_icon.hover_over_text = item.item_description
 
 func _enter():
 	mouse_is_entered = true

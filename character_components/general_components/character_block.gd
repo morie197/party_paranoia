@@ -157,4 +157,24 @@ func unblock_all():
 	currently_blocking = false
 			
 	blocking.clear()
+	
+func unblock_all_pure():
+	for character in blocking:
+		if not character:
+			return
+		
+		character.character_block.current_block -= block_weight
+		#print(character.character_block.current_block )
+		if character.character_block.current_block == 0:
+			character.character_block.traitor_block_cooldown = TRAITOR_BLOCK_TIME
+			character.character_block.blocked = false
+			character.character_block.currently_blocking = false
+		
+		if character.character_block.blocking.has(character_to_control):
+			character.character_block.blocking.erase(character_to_control)
+	
+	blocked = false
+	currently_blocking = false
+			
+	blocking.clear()
 		

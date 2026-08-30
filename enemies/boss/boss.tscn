@@ -10,6 +10,8 @@
 [ext_resource type="Script" uid="uid://3vpk7ho4jj33" path="res://character_components/attacks/character_melee_attack.gd" id="8_thi7d"]
 [ext_resource type="Script" uid="uid://blvkhb3u4rf07" path="res://character_components/general_components/character_stats.gd" id="9_vtwti"]
 [ext_resource type="Resource" uid="uid://cu2d0a1uhk6yy" path="res://enemies/boss/boss.tres" id="10_1s7ui"]
+[ext_resource type="Script" uid="uid://c4ce50nrk6ade" path="res://character_components/attacks/character_projectile_attack.gd" id="11_o8os0"]
+[ext_resource type="PackedScene" uid="uid://b5uuwtu6s3tei" path="res://projectiles/boss_projectile.tscn" id="12_b0wi3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bj0nv"]
 radius = 16.0
@@ -18,7 +20,7 @@ radius = 16.0
 radius = 16.0
 height = 64.0
 
-[node name="Boss" type="CharacterBody2D" unique_id=1235497243 node_paths=PackedStringArray("movement_input_controller", "attack_input_controller", "character_move", "character_attack", "character_aim_visuals", "character_health", "character_health_bar", "character_block", "character_attack_target_controller", "character_stats", "character_visuals")]
+[node name="Boss" type="CharacterBody2D" unique_id=1235497243 node_paths=PackedStringArray("movement_input_controller", "attack_input_controller", "character_move", "character_attack", "character_aim_visuals", "character_health", "character_health_bar", "character_block", "character_attack_target_controller", "character_stats", "character_visuals", "special_attack_input_controller", "character_special_attack")]
 script = ExtResource("1_1s7ui")
 movement_input_controller = NodePath("CharacterPathfinding")
 attack_input_controller = NodePath("CharacterPathfinding")
@@ -31,6 +33,8 @@ character_block = NodePath("CharacterBlock")
 character_attack_target_controller = NodePath("CharacterPathfinding")
 character_stats = NodePath("CharacterStats")
 character_visuals = NodePath("CharacterVisuals")
+special_attack_input_controller = NodePath("CharacterPathfinding")
+character_special_attack = NodePath("CharacterProjectileAttack")
 metadata/_custom_type_script = "uid://c6883obyp1ilb"
 
 [node name="CharacterVisuals" type="Node2D" parent="." unique_id=985536587]
@@ -71,3 +75,13 @@ shape = SubResource("CapsuleShape2D_g2n3m")
 script = ExtResource("9_vtwti")
 stats = ExtResource("10_1s7ui")
 metadata/_custom_type_script = "uid://blvkhb3u4rf07"
+
+[node name="CharacterProjectileAttack" type="Node" parent="." unique_id=77799905 node_paths=PackedStringArray("shooter")]
+script = ExtResource("11_o8os0")
+projectile_to_fire = ExtResource("12_b0wi3")
+attack_cooldown = 2.0
+attack_damage = 60.0
+attack_speed = 10.0
+attack_range = 300.0
+shooter = NodePath("..")
+metadata/_custom_type_script = "uid://c4ce50nrk6ade"

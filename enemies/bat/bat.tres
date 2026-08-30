@@ -6,13 +6,13 @@
 [resource]
 script = ExtResource("1_tn3xi")
 character_visual = ExtResource("1_aarjn")
-character_move_speed = 90.0
-character_max_hp = 100.0
-character_defense = 3.0
+character_move_speed = 120.0
+character_max_hp = 200.0
+character_defense = 10.0
 gold_when_killed = 40.0
-character_importantness = 2.0
+character_importantness = 3.0
 character_role_name = "Bat"
-character_attack = 20.0
+character_attack = 50.0
 character_attack_cooldown = 0.6
 character_attack_range = 10.0
 character_attack_speed = 10.0

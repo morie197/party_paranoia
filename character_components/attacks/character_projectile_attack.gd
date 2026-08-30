@@ -3,17 +3,22 @@ class_name CharacterProjectileAttack
 
 @export var projectile_to_fire: PackedScene
 
-var attack_cooldown: float = 0.2
-var attack_damage: float = 3
-var attack_speed: float = 5
-var attack_range: float = 100
+@export var attack_cooldown: float = 0.2
+@export var attack_damage: float = 3
+@export var attack_speed: float = 5
+@export var attack_range: float = 100
 
 var current_attack_cooldown: float = 0
 
-var shooter: Character = null
+@export var shooter: Character = null
 
 var debuff: String = ""
 var debuff_length: float = 0
+
+func _ready():
+	pass
+	#if not shooter:
+	#	shooter = get_parent()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -57,6 +62,9 @@ func attack(target_position: Vector2):
 	projectile.global_rotation = direction_to_head.angle()
 
 func can_attack(target: Character) -> bool:
+	if not shooter:
+		print("No shooter")
+		return false
 	if shooter.global_position.distance_to(target.global_position) < attack_range:
 		return true
 		

@@ -21,7 +21,7 @@ func _ready():
 	if not shooter:
 		print("NO SHOOTER BUDDY!")
 		return
-	if shooter.ally:
+	if shooter.ally and not healing:
 		projectile_ray_cast.set_collision_mask_value(3, true)
 	else:
 		projectile_ray_cast.set_collision_mask_value(4, true)
@@ -48,10 +48,19 @@ func _hit(body):
 		print("Invalid target!")
 		return
 		
+	if not body:
+		print("Null target!")
+		return
+		
+	if not shooter:
+		print("Null shooter!")
+		return
+		
 	if body == shooter:
 		return
 		
 	var character = body as Character
+	
 	if character.ally != shooter.ally:
 		character.damage(projectile_attack_damage, shooter)
 		if debuff != "" and debuff_length > 0:

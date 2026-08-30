@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://bat7242t6iae4"]
+
+[ext_resource type="StyleBox" uid="uid://bt1ljfnuowhm4" path="res://shop/shop_item_entry_background_inactive.tres" id="1_htgxn"]
+[ext_resource type="Script" uid="uid://bpablmdbuiu4q" path="res://description_panel.gd" id="2_7elvy"]
+
+[node name="DescriptionPanel" type="PanelContainer" unique_id=1319791162]
+custom_minimum_size = Vector2(150, 0)
+custom_maximum_size = Vector2(150, -1)
+mouse_filter = 1
+theme_override_styles/panel = ExtResource("1_htgxn")
+script = ExtResource("2_7elvy")
+
+[node name="DescriptionText" type="RichTextLabel" parent="." unique_id=406778864]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+mouse_filter = 1
+theme_override_font_sizes/normal_font_size = 12
+text = "Ahahahahahahahahaha"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1

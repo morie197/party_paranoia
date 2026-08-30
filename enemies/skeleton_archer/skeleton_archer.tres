@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="CharacterStat" format=3 uid="uid://gg7sltpdmb7w"]
+
+[ext_resource type="Script" uid="uid://d4hcg1hl08rya" path="res://character_stat_template.gd" id="1_stqs7"]
+[ext_resource type="Texture2D" uid="uid://cmaywc6emumfp" path="res://enemies/skeleton_archer/skeleton_archer_visual.tres" id="1_yuj6w"]
+
+[resource]
+script = ExtResource("1_stqs7")
+character_visual = ExtResource("1_yuj6w")
+character_move_speed = 40.0
+character_max_hp = 200.0
+character_defense = 10.0
+character_max_block = 1
+gold_when_killed = 30.0
+character_importantness = 3.0
+character_role_name = "Archer"
+character_support = true
+character_attack = 40.0
+character_attack_cooldown = 1.5
+character_attack_range = 400.0
+character_attack_speed = 20.0
+character_role_attack_preference = "healer"
+character_role_attack_preference_strength = 1.2
+metadata/_custom_type_script = "uid://d4hcg1hl08rya"

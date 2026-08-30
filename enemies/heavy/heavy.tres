@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="CharacterStat" format=3 uid="uid://dh3g0hmh41nnc"]
+
+[ext_resource type="Script" uid="uid://d4hcg1hl08rya" path="res://character_stat_template.gd" id="1_6yk34"]
+[ext_resource type="Texture2D" uid="uid://2nnv3b4kq2pw" path="res://enemies/heavy/heavy_visual.tres" id="1_yuri1"]
+
+[resource]
+script = ExtResource("1_6yk34")
+character_visual = ExtResource("1_yuri1")
+character_move_speed = 30.0
+character_max_hp = 600.0
+character_defense = 35.0
+character_max_block = 1
+gold_when_killed = 50.0
+character_importantness = 1.0
+character_role_name = "heavy"
+character_attack = 70.0
+character_attack_cooldown = 3.0
+character_attack_range = 10.0
+character_attack_speed = 10.0
+default_debuff = "slow"
+default_debuff_length = 2.0
+character_role_attack_preference = "tank"
+metadata/_custom_type_script = "uid://d4hcg1hl08rya"

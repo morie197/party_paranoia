@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="ShopItem" format=3 uid="uid://1s6k7twj18sm"]
+
+[ext_resource type="Script" uid="uid://den3a56qy88sg" path="res://shop/wares/shop_item.gd" id="1_4qly1"]
+[ext_resource type="Texture2D" uid="uid://d3ou6c1t7rrc7" path="res://shop/wares/abilities/gold arrow/gold_arrow_icon.tres" id="1_ij2uw"]
+[ext_resource type="PackedScene" uid="uid://dglp40w27jcx3" path="res://projectiles/archer/money_arrow.tscn" id="2_h8ujg"]
+
+[resource]
+script = ExtResource("1_4qly1")
+item_name = "Money Arrow"
+item_icon = ExtResource("1_ij2uw")
+item_price = 400.0
+item_description = "Applies a debuff which lasts 1 second; upon enemy kill gives +50% gold. Does 20 damage; 3 second cooldown."
+item_slot = "ability"
+for_role = "archer"
+item_attack = 20.0
+item_attack_speed = 10.0
+item_cooldown = 3.0
+projectile_to_use = ExtResource("2_h8ujg")
+debuff_to_apply = "gold"
+debuff_length = 1.0
+metadata/_custom_type_script = "uid://den3a56qy88sg"

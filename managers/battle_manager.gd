@@ -8,6 +8,7 @@ var support_allies: Array[Character]
 var frontline_allies: Array[Character]
 
 var all_characters: Array[Character]
+var traitor_characters: Array[Character]
 
 @export var battle_navigation: NavigationRegion2D
 
@@ -254,6 +255,25 @@ func find_lowest_health_percent_ally(second_highest: bool = false) -> Character:
 		return second_lowest_health_percentage_ally
 	return lowest_health_percentage_ally
 	
+	
+func find_lowest_health_percent_enemy() -> Character:
+	var lowest_health_percentage: float = 100
+	var lowest_health_percentage_enemy: Character = null
+	for enemy in enemiess:
+		if enemy.character_health:
+			var health_percantage: float = enemy.character_health.current_hp / enemy.character_health.max_hp
+			if health_percantage < lowest_health_percentage:
+				lowest_health_percentage_enemy = enemy
+				lowest_health_percentage = health_percantage
+				
+	if lowest_health_percentage_enemy and lowest_health_percentage_enemy.character_health and (lowest_health_percentage_enemy.character_health.max_hp == lowest_health_percentage_enemy.character_health.current_hp):
+		return null
+	#
+	#print(second_lowest_health_percentage)
+	#print(lowest_health_percentage)
+	
+	return lowest_health_percentage_enemy
+	
 
 func remove_character(character_to_remove: Character):
 	if not character_to_remove:
@@ -288,9 +308,41 @@ func kill_character(character_to_kill: Character, gold_given: float = 0):
 		add_child(battle_over_screen)
 	else:
 		if enemiess.size() == 1:
-			var battle_over_screen = BATTLE_OVER_SCREEN.instantiate()
-			battle_over_screen.won = true
-			battle_over = true
-			add_child(battle_over_screen)
+			if next_spawn_time == -1:
+				var battle_over_screen = BATTLE_OVER_SCREEN.instantiate()
+				battle_over_screen.won = true
+				battle_over = true
+				add_child(battle_over_screen)
 	
 	remove_character(character_to_kill)
+	
+
+func turn_traitor_enemy():
+	var spawn_offset: float = 0
+	for traitor in traitor_characters:
+		if allies.has(traitor):
+			allies.erase(traitor)
+		if enemiess.has(traitor):
+			enemiess.erase(traitor)
+		if support_allies.has(traitor):
+			support_allies.erase(traitor)
+		if frontline_allies.has(traitor):
+			frontline_allies.erase(traitor)
+		traitor.character_block.unblock_all()
+		traitor.is_traitor = false
+		traitor.character_block.get_child(0).queue_free()
+		enemiess.append(traitor)
+		traitor.ally = not traitor.ally
+		if traitor.support:
+			if traitor.character_role == "Mage":
+				traitor.character_stats.set_stats(2.0, 0.8)
+			else:
+				traitor.character_stats.set_stats(2.0)
+				
+			traitor.global_position = Vector2(500 + spawn_offset, 180)
+			spawn_offset += 60
+		else:
+			traitor.global_position = Vector2(700, 180)
+			traitor.character_stats.set_stats(1.3)
+			
+	traitor_characters.clear()

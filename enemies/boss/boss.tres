@@ -7,13 +7,13 @@
 script = ExtResource("1_g636g")
 character_visual = ExtResource("1_i0egs")
 character_move_speed = 30.0
-character_max_hp = 1000.0
+character_max_hp = 3000.0
 character_defense = 20.0
 character_max_block = 1
 gold_when_killed = 1000.0
 character_importantness = 3.0
 character_role_name = "Boss"
-character_attack = 70.0
+character_attack = 60.0
 character_attack_cooldown = 1.0
 character_attack_range = 20.0
 character_attack_speed = 20.0

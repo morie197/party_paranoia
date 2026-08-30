@@ -14,12 +14,22 @@ func _ready():
 	gold_container.visible = won
 	menu_button.visible = not won
 	if won:
-		battle_text.text = "Battle won!"
-		var gold_difference: int = roundi(GameManager.gold) - roundi(GameManager.current_battle_manager.starting_gold)
-		gold_difference = max(0, gold_difference)
-		gold_gained.text = "+" + str(gold_difference)
-		continue_button.text = "Continue"
-		continue_button.pressed.connect(_continue)
+		if GameManager.current_map_stage == 9:
+			battle_text.text = "You've won!"
+			var gold_difference: int = roundi(GameManager.gold) - roundi(GameManager.current_battle_manager.starting_gold)
+			gold_difference = max(0, gold_difference)
+			gold_gained.text = "+" + str(gold_difference)
+			menu_button.visible = true
+			menu_button.text = "Return to menu"
+			continue_button.visible = false
+			menu_button.pressed.connect(GameManager.load_main_menu)
+		else:
+			battle_text.text = "Battle won!"
+			var gold_difference: int = roundi(GameManager.gold) - roundi(GameManager.current_battle_manager.starting_gold)
+			gold_difference = max(0, gold_difference)
+			gold_gained.text = "+" + str(gold_difference)
+			continue_button.text = "Continue"
+			continue_button.pressed.connect(_continue)
 	else:
 		battle_text.text = "Ally defeated!"
 		continue_button.text = "Retry"

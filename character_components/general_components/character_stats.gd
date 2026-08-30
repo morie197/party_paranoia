@@ -19,13 +19,16 @@ var extra_gold_amount: float = 1.5
 
 var base_movement_speed: float = 0
 
+var equipment: ShopItem
+var ability: ShopItem
+
 func init_stats():
 	if not character:
 		print("No character to apply stats to!")
 		return
 		
-	var equipment: ShopItem = GameManager.get_current_equipment_in_slot(stats.character_role_name, "equipment")
-	var ability: ShopItem = GameManager.get_current_equipment_in_slot(stats.character_role_name, "ability")
+	equipment = GameManager.get_current_equipment_in_slot(stats.character_role_name, "equipment")
+	ability = GameManager.get_current_equipment_in_slot(stats.character_role_name, "ability")
 	
 	character_attack = character.character_attack 
 	character_move = character.character_move 
@@ -37,6 +40,7 @@ func init_stats():
 	if GameManager.current_traitors.has(stats.character_role_name.to_lower()):
 		#print("Traitor")
 		character.is_traitor = true
+		GameManager.current_battle_manager.traitor_characters.append(character)
 		if character_attack_target_controller and character_attack_target_controller is CharacterPathfinding:
 			character_attack_target_controller.max_traitor_moves = GameManager.get_max_traitor_moves()
 	
@@ -85,17 +89,27 @@ func init_stats():
 			melee_attack.attack_cooldown += equipment.item_cooldown
 		
 		character.character_special_attack = melee_attack
-	
+		
 	character.character_importantness = stats.character_importantness
 	character.character_role = stats.character_role_name
 	character.ally = stats.character_ally
 	character.support = stats.character_support
 	character.gold_given_on_death = stats.gold_when_killed
+	
+	
+	
+	set_stats()
+	
+func set_stats(multiplier: float = 1.0, attack_multiplier: float = 1.0):
 		
 	if character_attack:
 		character_attack.attack_cooldown = stats.character_attack_cooldown
 		character_attack.attack_damage = stats.character_attack
 		character_attack.attack_speed = stats.character_attack_speed
+		if attack_multiplier > 1.0:
+			character_attack.attack_cooldown /= attack_multiplier
+			character_attack.attack_damage *= attack_multiplier
+			character_attack.attack_speed *= attack_multiplier
 		character_attack.attack_range = stats.character_attack_range
 		character_attack.debuff = stats.default_debuff
 		character_attack.debuff_length = stats.default_debuff_length
@@ -113,8 +127,13 @@ func init_stats():
 	set_move_speed(base_movement_speed)
 	
 	if character_health:
-		character_health.max_hp = stats.character_max_hp
-		character_health.defense = stats.character_defense
+		character_health.max_hp = stats.character_max_hp  * multiplier
+		character_health.defense = stats.character_defense * multiplier
+		
+		if character_health:
+			character_health.init_health()
+			if character.character_health_bar:
+				character.character_health_bar.initialize_health_bar(character.ally) 
 
 		if equipment:
 			character_health.max_hp += equipment.item_hp
@@ -131,9 +150,17 @@ func init_stats():
 		
 	if character_attack_target_controller is CharacterPathfinding:
 		#print("Pathfinding")
+		character.character_attack_target_controller.healer = stats.character_healer
 		character_attack_target_controller.enemy_detection_range = stats.character_search_range
 		character_attack_target_controller.enemy_preference = stats.character_role_attack_preference
 		character_attack_target_controller.enemy_preference_strength = stats.character_role_attack_preference_strength
+		
+	if character.ally:
+		character.set_collision_layer_value(4, true)
+		character.set_collision_layer_value(3, false)
+	else:
+		character.set_collision_layer_value(3, true)
+		character.set_collision_layer_value(4, false)
 	
 func set_move_speed(value: float):
 	if character_move:
@@ -173,4 +200,5 @@ func apply_extra_gold_debuff(duration: float):
 	var extra_gold_timer: Timer = create_debuff_timer(duration, "gold")
 	extra_gold_timer.timeout.connect(set_gold_given.bind(base_gold))
 	extra_gold_timer.start()
+
 	

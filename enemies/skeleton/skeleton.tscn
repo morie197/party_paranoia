@@ -14,7 +14,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_bj0nv"]
 radius = 16.0
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g2n3m"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7bufg"]
 radius = 16.0
 height = 64.0
 
@@ -60,14 +60,14 @@ script = ExtResource("6_drsv4")
 script = ExtResource("7_riuq3")
 metadata/_custom_type_script = "uid://b0vxrdxqpajqr"
 
-[node name="CharacterMeleeAttack" type="Area2D" parent="." unique_id=757945094]
-script = ExtResource("8_es8qe")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterMeleeAttack" unique_id=1127510741]
-position = Vector2(40, 0)
-shape = SubResource("CapsuleShape2D_g2n3m")
-
 [node name="CharacterStats" type="Node" parent="." unique_id=1797730702]
 script = ExtResource("9_4e564")
 stats = ExtResource("10_7bufg")
 metadata/_custom_type_script = "uid://blvkhb3u4rf07"
+
+[node name="CharacterMeleeAttack" type="Area2D" parent="." unique_id=1494477661]
+script = ExtResource("8_es8qe")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterMeleeAttack" unique_id=447146727]
+position = Vector2(40, 0)
+shape = SubResource("CapsuleShape2D_7bufg")

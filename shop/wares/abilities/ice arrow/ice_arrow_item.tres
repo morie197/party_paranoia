@@ -8,12 +8,12 @@
 script = ExtResource("1_lmip7")
 item_name = "Ice Arrow"
 item_icon = ExtResource("1_fjhp8")
-item_description = "Freezes enemies in place for 3 seconds; 8 second cooldown."
+item_description = "Slows enemies (0.5x speed) for 3 seconds, 2 second cooldown; 10 damage."
 item_slot = "ability"
 for_role = "archer"
-item_attack = 5.0
-item_attack_speed = 7.0
-item_cooldown = 5.0
+item_attack = 10.0
+item_attack_speed = 8.0
+item_cooldown = 2.0
 projectile_to_use = ExtResource("2_6y68e")
 debuff_to_apply = "slow"
 debuff_length = 3.0

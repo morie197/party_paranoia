@@ -23,7 +23,7 @@ var current_traitors: Array[String] = []
 const ally_classes: Array[String] = ["archer", "healer", "mage", "rogue", "tank", "warrior"]
 const equipment_slots: Array[String] = ["equipment", "ability"]
 
-const POSSIBLE_TRAITORS: Array[String] = ["tank", "healer", "rogue", "warrior", "mage"]
+const POSSIBLE_TRAITORS: Array[String] = ["tank", "healer", "mage"]
 
 const WORLD_MAP = preload("uid://c1b3t0ot01b35")
 
@@ -178,7 +178,6 @@ func choose_traitor(difficulty: int = 1):
 	print(current_traitors)
 		
 func get_max_traitor_moves() -> int:
-	return 2
 	if current_map_stage > 3:
 		return randi_range(0, 1)
 	elif current_map_stage > 5:

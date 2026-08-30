@@ -62,7 +62,6 @@ shape = SubResource("CircleShape2D_sgtvy")
 
 [node name="CharacterPathfinding" type="NavigationAgent2D" parent="." unique_id=940189438]
 script = ExtResource("8_tvpxy")
-healer = true
 metadata/_custom_type_script = "uid://b7agwitcmj45v"
 
 [node name="CharacterStats" type="Node" parent="." unique_id=1662922277]

@@ -291,6 +291,7 @@ text = "Start"
 
 [node name="Settings" type="Button" parent="VBoxContainer" unique_id=638067864]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = ExtResource("1_fu7sn")

@@ -6,15 +6,16 @@
 [resource]
 script = ExtResource("1_ddqsa")
 character_visual = ExtResource("1_j412u")
-character_max_hp = 100.0
-character_defense = 5.0
+character_max_hp = 300.0
+character_defense = 15.0
 character_max_block = 1
 character_importantness = 3.0
 character_role_name = "Healer"
 character_ally = true
 character_support = true
-character_attack = 50.0
-character_attack_cooldown = 1.0
+character_healer = true
+character_attack = 35.0
+character_attack_cooldown = 1.5
 character_attack_range = 500.0
 character_attack_speed = 3.0
 metadata/_custom_type_script = "uid://d4hcg1hl08rya"

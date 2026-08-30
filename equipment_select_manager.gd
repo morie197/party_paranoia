@@ -16,6 +16,7 @@ var scene_to_load_afterwards: PackedScene
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	for character in equip_characters:
+		#if chracter.character_role == "ranger":
 		var character_equip = CHARACTER_EQUIP.instantiate() as CharacterEquipmentSlot
 		characters.add_child(character_equip)
 		character_equip.init_selection(character, self)

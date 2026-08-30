@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Battle" format=3 uid="uid://c50cpwv5e75ep"]
+
+[ext_resource type="Script" uid="uid://t27xo8w46cb7" path="res://enemies/battles/battle.gd" id="1_f0h1d"]
+[ext_resource type="Script" uid="uid://c4fig4axrstg" path="res://enemies/battles/waves/wave.gd" id="2_qlorg"]
+[ext_resource type="Resource" uid="uid://cku30obcp0yon" path="res://enemies/battles/waves/middle_skeletons.tres" id="3_07dxl"]
+[ext_resource type="Resource" uid="uid://dwlu3a5l6bmsq" path="res://enemies/battles/waves/archer_mid_flanks.tres" id="4_vm6wt"]
+[ext_resource type="Resource" uid="uid://dvqf3008d5ioi" path="res://enemies/battles/waves/bat_mid_flanks.tres" id="5_cri46"]
+[ext_resource type="Resource" uid="uid://cfcccdo1lb5ln" path="res://enemies/battles/waves/heavy_middle.tres" id="6_53w6j"]
+
+[resource]
+script = ExtResource("1_f0h1d")
+waves = Dictionary[float, ExtResource("2_qlorg")]({
+1.0: ExtResource("3_07dxl"),
+2.0: ExtResource("4_vm6wt"),
+8.0: ExtResource("5_cri46"),
+10.0: ExtResource("5_cri46"),
+14.0: ExtResource("6_53w6j")
+})
+metadata/_custom_type_script = "uid://t27xo8w46cb7"

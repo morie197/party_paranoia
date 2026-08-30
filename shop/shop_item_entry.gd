@@ -9,6 +9,7 @@ class_name ShopItemEntry
 @onready var item_panel = %ItemPanel
 @onready var class_icon = %ClassIcon
 
+
 var item_to_display: ShopItem
 
 var mouse_is_entered: bool = false
@@ -23,6 +24,8 @@ func init_display(item: ShopItem):
 		if GameManager.inventory.has(item):
 			queue_free()
 			return
+			
+	item_icon.hover_over_text = item.item_description
 	
 	item_to_display = item
 	
@@ -56,9 +59,9 @@ func _process(delta):
 	if mouse_is_entered:
 		if Input.is_action_just_pressed("left_click"):
 			clicked_on.emit()
-			if item_to_display.only_once:
-				if item_to_display.item_price <= GameManager.gold:	
-					queue_free()
+			#if item_to_display.only_once:
+			#	if item_to_display.item_price <= GameManager.gold:	
+			#		queue_free()
 
 func _enter():
 	mouse_is_entered = true
