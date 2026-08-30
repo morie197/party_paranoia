@@ -32,7 +32,7 @@ func _ready():
 		added_texture.texture = node_type.node_icon
 
 func init_node(current_stage, current_path):
-	if current_stage == stage and (current_path == path or path == 0):
+	if current_stage == stage and (current_path == 0 or current_path == path or path == 0):
 		is_current_stage = true
 		map_node_panel.add_theme_stylebox_override("panel", ACTIVE_NODE_PANEL)  
 	else:
@@ -55,14 +55,19 @@ func _process(delta):
 						print("No battleground assigned!")
 						return
 						
+					GameManager.current_map_path = path
+						
 					GameManager.current_node_manager.chosen_node = true
 					
 					GameManager.current_battle = battle
 					GameManager.popup_equipment_menu(battle_ground)
 					#get_tree().change_scene_to_packed(battle_ground)
 				elif node_type.node_name == "Shop":
-					get_tree().change_scene_to_packed(SHOP)
+					GameManager.current_node_manager.chosen_node = true
+					GameManager.current_map_path = path
 					
+					get_tree().change_scene_to_packed(SHOP)
+			
 func _mouse_enter():
 	mouse_is_entered = true
 	if is_current_stage:

@@ -163,7 +163,7 @@ func find_closest_badguy(searcher: Character, search_range: float = 9999, prefer
 				#shortest_distance = current_distance
 				closest_enemy = enemy
 	
-	if searcher.is_traitor:
+	if searcher.is_traitor and searcher.support:
 		return furthest_enemy
 	return closest_enemy
 	

@@ -72,9 +72,12 @@ func next_pathfinding():
 	if healer:
 		if character_to_control.ally:
 			target_character = GameManager.current_battle_manager.find_lowest_health_percent_ally(do_traitoring)
+			if do_traitoring and randi_range(0, 5) == 3:
+				return
 	else:
 		if character_to_control.character_block and character_to_control.character_block.currently_blocking:
 			if do_traitoring:
+				print(character_to_control.character_role + " unblocked all!")
 				character_to_control.character_block.unblock_all()
 				return
 			target_character = GameManager.current_battle_manager.find_highest_priority_character_in_array(character_to_control.character_block.blocking)

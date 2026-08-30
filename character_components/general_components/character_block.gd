@@ -13,13 +13,23 @@ var character_to_control: Character
 
 var blocking: Array[Character]
 
+var traitor_block_cooldown: float = 0
+const TRAITOR_BLOCK_TIME: float = 1
+
 func _ready():
 	body_entered.connect(_block)
 	body_exited.connect(_unblock)
+	
+func _process(delta):
+	if traitor_block_cooldown > 0:
+		traitor_block_cooldown -= delta
 
 func _block(body):
 	if body is not Character:
 		print("Invalid block target!")
+		return
+		
+	if traitor_block_cooldown > 0:
 		return
 		
 	var character = body as Character
@@ -97,6 +107,8 @@ func unblock_all():
 		if not character:
 			print("Null reference!")
 			return
+			
+		traitor_block_cooldown = TRAITOR_BLOCK_TIME
 		
 		currently_blocking = false
 		character.character_block.blocked = false

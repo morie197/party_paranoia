@@ -56,7 +56,7 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)])
 agent_radius = 0.0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pe27t"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_81uqm"]
 texture = ExtResource("1_cx3fk")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
@@ -256,7 +256,7 @@ texture_region_size = Vector2i(32, 32)
 tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 1
 navigation_layer_0/layers = 1
-sources/1 = SubResource("TileSetAtlasSource_pe27t")
+sources/1 = SubResource("TileSetAtlasSource_81uqm")
 
 [node name="world_map" type="Node2D" unique_id=80374433]
 
@@ -280,41 +280,98 @@ script = ExtResource("2_ax41i")
 
 [node name="MapNode" parent="NodeManager" unique_id=577351018 instance=ExtResource("3_2e2sl")]
 layout_mode = 0
-offset_left = 64.0
+offset_left = 96.0
 offset_top = 192.0
-offset_right = 96.0
+offset_right = 128.0
 offset_bottom = 224.0
 node_type = ExtResource("4_pe27t")
+stage = 1
+
+[node name="MapNode5" parent="NodeManager" unique_id=903563557 instance=ExtResource("3_2e2sl")]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 192.0
+offset_right = 64.0
+offset_bottom = 224.0
+node_type = ExtResource("4_2e2sl")
 battle = ExtResource("5_1sh4k")
 battle_ground = ExtResource("6_81uqm")
 
 [node name="MapNode2" parent="NodeManager" unique_id=1104125190 instance=ExtResource("3_2e2sl")]
 layout_mode = 0
 offset_left = 160.0
-offset_top = 128.0
+offset_top = 160.0
 offset_right = 192.0
-offset_bottom = 160.0
+offset_bottom = 192.0
 node_type = ExtResource("4_2e2sl")
-stage = 1
+stage = 2
+path = 1
 battle = ExtResource("5_1sh4k")
 battle_ground = ExtResource("6_81uqm")
 
 [node name="MapNode3" parent="NodeManager" unique_id=1730315205 instance=ExtResource("3_2e2sl")]
 layout_mode = 0
 offset_left = 160.0
-offset_top = 256.0
+offset_top = 224.0
 offset_right = 192.0
-offset_bottom = 288.0
+offset_bottom = 256.0
+node_type = ExtResource("4_2e2sl")
+stage = 2
+path = 2
+battle = ExtResource("5_1sh4k")
+battle_ground = ExtResource("6_81uqm")
+
+[node name="MapNode6" parent="NodeManager" unique_id=1581676771 instance=ExtResource("3_2e2sl")]
+layout_mode = 0
+offset_left = 224.0
+offset_top = 224.0
+offset_right = 256.0
+offset_bottom = 256.0
 node_type = ExtResource("4_pe27t")
-stage = 1
+stage = 3
+path = 2
+
+[node name="MapNode9" parent="NodeManager" unique_id=339880360 instance=ExtResource("3_2e2sl")]
+layout_mode = 0
+offset_left = 352.0
+offset_top = 192.0
+offset_right = 384.0
+offset_bottom = 224.0
+node_type = ExtResource("4_pe27t")
+stage = 5
+
+[node name="MapNode7" parent="NodeManager" unique_id=1740721306 instance=ExtResource("3_2e2sl")]
+layout_mode = 0
+offset_left = 288.0
+offset_top = 224.0
+offset_right = 320.0
+offset_bottom = 256.0
+node_type = ExtResource("4_2e2sl")
+stage = 4
+path = 2
+battle = ExtResource("5_1sh4k")
+battle_ground = ExtResource("6_81uqm")
 
 [node name="MapNode4" parent="NodeManager" unique_id=1872574182 instance=ExtResource("3_2e2sl")]
 layout_mode = 0
-offset_left = 256.0
-offset_top = 192.0
-offset_right = 288.0
-offset_bottom = 224.0
+offset_left = 224.0
+offset_top = 160.0
+offset_right = 256.0
+offset_bottom = 192.0
 node_type = ExtResource("4_2e2sl")
-stage = 2
+stage = 3
+path = 1
+battle = ExtResource("5_1sh4k")
+battle_ground = ExtResource("6_81uqm")
+
+[node name="MapNode8" parent="NodeManager" unique_id=307627404 instance=ExtResource("3_2e2sl")]
+layout_mode = 0
+offset_left = 288.0
+offset_top = 160.0
+offset_right = 320.0
+offset_bottom = 192.0
+node_type = ExtResource("4_2e2sl")
+stage = 4
+path = 1
 battle = ExtResource("5_1sh4k")
 battle_ground = ExtResource("6_81uqm")
