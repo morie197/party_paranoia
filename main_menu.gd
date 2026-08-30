@@ -17,7 +17,7 @@ func _process(delta):
 
 func _start():
 	GameManager.reset_data()
-	GameManager.choose_traitor(5)
+	GameManager.choose_traitor(3)
 	GameManager.load_map()
 	
 func _settings():

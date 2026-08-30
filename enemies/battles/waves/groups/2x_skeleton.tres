@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="EnemyGroup" format=3 uid="uid://xb6mfqtmc6m6"]
+
+[ext_resource type="PackedScene" uid="uid://bu0qrb6hli3l2" path="res://enemies/skeleton/skeleton.tscn" id="1_2v5tc"]
+[ext_resource type="Script" uid="uid://be1pk3yf8lxln" path="res://enemies/battles/waves/groups/enemy_group.gd" id="1_rkspp"]
+
+[resource]
+script = ExtResource("1_rkspp")
+enemies = Dictionary[PackedScene, int]({
+ExtResource("1_2v5tc"): 2
+})
+metadata/_custom_type_script = "uid://be1pk3yf8lxln"

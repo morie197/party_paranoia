@@ -23,6 +23,8 @@ var battle: Battle
 var battle_spawn_times: Array[float]
 var next_spawn_time: float
 
+var battle_over: bool = false
+
 var starting_gold: float
 
 func _init():
@@ -34,6 +36,7 @@ func _ready():
 	#	GameManager.current_battle_manager = self
 	battle = GameManager.current_battle
 	battle_spawn_times = battle.waves.keys()
+	battle_spawn_times.sort()
 	next_spawn_time = battle_spawn_times[0]
 	starting_gold = GameManager.gold
 	
@@ -42,9 +45,15 @@ func _process(delta):
 		print("No battle to spawn!")
 		return
 	
+	if next_spawn_time < 0:
+		return
+	
 	current_battle_time += delta
 	
-	if next_spawn_time >= current_battle_time:
+	#print(next_spawn_time)
+	
+	if next_spawn_time <= current_battle_time:
+		print()
 		if not battle.waves.has(next_spawn_time):
 			print("Invalid spawn time: " + str(next_spawn_time))
 			return
@@ -96,7 +105,7 @@ func find_closest_goodguy(searcher: Character, search_range: float = 9999, prefe
 		if current_distance < shortest_distance:
 			var target_value: float = 0
 			if not preference == "":
-				if (ally.character_role == preference) or (preference == "preference" and ally.support) or (preference == "frontline" and not ally.support):
+				if (ally.character_role.to_lower() == preference.to_lower()) or (preference == "support" and ally.support) or (preference == "frontline" and not ally.support):
 					target_value = preference_strength
 			else:
 				target_value = ally.character_importantness
@@ -105,10 +114,10 @@ func find_closest_goodguy(searcher: Character, search_range: float = 9999, prefe
 				target_value /= 2
 			
 			if ally.character_block and ally.character_block.blocked: # value fully blocked targets less
-				target_value = 0
+				target_value /= 2
 				
 				if ally.is_traitor:
-					target_value = 0
+					target_value /= 2
 			
 			if target_value == 0:
 				continue
@@ -118,11 +127,13 @@ func find_closest_goodguy(searcher: Character, search_range: float = 9999, prefe
 				#shortest_distance = current_distance
 				closest_ally = ally
 	
-			
+	if not closest_ally and allies.size() > 0:
+		print("No ally target?")
+		closest_ally = allies[0]
 	
 	return closest_ally
 	
-func find_closest_badguy(searcher: Character, search_range: float = 9999, preference: String = "", preference_strength: float = 2.0) -> Character:
+func find_closest_badguy(searcher: Character, search_range: float = 9999, preference: String = "", preference_strength: float = 2.0, do_traitor: bool = false) -> Character:
 	var shortest_distance: float = search_range
 	var closest_enemy: Character
 	var furthest_enemy: Character
@@ -143,12 +154,12 @@ func find_closest_badguy(searcher: Character, search_range: float = 9999, prefer
 		if current_distance < shortest_distance:
 			var target_value: float = 0
 			if not preference == "":
-				if (enemy.character_role == preference) or (preference == "preference" and enemy.support) or (preference == "frontline" and not enemy.support):
+				if (enemy.character_role.to_lower() == preference.to_lower()) or (preference == "support" and enemy.support) or (preference == "frontline" and not enemy.support):
 					target_value = preference_strength
 			else:
 				target_value = enemy.character_importantness
 				
-			if searcher.is_traitor:
+			if do_traitor:
 				target_value = enemy.character_importantness / max(0.1, enemy.character_importantness) 
 			
 			if enemy.character_block and enemy.character_block.blocked: # ignore targets already fully blocked
@@ -163,7 +174,10 @@ func find_closest_badguy(searcher: Character, search_range: float = 9999, prefer
 				#shortest_distance = current_distance
 				closest_enemy = enemy
 	
-	if searcher.is_traitor and searcher.support:
+	if do_traitor and searcher.support:
+		return furthest_enemy
+	
+	if furthest_enemy and not closest_enemy:
 		return furthest_enemy
 	return closest_enemy
 	
@@ -188,7 +202,7 @@ func find_closest_opposing_character_by_position(search_position: Vector2, ally:
 		
 		if current_distance < shortest_distance:
 			if not preference == "":
-				if (character.character_role == preference) or (preference == "preference" and character.support) or (preference == "frontline" and not character.support):
+				if (character.character_role.to_lower() == preference.to_lower()) or (preference == "preference" and character.support) or (preference == "frontline" and not character.support):
 					current_distance = current_distance / preference_strength
 			else:
 				current_distance = current_distance / character.character_importantness
@@ -261,16 +275,22 @@ func remove_character(character_to_remove: Character):
 		
 		
 func kill_character(character_to_kill: Character, gold_given: float = 0):
+	if not all_characters.has(character_to_kill):
+		print("Character already dead!")
+		return
+	
 	GameManager.gold += gold_given
 	
 	if character_to_kill.ally:
 		var battle_over_screen = BATTLE_OVER_SCREEN.instantiate()
 		battle_over_screen.won = false
+		battle_over = true
 		add_child(battle_over_screen)
 	else:
 		if enemiess.size() == 1:
 			var battle_over_screen = BATTLE_OVER_SCREEN.instantiate()
 			battle_over_screen.won = true
+			battle_over = true
 			add_child(battle_over_screen)
 	
 	remove_character(character_to_kill)

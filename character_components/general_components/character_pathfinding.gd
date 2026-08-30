@@ -57,6 +57,7 @@ func _physics_process(delta):
 		
 func next_pathfinding():
 	if not character_to_control:
+		print("No character to control!")
 		return
 		
 	if not GameManager.current_battle_manager:
@@ -75,7 +76,7 @@ func next_pathfinding():
 			if do_traitoring and randi_range(0, 5) == 3:
 				return
 	else:
-		if character_to_control.character_block and character_to_control.character_block.currently_blocking:
+		if character_to_control.character_block and character_to_control.character_block.currently_blocking and character_to_control.character_block.blocking:
 			if do_traitoring:
 				print(character_to_control.character_role + " unblocked all!")
 				character_to_control.character_block.unblock_all()
@@ -84,7 +85,7 @@ func next_pathfinding():
 			target_position = character_to_control.global_position
 		else:
 			if character_to_control.ally:
-				target_character = GameManager.current_battle_manager.find_closest_badguy(character_to_control, enemy_detection_range, enemy_preference, enemy_preference_strength)
+				target_character = GameManager.current_battle_manager.find_closest_badguy(character_to_control, enemy_detection_range, enemy_preference, enemy_preference_strength, do_traitoring)
 			else:
 				target_character = GameManager.current_battle_manager.find_closest_goodguy(character_to_control, enemy_detection_range, enemy_preference, enemy_preference_strength)
 			if target_character and (not (character_to_control.ally and character_to_control.support)):
@@ -99,9 +100,14 @@ func next_pathfinding():
 					else:
 						target_position = target_character.global_position
 
+	#if not character_to_control.ally:
+		#print(target_character)
+
 	if target_character:
 		if character_to_control.character_attack:
 			if character_to_control.character_attack.can_attack(target_character):
+				if do_traitoring and randi_range(0, 5) == 3:
+					return
 				attack_position = target_character.global_position
 				is_attacking = true
 			else:

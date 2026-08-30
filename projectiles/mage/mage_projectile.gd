@@ -4,7 +4,7 @@ class_name MageProjectile
 @onready var projectile_hit_box = %ProjectileHitBox
 
 var orb_speed: float = 20
-var homing_search_range: float = 100
+var homing_search_range: float = 200
 
 var current_closest_opposing_character: Character
 

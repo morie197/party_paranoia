@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Wave" format=3 uid="uid://dvqf3008d5ioi"]
+
+[ext_resource type="Script" uid="uid://be1pk3yf8lxln" path="res://enemies/battles/waves/groups/enemy_group.gd" id="1_0h1wk"]
+[ext_resource type="Script" uid="uid://c4fig4axrstg" path="res://enemies/battles/waves/wave.gd" id="2_eie2g"]
+[ext_resource type="Resource" uid="uid://dshf8awnnn8op" path="res://enemies/battles/waves/groups/1x_bat.tres" id="2_rld45"]
+
+[resource]
+script = ExtResource("2_eie2g")
+enemy_groups = Dictionary[int, ExtResource("1_0h1wk")]({
+2: ExtResource("2_rld45"),
+4: ExtResource("2_rld45")
+})
+metadata/_custom_type_script = "uid://c4fig4axrstg"

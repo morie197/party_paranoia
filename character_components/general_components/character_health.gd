@@ -20,7 +20,7 @@ func damage(amount: float):
 	current_hp = clampf(current_hp - damage_taken, 0, max_hp)
 	if current_hp <= 0:
 		died.emit()
-		print("Dead lol")
+		#print("Dead lol")
 	
 	hp_changed.emit(current_hp/max_hp * 100)
 	

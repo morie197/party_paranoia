@@ -7,8 +7,8 @@
 script = ExtResource("1_tbgpx")
 character_visual = ExtResource("1_lo43a")
 character_move_speed = 120.0
-character_max_hp = 300.0
-character_defense = 10.0
+character_max_hp = 600.0
+character_defense = 20.0
 character_max_block = 1
 character_importantness = 0.5
 character_role_name = "Rogue"
@@ -17,4 +17,5 @@ character_attack = 5.0
 character_attack_cooldown = 0.5
 character_attack_range = 20.0
 character_attack_speed = 5.0
+character_role_attack_preference = "Fast"
 metadata/_custom_type_script = "uid://d4hcg1hl08rya"

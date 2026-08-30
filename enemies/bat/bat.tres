@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="CharacterStat" format=3 uid="uid://b10qqu1hc2jvb"]
+
+[ext_resource type="Texture2D" uid="uid://b3vqsqgp1jqlo" path="res://enemies/bat/bat_visual.tres" id="1_aarjn"]
+[ext_resource type="Script" uid="uid://d4hcg1hl08rya" path="res://character_stat_template.gd" id="1_tn3xi"]
+
+[resource]
+script = ExtResource("1_tn3xi")
+character_visual = ExtResource("1_aarjn")
+character_move_speed = 90.0
+character_max_hp = 100.0
+character_defense = 3.0
+gold_when_killed = 40.0
+character_importantness = 2.0
+character_role_name = "Bat"
+character_attack = 20.0
+character_attack_cooldown = 0.6
+character_attack_range = 10.0
+character_attack_speed = 10.0
+character_role_attack_preference = "healer"
+metadata/_custom_type_script = "uid://d4hcg1hl08rya"

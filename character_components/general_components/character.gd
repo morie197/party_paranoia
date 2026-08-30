@@ -62,6 +62,11 @@ func _ready():
 				GameManager.current_battle_manager.frontline_allies.append(self)
 		else:
 			GameManager.current_battle_manager.enemiess.append(self)
+			
+	if ally:
+		set_collision_layer_value(4, true)
+	else:
+		set_collision_layer_value(3, true)
 
 func _process(delta):
 	if (not attack_input_controller) or (not character_attack) or (not character_attack_target_controller):

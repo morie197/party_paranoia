@@ -30,6 +30,11 @@ func _ready():
 		added_texture.visible = node_type.mirror_icon
 		normal_texture.texture = node_type.node_icon
 		added_texture.texture = node_type.node_icon
+		if node_type.node_name == "Boss":
+			normal_texture.size = Vector2(64, 64)
+			added_texture.size = Vector2(64, 64)
+			map_node_panel.size *= 2
+			map_node_panel.position *= 2
 
 func init_node(current_stage, current_path):
 	if current_stage == stage and (current_path == 0 or current_path == path or path == 0):
@@ -37,6 +42,9 @@ func init_node(current_stage, current_path):
 		map_node_panel.add_theme_stylebox_override("panel", ACTIVE_NODE_PANEL)  
 	else:
 		map_node_panel.add_theme_stylebox_override("panel", INACTIVE_NODE_PANEL)  
+		
+	
+		
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -47,7 +55,7 @@ func _process(delta):
 			if not is_current_stage:
 				return
 			if node_type:
-				if node_type.node_name == "Battle":
+				if node_type.node_name == "Battle" or node_type.node_name == "Boss":
 					if not battle:
 						print("No battle assigned!")
 						return

@@ -20,7 +20,3 @@ func _ready():
 			map_nodes[map_icon.stage].append(map_icon)
 			
 			map_icon.init_node(current_stage, current_path)
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass

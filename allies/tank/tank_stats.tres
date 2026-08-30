@@ -6,11 +6,11 @@
 [resource]
 script = ExtResource("1_6e2gf")
 character_visual = ExtResource("1_gr1wr")
-character_move_speed = 20.0
-character_max_hp = 300.0
-character_defense = 20.0
+character_move_speed = 60.0
+character_max_hp = 1000.0
+character_defense = 40.0
 character_max_block = 3
-character_importantness = 1.0
+character_importantness = 2.0
 character_role_name = "Tank"
 character_ally = true
 character_attack = 5.0

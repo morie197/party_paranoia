@@ -16,7 +16,16 @@ var debuff_length: float = 0
 var healing: bool = false
 
 func _ready():
-	pass
+	projectile_ray_cast.target_position.x = projectile_direction.x * projectile_attack_speed * arrow_speed * 1/60
+	projectile_ray_cast.set_collision_mask_value(1, false)
+	if not shooter:
+		print("NO SHOOTER BUDDY!")
+		return
+	if shooter.ally:
+		projectile_ray_cast.set_collision_mask_value(3, true)
+	else:
+		projectile_ray_cast.set_collision_mask_value(4, true)
+		
 
 func _physics_process(delta):
 	var old_position = position

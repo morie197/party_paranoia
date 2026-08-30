@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="NodeType" format=3 uid="uid://c2x4j87pgqxqd"]
+
+[ext_resource type="Script" uid="uid://ckupupbrhe43e" path="res://map/node_types/node_type.gd" id="1_1m1we"]
+[ext_resource type="Texture2D" uid="uid://ceewgwma016a7" path="res://map/node_types/boss/boss_half.tres" id="1_nongo"]
+
+[resource]
+script = ExtResource("1_1m1we")
+node_icon = ExtResource("1_nongo")
+mirror_icon = true
+node_name = "Boss"
+metadata/_custom_type_script = "uid://ckupupbrhe43e"

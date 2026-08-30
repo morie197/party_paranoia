@@ -11,6 +11,10 @@ var current_attack_cooldown: float = 0
 
 var shooter: Character = null
 
+var debuff: String = ""
+var debuff_length: float = 0
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.

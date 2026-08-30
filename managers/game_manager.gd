@@ -178,7 +178,7 @@ func choose_traitor(difficulty: int = 1):
 	print(current_traitors)
 		
 func get_max_traitor_moves() -> int:
-	return 5
+	return 2
 	if current_map_stage > 3:
 		return randi_range(0, 1)
 	elif current_map_stage > 5:

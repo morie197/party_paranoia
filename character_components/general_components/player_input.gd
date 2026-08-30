@@ -16,6 +16,11 @@ func _ready():
 	pass # Replace with function body.
 
 func _process(_delta) -> void:
+	if GameManager.current_battle_manager:
+		if GameManager.current_battle_manager.battle_over:
+			is_attacking = false
+			special_attacking = false
+			return
 	GameManager.mouse_pos = get_global_mouse_position()
 	move_vector = Input.get_vector("left", "right", "up", "down")
 	

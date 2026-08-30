@@ -35,7 +35,7 @@ func init_stats():
 	character_attack_target_controller = character.character_attack_target_controller
 	
 	if GameManager.current_traitors.has(stats.character_role_name.to_lower()):
-		print("Traitor")
+		#print("Traitor")
 		character.is_traitor = true
 		if character_attack_target_controller and character_attack_target_controller is CharacterPathfinding:
 			character_attack_target_controller.max_traitor_moves = GameManager.get_max_traitor_moves()
@@ -97,6 +97,8 @@ func init_stats():
 		character_attack.attack_damage = stats.character_attack
 		character_attack.attack_speed = stats.character_attack_speed
 		character_attack.attack_range = stats.character_attack_range
+		character_attack.debuff = stats.default_debuff
+		character_attack.debuff_length = stats.default_debuff_length
 		
 		if equipment:
 			character_attack.attack_damage += equipment.item_attack
@@ -127,7 +129,8 @@ func init_stats():
 	if character_visuals:
 		character_visuals.character_icon = stats.character_visual
 		
-	if character_attack_target_controller is NavigationAgent2D:
+	if character_attack_target_controller is CharacterPathfinding:
+		#print("Pathfinding")
 		character_attack_target_controller.enemy_detection_range = stats.character_search_range
 		character_attack_target_controller.enemy_preference = stats.character_role_attack_preference
 		character_attack_target_controller.enemy_preference_strength = stats.character_role_attack_preference_strength

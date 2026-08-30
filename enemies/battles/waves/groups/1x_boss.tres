@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="EnemyGroup" format=3 uid="uid://b7suw56boug58"]
+
+[ext_resource type="Script" uid="uid://be1pk3yf8lxln" path="res://enemies/battles/waves/groups/enemy_group.gd" id="1_7tyb6"]
+
+[resource]
+script = ExtResource("1_7tyb6")
+metadata/_custom_type_script = "uid://be1pk3yf8lxln"
