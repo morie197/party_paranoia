@@ -76,10 +76,6 @@ func spawn_group(enemy_group: EnemyGroup, y_pos: float):
 			spawned_enemy.global_position = Vector2(SPAWN_AT_X + offset, y_pos)
 			offset += ENEMY_INDIVIDUAL_OFFSET
 			add_child(spawned_enemy)
-			
-			
-
-
 
 func find_closest_goodguy(searcher: Character, search_range: float = 9999, preference: String = "", preference_strength: float = 2.0) -> Character:
 	var shortest_distance: float = search_range
@@ -104,9 +100,18 @@ func find_closest_goodguy(searcher: Character, search_range: float = 9999, prefe
 					target_value = preference_strength
 			else:
 				target_value = ally.character_importantness
+				
+			if ally.is_traitor:
+				target_value /= 2
 			
 			if ally.character_block and ally.character_block.blocked: # value fully blocked targets less
-				target_value /= 1.5
+				target_value = 0
+				
+				if ally.is_traitor:
+					target_value = 0
+			
+			if target_value == 0:
+				continue
 			
 			if current_distance / target_value < lowest_score:
 				lowest_score = current_distance / target_value
@@ -120,7 +125,9 @@ func find_closest_goodguy(searcher: Character, search_range: float = 9999, prefe
 func find_closest_badguy(searcher: Character, search_range: float = 9999, preference: String = "", preference_strength: float = 2.0) -> Character:
 	var shortest_distance: float = search_range
 	var closest_enemy: Character
+	var furthest_enemy: Character
 	var lowest_score: float = 9999
+	var highest_score: float = 0
 	
 	for enemy in enemiess:
 		if searcher == enemy:
@@ -140,15 +147,24 @@ func find_closest_badguy(searcher: Character, search_range: float = 9999, prefer
 					target_value = preference_strength
 			else:
 				target_value = enemy.character_importantness
+				
+			if searcher.is_traitor:
+				target_value = enemy.character_importantness / max(0.1, enemy.character_importantness) 
 			
 			if enemy.character_block and enemy.character_block.blocked: # ignore targets already fully blocked
 				continue
+			
+			if current_distance / target_value > highest_score:
+				highest_score = current_distance / target_value
+				furthest_enemy = enemy
 			
 			if current_distance / target_value < lowest_score:
 				lowest_score = current_distance / target_value
 				#shortest_distance = current_distance
 				closest_enemy = enemy
 	
+	if searcher.is_traitor:
+		return furthest_enemy
 	return closest_enemy
 	
 func find_closest_opposing_character_by_position(search_position: Vector2, ally: bool, search_range: float = 9999, preference: String = "", preference_strength: float = 2.0) -> Character:
@@ -196,19 +212,32 @@ func find_highest_priority_character_in_array(characters: Array[Character]) -> C
 			
 	return highest_priority_target
 
-func find_lowest_health_percent_ally() -> Character:
+func find_lowest_health_percent_ally(second_highest: bool = false) -> Character:
 	var lowest_health_percentage: float = 100
+	var second_lowest_health_percentage: float = 100
 	var lowest_health_percentage_ally: Character = null
+	var second_lowest_health_percentage_ally: Character = null
 	for ally in allies:
 		if ally.character_health:
 			var health_percantage: float = ally.character_health.current_hp / ally.character_health.max_hp
 			if health_percantage < lowest_health_percentage:
 				lowest_health_percentage_ally = ally
 				lowest_health_percentage = health_percantage
+				if second_lowest_health_percentage == 100:
+					second_lowest_health_percentage = health_percantage
+					second_lowest_health_percentage_ally = ally
+			elif health_percantage < second_lowest_health_percentage:
+				second_lowest_health_percentage = health_percantage
+				second_lowest_health_percentage_ally = ally
 				
 	if lowest_health_percentage_ally and lowest_health_percentage_ally.character_health and (lowest_health_percentage_ally.character_health.max_hp == lowest_health_percentage_ally.character_health.current_hp):
 		return null
-				
+	#
+	#print(second_lowest_health_percentage)
+	#print(lowest_health_percentage)
+	
+	if second_highest:
+		return second_lowest_health_percentage_ally
 	return lowest_health_percentage_ally
 	
 

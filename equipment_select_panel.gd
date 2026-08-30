@@ -7,6 +7,7 @@ var equipment_slot: String = ""
 const EQUIPMENT_SELECT_SLOT = preload("uid://c5br62aj5osvq")
 
 @onready var inventory_grid = %InventoryGrid
+@onready var select_text = %SelectText
 
 signal selected
 
@@ -18,7 +19,7 @@ func init_selection(class_to_select: String, slot: String):
 	for equipment in all_equipment:
 		if not equipment is ShopItem:
 			print("Not equipment?!")
-			return
+			continue
 		
 		var is_current: bool = GameManager.is_current_equipment(equipment)
 		
@@ -26,6 +27,8 @@ func init_selection(class_to_select: String, slot: String):
 		inventory_grid.add_child(select_slot)
 		select_slot.init_slot(equipment, is_current)
 		select_slot.selected.connect(_selected)
+		
+	select_text.text = "Select " + slot + " for " + class_to_select + "."
 		
 func _selected(item: ShopItem):
 	if not item:

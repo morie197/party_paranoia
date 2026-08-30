@@ -41,6 +41,8 @@ func init_node(current_stage, current_path):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if mouse_is_entered:
+		if GameManager.current_node_manager and GameManager.current_node_manager.chosen_node:
+			return
 		if Input.is_action_just_pressed("left_click"):
 			if not is_current_stage:
 				return
@@ -52,6 +54,8 @@ func _process(delta):
 					if not battle_ground:
 						print("No battleground assigned!")
 						return
+						
+					GameManager.current_node_manager.chosen_node = true
 					
 					GameManager.current_battle = battle
 					GameManager.popup_equipment_menu(battle_ground)

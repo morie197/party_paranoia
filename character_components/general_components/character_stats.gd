@@ -26,13 +26,19 @@ func init_stats():
 		
 	var equipment: ShopItem = GameManager.get_current_equipment_in_slot(stats.character_role_name, "equipment")
 	var ability: ShopItem = GameManager.get_current_equipment_in_slot(stats.character_role_name, "ability")
-		
+	
 	character_attack = character.character_attack 
 	character_move = character.character_move 
 	character_health = character.character_health
 	character_block = character.character_block
 	character_visuals = character.character_visuals
 	character_attack_target_controller = character.character_attack_target_controller
+	
+	if GameManager.current_traitors.has(stats.character_role_name.to_lower()):
+		print("Traitor")
+		character.is_traitor = true
+		if character_attack_target_controller and character_attack_target_controller is CharacterPathfinding:
+			character_attack_target_controller.max_traitor_moves = GameManager.get_max_traitor_moves()
 	
 	if ability and ability.projectile_to_use != null:
 		var projectile_attack = CharacterProjectileAttack.new()

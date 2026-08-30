@@ -8,8 +8,12 @@
 [ext_resource type="Resource" uid="uid://bip051ptoqbq3" path="res://allies/archer/archer_stats.tres" id="6_cdkb4"]
 [ext_resource type="Resource" uid="uid://hx614t3xon8j" path="res://allies/mage/mage_stats.tres" id="7_b3mp2"]
 [ext_resource type="StyleBox" uid="uid://drtpjh1toky1v" path="res://shop/shop_background_panel.tres" id="8_fy8s4"]
+[ext_resource type="StyleBox" uid="uid://cr2m2rrms6kog" path="res://equipment_menu_background_dark.tres" id="8_hnpnj"]
+[ext_resource type="StyleBox" uid="uid://djotla8lep23k" path="res://shop/shop_button_normal.tres" id="9_sw0fe"]
+[ext_resource type="StyleBox" uid="uid://rge205efwt3x" path="res://shop/shop_button_pressed.tres" id="10_cdkb4"]
 
 [node name="EquipmentSelectionMenu" type="Control" unique_id=975302903]
+z_index = 20
 custom_minimum_size = Vector2(640, 360)
 layout_mode = 3
 anchors_preset = 0
@@ -35,10 +39,21 @@ grow_vertical = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="VBoxContainer" unique_id=67696325]
 layout_mode = 2
-theme_override_styles/panel = ExtResource("8_fy8s4")
+theme_override_styles/panel = ExtResource("8_hnpnj")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/PanelContainer" unique_id=966061960]
 layout_mode = 2
+
+[node name="ConfirmButton" type="Button" parent="VBoxContainer/PanelContainer/VBoxContainer" unique_id=1578314144]
+unique_name_in_owner = true
+z_index = 1
+layout_mode = 2
+theme_override_styles/normal = ExtResource("9_sw0fe")
+theme_override_styles/pressed = ExtResource("10_cdkb4")
+theme_override_styles/hover = ExtResource("10_cdkb4")
+theme_override_styles/disabled = ExtResource("8_fy8s4")
+theme_override_styles/focus = ExtResource("10_cdkb4")
+text = "Apply Equipment"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/PanelContainer/VBoxContainer" unique_id=1465753356]
 layout_mode = 2
@@ -48,12 +63,8 @@ autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ConfirmButton" type="Button" parent="VBoxContainer/PanelContainer/VBoxContainer" unique_id=1578314144]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Apply Equipment"
-
 [node name="Characters" type="HBoxContainer" parent="VBoxContainer/PanelContainer/VBoxContainer" unique_id=353854931]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_constants/separation = 6
 alignment = 1

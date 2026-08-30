@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bt6q3akjhog0v"]
 
 [ext_resource type="Script" uid="uid://c1giiw2cs8l1e" path="res://character_equipment_slot.gd" id="1_7ato5"]
+[ext_resource type="StyleBox" uid="uid://bl54fxj42x6rc" path="res://equipment_menu_background.tres" id="1_cd7sw"]
 [ext_resource type="Texture2D" uid="uid://ce640m3p6g2p6" path="res://allies/mage/mage_visual.tres" id="2_qqakw"]
 [ext_resource type="Script" uid="uid://3nsem7sg100d" path="res://clicky_man.gd" id="3_3xgjd"]
 [ext_resource type="Texture2D" uid="uid://bswd003sr8ocv" path="res://default_equipment_equipment_icon.tres" id="4_e75iw"]
@@ -22,10 +23,17 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 5
 
-[node name="CharacterEquip" type="VBoxContainer" unique_id=1247073068]
+[node name="CharacterEquip" type="PanelContainer" unique_id=1505845196]
+offset_top = 191.0
+offset_right = 75.0
+offset_bottom = 191.0
+theme_override_styles/panel = ExtResource("1_cd7sw")
 script = ExtResource("1_7ato5")
 
-[node name="CharacterName" type="RichTextLabel" parent="." unique_id=246284737]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1247073068]
+layout_mode = 2
+
+[node name="CharacterName" type="RichTextLabel" parent="VBoxContainer" unique_id=246284737]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 14
@@ -34,25 +42,25 @@ fit_content = true
 autowrap_mode = 0
 horizontal_alignment = 1
 
-[node name="CharacterIcon" type="TextureRect" parent="." unique_id=1586288580]
+[node name="CharacterIcon" type="TextureRect" parent="VBoxContainer" unique_id=1586288580]
 unique_name_in_owner = true
 layout_mode = 2
 texture = ExtResource("2_qqakw")
 expand_mode = 5
 
-[node name="PanelContainer" type="PanelContainer" parent="." unique_id=90227723]
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer" unique_id=90227723]
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ac3xx")
 
-[node name="VBoxContainer3" type="VBoxContainer" parent="PanelContainer" unique_id=20430216]
+[node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer/PanelContainer" unique_id=20430216]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer3" unique_id=2103279721]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/PanelContainer/VBoxContainer3" unique_id=2103279721]
 layout_mode = 2
 alignment = 1
 
-[node name="HPText" type="RichTextLabel" parent="PanelContainer/VBoxContainer3/HBoxContainer" unique_id=1534548107]
+[node name="HPText" type="RichTextLabel" parent="VBoxContainer/PanelContainer/VBoxContainer3/HBoxContainer" unique_id=1534548107]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 8
@@ -61,7 +69,7 @@ fit_content = true
 autowrap_mode = 0
 horizontal_alignment = 1
 
-[node name="DEFText" type="RichTextLabel" parent="PanelContainer/VBoxContainer3/HBoxContainer" unique_id=251056545]
+[node name="DEFText" type="RichTextLabel" parent="VBoxContainer/PanelContainer/VBoxContainer3/HBoxContainer" unique_id=251056545]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 8
@@ -70,11 +78,11 @@ fit_content = true
 autowrap_mode = 0
 horizontal_alignment = 1
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/VBoxContainer3" unique_id=610944745]
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/PanelContainer/VBoxContainer3" unique_id=610944745]
 layout_mode = 2
 alignment = 1
 
-[node name="SPDText" type="RichTextLabel" parent="PanelContainer/VBoxContainer3/HBoxContainer2" unique_id=1845817693]
+[node name="SPDText" type="RichTextLabel" parent="VBoxContainer/PanelContainer/VBoxContainer3/HBoxContainer2" unique_id=1845817693]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 8
@@ -83,7 +91,7 @@ fit_content = true
 autowrap_mode = 0
 horizontal_alignment = 1
 
-[node name="RNGText" type="RichTextLabel" parent="PanelContainer/VBoxContainer3/HBoxContainer2" unique_id=1124062210]
+[node name="RNGText" type="RichTextLabel" parent="VBoxContainer/PanelContainer/VBoxContainer3/HBoxContainer2" unique_id=1124062210]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 8
@@ -92,11 +100,11 @@ fit_content = true
 autowrap_mode = 0
 horizontal_alignment = 1
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="PanelContainer/VBoxContainer3" unique_id=1180707330]
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer/PanelContainer/VBoxContainer3" unique_id=1180707330]
 layout_mode = 2
 alignment = 1
 
-[node name="BLKText" type="RichTextLabel" parent="PanelContainer/VBoxContainer3/HBoxContainer3" unique_id=158236467]
+[node name="BLKText" type="RichTextLabel" parent="VBoxContainer/PanelContainer/VBoxContainer3/HBoxContainer3" unique_id=158236467]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 8
@@ -105,7 +113,7 @@ fit_content = true
 autowrap_mode = 0
 horizontal_alignment = 1
 
-[node name="ATKText" type="RichTextLabel" parent="PanelContainer/VBoxContainer3/HBoxContainer3" unique_id=702194046]
+[node name="ATKText" type="RichTextLabel" parent="VBoxContainer/PanelContainer/VBoxContainer3/HBoxContainer3" unique_id=702194046]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 8
@@ -114,7 +122,7 @@ fit_content = true
 autowrap_mode = 0
 horizontal_alignment = 1
 
-[node name="HITText" type="RichTextLabel" parent="PanelContainer/VBoxContainer3/HBoxContainer3" unique_id=269033371]
+[node name="HITText" type="RichTextLabel" parent="VBoxContainer/PanelContainer/VBoxContainer3/HBoxContainer3" unique_id=269033371]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
@@ -124,36 +132,36 @@ fit_content = true
 autowrap_mode = 0
 horizontal_alignment = 1
 
-[node name="HBoxContainer4" type="HBoxContainer" parent="PanelContainer/VBoxContainer3" unique_id=206169313]
+[node name="HBoxContainer4" type="HBoxContainer" parent="VBoxContainer/PanelContainer/VBoxContainer3" unique_id=206169313]
 visible = false
 layout_mode = 2
 alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=373841137]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=373841137]
 layout_mode = 2
 mouse_filter = 2
 alignment = 1
 
-[node name="EquipmentSlot" type="PanelContainer" parent="HBoxContainer" unique_id=223292242]
+[node name="EquipmentSlot" type="PanelContainer" parent="VBoxContainer/HBoxContainer" unique_id=223292242]
 unique_name_in_owner = true
 custom_maximum_size = Vector2(40, 40)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ac3xx")
 script = ExtResource("3_3xgjd")
 
-[node name="EquipmentIcon" type="TextureRect" parent="HBoxContainer/EquipmentSlot" unique_id=1458085014]
+[node name="EquipmentIcon" type="TextureRect" parent="VBoxContainer/HBoxContainer/EquipmentSlot" unique_id=1458085014]
 unique_name_in_owner = true
 modulate = Color(0.41568628, 0.41568628, 0.41568628, 1)
 layout_mode = 2
 texture = ExtResource("4_e75iw")
 
-[node name="AbilitySlot" type="PanelContainer" parent="HBoxContainer" unique_id=2133048509]
+[node name="AbilitySlot" type="PanelContainer" parent="VBoxContainer/HBoxContainer" unique_id=2133048509]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ac3xx")
 script = ExtResource("3_3xgjd")
 
-[node name="AbilityIcon" type="TextureRect" parent="HBoxContainer/AbilitySlot" unique_id=862809621]
+[node name="AbilityIcon" type="TextureRect" parent="VBoxContainer/HBoxContainer/AbilitySlot" unique_id=862809621]
 unique_name_in_owner = true
 modulate = Color(0.41568628, 0.41568628, 0.41568628, 1)
 layout_mode = 2

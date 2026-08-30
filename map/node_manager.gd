@@ -3,6 +3,8 @@ class_name NodeManager
 
 var map_nodes: Dictionary[int, Array] = {}
 
+var chosen_node: bool = false
+
 func _ready():
 	GameManager.current_node_manager = self
 	

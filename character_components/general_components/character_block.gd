@@ -75,6 +75,12 @@ func _unblock(body):
 	if new_current_block < max_block:
 		blocked = false
 		
+	if character.character_block:
+		character.character_block.blocked = false
+		character.character_block.currently_blocking = false
+		character.character_block.current_block -= block_weight
+	
+		
 	current_block = new_current_block
 	if blocking.has(character):
 		if character.character_block.blocking.has(character_to_control):
@@ -85,3 +91,20 @@ func _unblock(body):
 		currently_blocking = false
 		
 	character.character_block.currently_blocking = false
+	
+func unblock_all():
+	for character in blocking:
+		if not character:
+			print("Null reference!")
+			return
+		
+		currently_blocking = false
+		character.character_block.blocked = false
+		character.character_block.currently_blocking = false
+		character.character_block.current_block -= block_weight
+		
+		if character.character_block.blocking.has(character_to_control):
+			character.character_block.blocking.erase(character_to_control)
+			
+	blocking.clear()
+		

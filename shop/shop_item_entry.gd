@@ -52,13 +52,13 @@ func _ready():
 	item_panel.add_theme_stylebox_override("panel", SHOP_ITEM_ENTRY_BACKGROUND_INACTIVE)  
 	amount_panel_container.add_theme_stylebox_override("panel", SHOP_ITEM_ENTRY_BACKGROUND_INACTIVE)  
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if mouse_is_entered:
 		if Input.is_action_just_pressed("left_click"):
 			clicked_on.emit()
 			if item_to_display.only_once:
-				queue_free()
+				if item_to_display.item_price <= GameManager.gold:	
+					queue_free()
 
 func _enter():
 	mouse_is_entered = true

@@ -24,6 +24,9 @@ var enemy_preference_strength: float = 2.0
 
 var ally_x_limit: float = 400
 
+var traitor_moves: int = 0
+var max_traitor_moves: int = 0
+
 func _ready():
 	debug_enabled = true
 	target_desired_distance = 30
@@ -58,12 +61,22 @@ func next_pathfinding():
 		
 	if not GameManager.current_battle_manager:
 		return
+	
+	var do_traitoring: bool = false
+	
+	if max_traitor_moves > traitor_moves:
+		if GameManager.do_traitor_move_role():
+			do_traitoring = true
+			traitor_moves += 1
 		
 	if healer:
 		if character_to_control.ally:
-			target_character = GameManager.current_battle_manager.find_lowest_health_percent_ally()
+			target_character = GameManager.current_battle_manager.find_lowest_health_percent_ally(do_traitoring)
 	else:
 		if character_to_control.character_block and character_to_control.character_block.currently_blocking:
+			if do_traitoring:
+				character_to_control.character_block.unblock_all()
+				return
 			target_character = GameManager.current_battle_manager.find_highest_priority_character_in_array(character_to_control.character_block.blocking)
 			target_position = character_to_control.global_position
 		else:

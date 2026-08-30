@@ -46,5 +46,7 @@ func _enter():
 
 func _exit():
 	mouse_is_entered = false
+	if is_current_equipment:
+		return
 	
 	add_theme_stylebox_override("panel", EQUIPMENT_SELECT_SLOT_INACTIVE) 

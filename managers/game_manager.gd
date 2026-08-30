@@ -11,19 +11,25 @@ var current_map_path: int = 0
 
 var current_battle: Battle
 
-var gold: float = 1000
+var gold: float = 0
 
 var inventory: Dictionary[ShopItem, int]
 
 var current_equipment: Dictionary[String, Dictionary]
 var available_equipment: Dictionary[String, Array]
 
+var current_traitors: Array[String] = []
+
 const ally_classes: Array[String] = ["archer", "healer", "mage", "rogue", "tank", "warrior"]
 const equipment_slots: Array[String] = ["equipment", "ability"]
+
+const POSSIBLE_TRAITORS: Array[String] = ["tank", "healer", "rogue", "warrior", "mage"]
 
 const WORLD_MAP = preload("uid://c1b3t0ot01b35")
 
 const EQUIPMENT_SELECTION_MENU = preload("uid://cvfffdw8ty2wr")
+
+const MAIN_MENU = preload("uid://osr5iwyhjqdx")
 
 const ARCHER_VISUAL = preload("uid://c484br5rmt0rr")
 const HEALER_VISUAL = preload("uid://bgpihtxi41w44")
@@ -42,11 +48,13 @@ func reset_data():
 	current_equipment = {}
 	available_equipment = {}
 	
-	gold = 1000
+	gold = 0
 	current_battle = null
 	current_node_manager = null
 	current_battle_manager = null
 	mouse_pos = Vector2.ZERO
+	
+	current_traitors = []
 	
 func popup_equipment_menu(scene_to_load: PackedScene):
 	equipment_menu = EQUIPMENT_SELECTION_MENU.instantiate()
@@ -159,9 +167,36 @@ func get_current_equipment_in_slot(role_class: String, item_slot: String) -> Sho
 		return null
 		
 	return current_equipment[role_class][item_slot]
+	
+func choose_traitor(difficulty: int = 1):
+	var remaining_traitors = POSSIBLE_TRAITORS.duplicate(true)
+	for count in range(difficulty):
+		var random_index: int = randi_range(0, remaining_traitors.size() - 1)
+		current_traitors.append(remaining_traitors[random_index])
+		remaining_traitors.remove_at(random_index)
+		
+	print(current_traitors)
+		
+func get_max_traitor_moves() -> int:
+	return 5
+	if current_map_stage > 3:
+		return randi_range(0, 1)
+	elif current_map_stage > 5:
+		return 1
+	elif current_map_stage > 7:
+		return 2
+	else:
+		return 0
+	
+func do_traitor_move_role() -> bool:
+	if randi_range(0, 30) == 5:
+		print("Doing traitor move!")
+		return true
+	
+	return false
 		
 func load_map():
 	get_tree().change_scene_to_packed(WORLD_MAP)
 
 func load_main_menu():
-	pass
+	get_tree().change_scene_to_packed(MAIN_MENU)

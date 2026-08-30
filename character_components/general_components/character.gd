@@ -18,6 +18,7 @@ var character_special_attack: Node
 
 var ally: bool = true
 var support: bool = true
+var is_traitor: bool = false
 var character_role: String = ""
 var character_importantness: float = 1.0
 
