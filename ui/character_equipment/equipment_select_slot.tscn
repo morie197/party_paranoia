@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://c5br62aj5osvq"]
+
+[ext_resource type="StyleBox" uid="uid://dkuvnlyvnef6u" path="res://ui/styleboxes/equipment_select_slot_current.tres" id="1_g3kpg"]
+[ext_resource type="Script" uid="uid://csbqww6o0336a" path="res://ui/character_equipment/equipment_select_slot.gd" id="2_ldn8y"]
+[ext_resource type="Texture2D" uid="uid://bups6gm4my62k" path="res://ui/icons/default_equipment_ability_icon.tres" id="3_o7ehb"]
+[ext_resource type="Script" uid="uid://bldrlognimtn" path="res://ui/generic/hover_man.gd" id="4_ldn8y"]
+
+[node name="EquipmentSelectSlot" type="PanelContainer" unique_id=1097636955]
+theme_override_styles/panel = ExtResource("1_g3kpg")
+script = ExtResource("2_ldn8y")
+
+[node name="AbilityIcon" type="TextureRect" parent="." unique_id=2018018720]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("3_o7ehb")
+script = ExtResource("4_ldn8y")

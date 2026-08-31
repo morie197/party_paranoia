@@ -37,7 +37,8 @@ folder_colors={
 "res://managers/": "pink",
 "res://map/": "gray",
 "res://projectiles/": "red",
-"res://shop/": "gray"
+"res://shop/": "gray",
+"res://ui/": "gray"
 }
 
 [input]

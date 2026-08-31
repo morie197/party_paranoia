@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" uid="uid://cde57g7jiltvy" path="res://shop/shop_item_entry.gd" id="1_knkf2"]
 [ext_resource type="Texture2D" uid="uid://b8wcagt5kqt1g" path="res://shop/wares/abilities/ice arrow/ice_arrow_icon.tres" id="2_kajpy"]
-[ext_resource type="StyleBox" uid="uid://jxayas3fr48k" path="res://shop/shop_item_entry_background.tres" id="2_px01r"]
+[ext_resource type="StyleBox" uid="uid://jxayas3fr48k" path="res://ui/styleboxes/shop_item_entry_background.tres" id="2_px01r"]
 [ext_resource type="Texture2D" uid="uid://bckgbxbpaxb4a" path="res://items/gold/gold.tres" id="3_px01r"]
-[ext_resource type="Script" uid="uid://bldrlognimtn" path="res://shop/hover_man.gd" id="4_fesq1"]
-[ext_resource type="StyleBox" uid="uid://bt1ljfnuowhm4" path="res://shop/shop_item_entry_background_inactive.tres" id="5_px01r"]
+[ext_resource type="Script" uid="uid://bldrlognimtn" path="res://ui/generic/hover_man.gd" id="4_fesq1"]
+[ext_resource type="StyleBox" uid="uid://bt1ljfnuowhm4" path="res://ui/styleboxes/shop_item_entry_background_inactive.tres" id="5_px01r"]
 [ext_resource type="Texture2D" uid="uid://ce640m3p6g2p6" path="res://allies/mage/mage_visual.tres" id="6_gpykr"]
 
 [node name="ShopItemEntry" type="HBoxContainer" unique_id=1380364680]

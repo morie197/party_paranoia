@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bat7242t6iae4"]
 
-[ext_resource type="StyleBox" uid="uid://bt1ljfnuowhm4" path="res://shop/shop_item_entry_background_inactive.tres" id="1_htgxn"]
-[ext_resource type="Script" uid="uid://bpablmdbuiu4q" path="res://description_panel.gd" id="2_7elvy"]
+[ext_resource type="StyleBox" uid="uid://bt1ljfnuowhm4" path="res://ui/styleboxes/shop_item_entry_background_inactive.tres" id="1_htgxn"]
+[ext_resource type="Script" uid="uid://bpablmdbuiu4q" path="res://ui/description_panel/description_panel.gd" id="2_7elvy"]
 
 [node name="DescriptionPanel" type="PanelContainer" unique_id=1319791162]
 custom_minimum_size = Vector2(150, 0)

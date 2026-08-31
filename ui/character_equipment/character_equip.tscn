@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://bt6q3akjhog0v"]
 
-[ext_resource type="Script" uid="uid://c1giiw2cs8l1e" path="res://character_equipment_slot.gd" id="1_7ato5"]
-[ext_resource type="StyleBox" uid="uid://bl54fxj42x6rc" path="res://equipment_menu_background.tres" id="1_cd7sw"]
+[ext_resource type="Script" uid="uid://c1giiw2cs8l1e" path="res://ui/character_equipment/character_equipment_slot.gd" id="1_7ato5"]
+[ext_resource type="StyleBox" uid="uid://bl54fxj42x6rc" path="res://ui/styleboxes/equipment_menu_background.tres" id="1_cd7sw"]
 [ext_resource type="Texture2D" uid="uid://ce640m3p6g2p6" path="res://allies/mage/mage_visual.tres" id="2_qqakw"]
-[ext_resource type="Script" uid="uid://3nsem7sg100d" path="res://clicky_man.gd" id="3_3xgjd"]
-[ext_resource type="Texture2D" uid="uid://bswd003sr8ocv" path="res://default_equipment_equipment_icon.tres" id="4_e75iw"]
-[ext_resource type="Texture2D" uid="uid://bups6gm4my62k" path="res://default_equipment_ability_icon.tres" id="5_mm6yo"]
+[ext_resource type="Script" uid="uid://3nsem7sg100d" path="res://ui/generic/clicky_man.gd" id="3_3xgjd"]
+[ext_resource type="Texture2D" uid="uid://bswd003sr8ocv" path="res://ui/icons/default_equipment_equipment_icon.tres" id="4_e75iw"]
+[ext_resource type="Texture2D" uid="uid://bups6gm4my62k" path="res://ui/icons/default_equipment_ability_icon.tres" id="5_mm6yo"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ac3xx"]
 content_margin_left = 1.0

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dtj7oi2ow7op3"]
 
-[ext_resource type="StyleBox" uid="uid://cr2m2rrms6kog" path="res://equipment_menu_background_dark.tres" id="1_oeh83"]
-[ext_resource type="Script" uid="uid://0h5u6w4rbmap" path="res://equipment_select_panel.gd" id="1_qyfvl"]
+[ext_resource type="StyleBox" uid="uid://cr2m2rrms6kog" path="res://ui/styleboxes/equipment_menu_background_dark.tres" id="1_oeh83"]
+[ext_resource type="Script" uid="uid://0h5u6w4rbmap" path="res://ui/character_equipment/equipment_select_panel.gd" id="1_qyfvl"]
 
 [node name="EquipmentSelectPanel" type="PanelContainer" unique_id=186919111]
 z_index = 2

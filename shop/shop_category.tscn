@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://df71p3lk4msui"]
 
-[ext_resource type="StyleBox" uid="uid://drtpjh1toky1v" path="res://shop/shop_background_panel.tres" id="1_7yb8h"]
+[ext_resource type="StyleBox" uid="uid://drtpjh1toky1v" path="res://ui/styleboxes/shop_background_panel.tres" id="1_7yb8h"]
 [ext_resource type="Script" uid="uid://b0asp23kileyh" path="res://shop/shop_category.gd" id="2_1mf3y"]
 
 [node name="ShopCategory" type="PanelContainer" unique_id=1743100164]

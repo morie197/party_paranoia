@@ -1,9 +1,9 @@
 [gd_scene format=4 uid="uid://osr5iwyhjqdx"]
 
 [ext_resource type="Texture2D" uid="uid://dpampxyw0iufj" path="res://imported_art/tiles.png" id="1_06t4h"]
-[ext_resource type="StyleBox" uid="uid://djotla8lep23k" path="res://shop/shop_button_normal.tres" id="1_fu7sn"]
+[ext_resource type="StyleBox" uid="uid://djotla8lep23k" path="res://ui/styleboxes/shop_button_normal.tres" id="1_fu7sn"]
 [ext_resource type="Script" uid="uid://d3xo011c4w234" path="res://main_menu.gd" id="1_jix8l"]
-[ext_resource type="StyleBox" uid="uid://rge205efwt3x" path="res://shop/shop_button_pressed.tres" id="2_jix8l"]
+[ext_resource type="StyleBox" uid="uid://rge205efwt3x" path="res://ui/styleboxes/shop_button_pressed.tres" id="2_jix8l"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_kedo2"]
 vertices = PackedVector2Array(16, 16, -16, 16, -16, -16, 16, -16)

@@ -13,7 +13,7 @@ waves = Dictionary[float, ExtResource("2_qlorg")]({
 1.0: ExtResource("3_07dxl"),
 2.0: ExtResource("4_vm6wt"),
 8.0: ExtResource("5_cri46"),
-10.0: ExtResource("5_cri46"),
-14.0: ExtResource("6_53w6j")
+14.0: ExtResource("6_53w6j"),
+17.0: ExtResource("5_cri46")
 })
 metadata/_custom_type_script = "uid://t27xo8w46cb7"
