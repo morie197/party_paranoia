@@ -111,7 +111,7 @@ func next_pathfinding():
 			target_character = GameManager.current_battle_manager.find_highest_priority_character_in_array(character_to_control.character_block.blocking)
 			target_position = character_to_control.global_position
 			if character_to_control.ally:
-				if target_character != closest_badguy:
+				if target_character and target_character != closest_badguy:
 					if target_character.character_role == "boss":
 						print(character_to_control.character_role + " unblocked all pure!")
 						character_to_control.character_block.unblock_all_pure()
