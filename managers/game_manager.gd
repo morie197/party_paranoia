@@ -20,6 +20,8 @@ var available_equipment: Dictionary[String, Array]
 
 var current_traitors: Array[String] = []
 
+var current_node_path: Array[Vector2]
+
 const ally_classes: Array[String] = ["archer", "healer", "mage", "rogue", "tank", "warrior"]
 const equipment_slots: Array[String] = ["equipment", "ability"]
 
@@ -55,6 +57,7 @@ func reset_data():
 	mouse_pos = Vector2.ZERO
 	
 	current_traitors = []
+	current_node_path = []
 	
 func popup_equipment_menu(scene_to_load: PackedScene):
 	equipment_menu = EQUIPMENT_SELECTION_MENU.instantiate()

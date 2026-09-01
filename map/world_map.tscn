@@ -457,13 +457,13 @@ battle = ExtResource("11_8fj6n")
 battle_ground = ExtResource("6_81uqm")
 
 [node name="Line2D" type="Line2D" parent="NodeManager" unique_id=1885161505]
-z_index = -1
+z_index = -2
 points = PackedVector2Array(32, 208, 96, 208, 160, 176, 224, 176, 288, 176, 352, 208, 416, 176, 464, 176, 528, 208, 592, 208)
 width = 5.0
 default_color = Color(0.26657522, 0.2665752, 0.2665752, 1)
 
 [node name="Line2D2" type="Line2D" parent="NodeManager" unique_id=1181730731]
-z_index = -1
+z_index = -2
 points = PackedVector2Array(96, 208, 160, 240, 224, 240, 288, 240, 352, 208, 416, 240, 464, 240, 528, 208)
 width = 5.0
 default_color = Color(0.26657522, 0.2665752, 0.2665752, 1)

@@ -21,6 +21,8 @@ const SHOP = preload("uid://dj72w1f50un10")
 
 var is_current_stage: bool = false
 
+var line_position: Vector2 = Vector2.ZERO
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	mouse_entered.connect(_mouse_enter)
@@ -36,8 +38,13 @@ func _ready():
 			map_node_panel.size *= 2
 			map_node_panel.position *= 2
 
+	line_position = global_position + normal_texture.size/2.0  
+	
+
 func init_node(current_stage, current_path):
-	if current_stage == stage and (current_path == 0 or current_path == path or path == 0):
+	if GameManager.current_node_path.has(line_position):
+		map_node_panel.add_theme_stylebox_override("panel", SELECTED_NODE_PANEL) 
+	elif current_stage == stage and (current_path == 0 or current_path == path or path == 0):
 		is_current_stage = true
 		map_node_panel.add_theme_stylebox_override("panel", ACTIVE_NODE_PANEL)  
 	else:
@@ -54,7 +61,17 @@ func _process(delta):
 		if Input.is_action_just_pressed("left_click"):
 			if not is_current_stage:
 				return
+				
+			#GameManager.current_node_manager.chosen_node = true
+			#GameManager.current_node_path.append(line_position)
+			#GameManager.current_map_path = path
+			#GameManager.current_map_stage += 1
+			#get_tree().reload_current_scene()
+			#return
+				
 			if node_type:
+				GameManager.current_node_manager.chosen_node = true
+				GameManager.current_node_path.append(line_position)
 				if node_type.node_name == "Battle" or node_type.node_name == "Boss":
 					if not battle:
 						print("No battle assigned!")
@@ -64,14 +81,11 @@ func _process(delta):
 						return
 						
 					GameManager.current_map_path = path
-						
-					GameManager.current_node_manager.chosen_node = true
 					
 					GameManager.current_battle = battle
 					GameManager.popup_equipment_menu(battle_ground)
 					#get_tree().change_scene_to_packed(battle_ground)
 				elif node_type.node_name == "Shop":
-					GameManager.current_node_manager.chosen_node = true
 					GameManager.current_map_path = path
 					
 					get_tree().change_scene_to_packed(SHOP)
@@ -85,5 +99,5 @@ func _mouse_exit():
 	mouse_is_entered = false
 	if is_current_stage:
 		map_node_panel.add_theme_stylebox_override("panel", ACTIVE_NODE_PANEL)  
-	else:
-		map_node_panel.add_theme_stylebox_override("panel", INACTIVE_NODE_PANEL)  
+	#else:
+	#	map_node_panel.add_theme_stylebox_override("panel", INACTIVE_NODE_PANEL)  
