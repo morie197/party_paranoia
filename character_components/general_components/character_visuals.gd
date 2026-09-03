@@ -11,10 +11,6 @@ func _ready():
 		character_sprite = Sprite2D.new()
 		add_child(character_sprite)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-	
 func init_visuals():
 	character_sprite.texture = character_icon
 

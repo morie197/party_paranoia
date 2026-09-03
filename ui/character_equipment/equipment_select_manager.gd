@@ -23,10 +23,6 @@ func _ready():
 	
 	confirm_button.pressed.connect(_load_battle)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
 func _load_battle():
 	if not scene_to_load_afterwards:
 		print("No scene to load")

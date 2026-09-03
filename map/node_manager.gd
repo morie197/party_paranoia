@@ -33,7 +33,7 @@ func _ready():
 			
 			map_icon.init_node(current_stage, current_path)
 
-	print(map_nodes)
+	#print(map_nodes)
 			
 	for point in GameManager.current_node_path:
 		current_map_route.add_point(point)
@@ -46,6 +46,6 @@ func _ready():
 			
 			if (not GameManager.current_node_path.has(map_node.line_position)) or map_node.path == 0:
 				unchosen_map_route.add_point(map_node.line_position)
-			else:
-				print(str(map_node.stage) + " - " + str(map_node.path))
+			#else:
+				#print(str(map_node.stage) + " - " + str(map_node.path))
 	

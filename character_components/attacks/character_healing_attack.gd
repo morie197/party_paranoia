@@ -25,7 +25,7 @@ func _process(delta):
 	if current_attack_cooldown > 0:
 		current_attack_cooldown -= delta
 
-func attack(target_position: Vector2):
+func attack(_target_position: Vector2):
 	if not current_attack_cooldown <= 0:
 		return
 		
@@ -41,8 +41,8 @@ func attack(target_position: Vector2):
 	current_attack_cooldown = attack_cooldown
 	
 	
-	var parent_transform: Vector2 = shooter.global_position
-	var direction_to_head: Vector2 = parent_transform.direction_to(target_position)
+	#var parent_transform: Vector2 = shooter.global_position
+	#var direction_to_head: Vector2 = parent_transform.direction_to(target_position)
 	#
 	#var projectile = projectile_to_fire.instantiate() as Projectile
 	#projectile.projectile_attack_damage = projectile_attack_damage
@@ -54,7 +54,7 @@ func attack(target_position: Vector2):
 	#projectile.global_position = parent_transform
 	#projectile.global_rotation = direction_to_head.angle()
 
-func can_attack(target: Character) -> bool:
+func can_attack(_target: Character) -> bool:
 	if current_attack_cooldown <= 0:
 		return true
 		

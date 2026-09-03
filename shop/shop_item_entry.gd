@@ -55,7 +55,7 @@ func _ready():
 	item_panel.add_theme_stylebox_override("panel", SHOP_ITEM_ENTRY_BACKGROUND_INACTIVE)  
 	amount_panel_container.add_theme_stylebox_override("panel", SHOP_ITEM_ENTRY_BACKGROUND_INACTIVE)  
 
-func _process(delta):
+func _process(_delta):
 	if mouse_is_entered:
 		if Input.is_action_just_pressed("left_click"):
 			clicked_on.emit()

@@ -33,7 +33,7 @@ func _process(delta):
 	if current_attack_cooldown > 0:
 		current_attack_cooldown -= delta
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if queud_attack > 0:
 		hits = 0
 		queud_attack -= 1
@@ -75,7 +75,7 @@ func attack(target_position: Vector2):
 	
 	queud_attack = 2
 
-func can_attack(target: Character) -> bool:
+func can_attack(_target: Character) -> bool:
 	return true
 
 	#return false	

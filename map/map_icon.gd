@@ -54,7 +54,7 @@ func init_node(current_stage, current_path):
 		
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if mouse_is_entered:
 		if GameManager.current_node_manager and GameManager.current_node_manager.chosen_node:
 			return

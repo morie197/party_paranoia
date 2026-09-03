@@ -39,7 +39,7 @@ func _ready():
 		
 	accumulator += randf_range(0, time_until_next_pathfinding)
 
-func _process(delta):
+func _process(_delta):
 	if not character_to_control:
 		print("No character to control!")
 		return

@@ -61,7 +61,7 @@ func _ready():
 		else:
 			GameManager.current_battle_manager.enemiess.append(self)
 
-func _process(delta):
+func _process(_delta):
 	if (not attack_input_controller) or (not character_attack) or (not character_attack_target_controller):
 		return
 	
@@ -78,7 +78,7 @@ func _process(delta):
 		character_visuals.face(character_attack_target_controller.attack_position)
 		
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if (not movement_input_controller) or (not character_move):
 		return
 		
@@ -109,7 +109,7 @@ func get_block_weight() -> int:
 		
 	return -1
 		
-func block_character(blocker: Character) -> bool:
+func block_character(_blocker: Character) -> bool:
 	if character_block:
 		if not character_block.currently_blocking:
 			character_block.currently_blocking = true
