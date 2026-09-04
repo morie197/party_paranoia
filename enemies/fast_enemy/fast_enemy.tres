@@ -6,8 +6,8 @@
 [resource]
 script = ExtResource("1_fkkob")
 character_visual = ExtResource("1_4sag4")
-character_move_speed = 100.0
-character_max_hp = 200.0
+character_move_speed = 120.0
+character_max_hp = 250.0
 character_defense = 10.0
 character_max_block = 1
 gold_when_killed = 10.0
@@ -18,4 +18,5 @@ character_attack_cooldown = 0.7
 character_attack_range = 10.0
 character_attack_speed = 10.0
 character_role_attack_preference = "support"
+character_role_attack_preference_strength = 1.5
 metadata/_custom_type_script = "uid://d4hcg1hl08rya"

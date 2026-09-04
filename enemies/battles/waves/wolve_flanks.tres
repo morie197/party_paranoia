@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://be1pk3yf8lxln" path="res://enemies/battles/waves/groups/enemy_group.gd" id="1_c1w0p"]
 [ext_resource type="Script" uid="uid://c4fig4axrstg" path="res://enemies/battles/waves/wave.gd" id="2_7onr2"]
-[ext_resource type="Resource" uid="uid://bivbyn11g7nwh" path="res://enemies/battles/waves/groups/2x_wolves.tres" id="2_uc235"]
+[ext_resource type="Resource" uid="uid://ctsdpf750acbi" path="res://enemies/battles/waves/groups/1x_wolves.tres" id="2_uc235"]
 
 [resource]
 script = ExtResource("2_7onr2")
