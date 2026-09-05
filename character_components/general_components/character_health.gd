@@ -6,6 +6,8 @@ var current_hp: float = 10
 
 var defense: float = 5
 
+const defense_dominator: float = 20
+
 signal hp_changed(percent: float)
 signal died
 
@@ -14,7 +16,7 @@ func init_health():
 	current_hp = max_hp
 
 func damage(amount: float):
-	var damage_taken: float = clampf(amount - defense, 1, 9999)
+	var damage_taken: float = clampf(amount * (defense_dominator / (defense_dominator + defense)), 1, 9999)
 	if amount <= 0:
 		damage_taken = amount
 	current_hp = clampf(current_hp - damage_taken, 0, max_hp)
