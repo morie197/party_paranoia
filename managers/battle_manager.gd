@@ -13,6 +13,7 @@ var traitor_characters: Array[Character]
 @export var battle_navigation: NavigationRegion2D
 
 const BATTLE_OVER_SCREEN = preload("uid://dtqwnrtyexdg0")
+const GOLD_INDICATOR = preload("uid://11tunil45fqo")
 
 var current_battle_time: float = 0
 
@@ -300,6 +301,10 @@ func kill_character(character_to_kill: Character, gold_given: float = 0):
 		return
 	
 	GameManager.gold += gold_given
+	var gold_indicator = GOLD_INDICATOR.instantiate() as GoldIndicator
+	add_child(gold_indicator)
+	gold_indicator.init_display(gold_given)
+	gold_indicator.global_position = character_to_kill.global_position + Vector2(-16, -32)
 	
 	if character_to_kill.ally:
 		var battle_over_screen = BATTLE_OVER_SCREEN.instantiate()

@@ -14,8 +14,8 @@ var emitted_add_time: bool = false
 
 var normal_display_timer: float = 0
 
-var damage_color: Color = Color(1, 0.509, 0.509, 1)
-var heal_color: Color = Color(0.715, 1.0, 0.719, 1.0)
+const damage_color: Color = Color(1, 0.509, 0.509, 1)
+const heal_color: Color = Color(0.715, 1.0, 0.719, 1.0)
 
 signal add_time_over
 

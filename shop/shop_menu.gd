@@ -5,7 +5,7 @@ class_name ShopMenu
 @onready var gold_amount = %GoldAmount
 @onready var exit_shop = %ExitShop
 
-
+const GOLD_INDICATOR = preload("uid://11tunil45fqo")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -37,6 +37,11 @@ func buy_item(item: ShopItem):
 		return
 		
 	GameManager.gold -= item.item_price
+	
+	var gold_indicator = GOLD_INDICATOR.instantiate() as GoldIndicator
+	GameManager.add_child(gold_indicator)
+	gold_indicator.init_display(-item.item_price)
+	gold_indicator.global_position = gold_amount.global_position + Vector2.UP * 16
 	
 	if not GameManager.add_item(item):
 		return

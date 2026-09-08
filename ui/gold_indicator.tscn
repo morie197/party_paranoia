@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://11tunil45fqo"]
+
+[ext_resource type="Script" uid="uid://br8pdnscmmtar" path="res://ui/gold_indicator.gd" id="1_whvxc"]
+
+[node name="GoldIndicator" type="Control" unique_id=906685185]
+z_index = 10
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_whvxc")
+
+[node name="GoldText" type="RichTextLabel" parent="." unique_id=609894686]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_colors/default_color = Color(0.73211217, 0.7305441, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
