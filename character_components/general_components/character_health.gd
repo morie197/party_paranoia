@@ -8,7 +8,7 @@ var defense: float = 5
 
 const defense_dominator: float = 20
 
-signal hp_changed(percent: float)
+signal hp_changed(current: float, max: float)
 signal died
 
 const DAMAGE_INDICATOR = preload("uid://na3a2k3gdjjo")
@@ -31,7 +31,7 @@ func damage(amount: float):
 		died.emit()
 		#print("Dead lol")
 	
-	hp_changed.emit(current_hp/max_hp * 100)
+	hp_changed.emit(current_hp, max_hp)
 	
 	if not character_to_control:
 		print("No character for health component?")

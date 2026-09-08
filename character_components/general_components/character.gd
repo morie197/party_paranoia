@@ -49,6 +49,7 @@ func _ready():
 		character_health.died.connect(died)
 		if character_health_bar:
 			character_health.hp_changed.connect(character_health_bar.update_hp)
+			character_health.hp_changed.emit(character_health.current_hp, character_health.max_hp)
 		
 	if GameManager.current_battle_manager != null:
 		GameManager.current_battle_manager.all_characters.append(self)

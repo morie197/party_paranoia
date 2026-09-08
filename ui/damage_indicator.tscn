@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bwt8q6v8oj3mi" path="res://damage_indicator.gd" id="1_1m44x"]
 
 [node name="DamageIndicator" type="Control" unique_id=906685185]
+z_index = 6
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

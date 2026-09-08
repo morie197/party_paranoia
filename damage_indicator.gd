@@ -8,7 +8,7 @@ class_name DamageIndicator
 @export var fadeout_speed: float = 2
 @export var normal_display_time: float = 1.5
 
-var add_time: float = 0.5
+var add_time: float = 0.35
 var add_timer: float = 0
 var emitted_add_time: bool = false
 
