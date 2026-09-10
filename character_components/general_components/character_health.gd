@@ -47,7 +47,7 @@ func damage(amount: float):
 		damaged_indicator.global_position = character_to_control.global_position + Vector2(-16, -32)
 		damaged_indicator.add_time_over.connect(func(): damaged_indicator = null)
 		
-	damaged_indicator.init_display(amount)
+	damaged_indicator.init_display(damage_taken)
 			
 	
 	

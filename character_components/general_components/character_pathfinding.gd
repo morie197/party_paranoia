@@ -28,6 +28,7 @@ var ally_x_limit: float = 450
 
 var traitor_moves: int = 0
 var max_traitor_moves: int = 0
+var traitor_turns_remaining: int = 0
 
 func _ready():
 	#debug_enabled = true
@@ -68,9 +69,18 @@ func next_pathfinding():
 	var do_traitoring: bool = false
 	
 	if max_traitor_moves > traitor_moves:
-		if GameManager.do_traitor_move_role():
-			do_traitoring = true
+		var new_traitor_turns = GameManager.do_traitor_move_role()
+		if new_traitor_turns:
 			traitor_moves += 1
+		traitor_turns_remaining += new_traitor_turns
+		
+			
+			
+	if traitor_turns_remaining > 0:
+		print("Do traitoring")
+		traitor_turns_remaining -= 1
+		do_traitoring = true
+		
 		
 	if character_to_control.character_role.to_lower() == "boss":
 		if character_to_control.character_health:
@@ -98,7 +108,7 @@ func next_pathfinding():
 	if healer:
 		if character_to_control.ally:
 			target_character = GameManager.current_battle_manager.find_lowest_health_percent_ally(do_traitoring)
-			if do_traitoring and randi_range(0, 5) == 3:
+			if do_traitoring and randi_range(0, 5) != 3:
 				return
 		else:
 			target_character = GameManager.current_battle_manager.find_lowest_health_percent_enemy()
@@ -135,7 +145,7 @@ func next_pathfinding():
 	if target_character:
 		if character_to_control.character_attack:
 			if character_to_control.character_attack.can_attack(target_character):
-				if do_traitoring and randi_range(0, 5) == 3:
+				if do_traitoring and randi_range(0, 5) != 3:
 					return
 				
 				if (not character_to_control.ally) and character_to_control.support:

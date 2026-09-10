@@ -27,6 +27,8 @@ const equipment_slots: Array[String] = ["equipment", "ability"]
 
 const POSSIBLE_TRAITORS: Array[String] = ["tank", "healer", "mage"]
 
+const TRAITOR_TURNS_NORMAL: int = 30
+
 const WORLD_MAP = preload("uid://c1b3t0ot01b35")
 
 const EQUIPMENT_SELECTION_MENU = preload("uid://cvfffdw8ty2wr")
@@ -182,20 +184,20 @@ func choose_traitor(difficulty: int = 1):
 		
 func get_max_traitor_moves() -> int:
 	if current_map_stage > 3:
-		return randi_range(0, 1)
+		return randi_range(1, 2)
 	elif current_map_stage > 5:
-		return 1
+		return 3
 	elif current_map_stage > 7:
-		return 2
+		return 5
 	else:
 		return 0
 	
-func do_traitor_move_role() -> bool:
-	if randi_range(0, 30) == 5:
-		print("Doing traitor move!")
-		return true
+func do_traitor_move_role() -> int:
+	if randi_range(0, 10) == 5:
+		#print("Doing traitor move!")
+		return TRAITOR_TURNS_NORMAL
 	
-	return false
+	return 0
 		
 func load_map():
 	get_tree().change_scene_to_packed(WORLD_MAP)

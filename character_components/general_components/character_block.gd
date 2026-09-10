@@ -96,7 +96,7 @@ func _block(body):
 	
 func _unblock(body):
 	if body is not Character:
-		print("Invalid block target!")
+		#print("Invalid block target!")
 		return
 		
 	var character = body as Character
