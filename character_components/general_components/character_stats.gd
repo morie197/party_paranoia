@@ -12,6 +12,11 @@ var character_block: CharacterBlock
 var character_visuals: CharacterVisuals
 var character_attack_target_controller: Node
 
+var debuff_color_tints: Array[Color]
+
+const SLOW_DEBUFF_TINT: Color = Color(0.472, 0.873, 1.0, 1.0)
+const GOLD_DEBUFF_TINT: Color = Color(0.894, 0.821, 0.258, 1.0)
+
 var debuff_timers: Dictionary[String, Timer]
 
 var slow_amount: float = 0.5
@@ -162,6 +167,23 @@ func set_stats(multiplier: float = 1.0, attack_multiplier: float = 1.0):
 		character.set_collision_layer_value(3, true)
 		character.set_collision_layer_value(4, false)
 	
+func add_color_tint(color: Color):
+	if not debuff_color_tints.has(color):
+		debuff_color_tints.append(color)
+	if character_visuals:
+		if debuff_color_tints.size() == 0:
+			return
+		character_visuals.modulate = debuff_color_tints[0]
+
+func remove_color_tint(color: Color):
+	if debuff_color_tints.has(color):
+		debuff_color_tints.erase(color)
+	if character_visuals:
+		if debuff_color_tints.size() == 0:
+			character_visuals.modulate = Color.WHITE
+			return
+		character_visuals.modulate = debuff_color_tints[0]
+	
 func set_move_speed(value: float):
 	if character_move:
 		character_move.character_movement_speed = value
@@ -190,15 +212,19 @@ func create_debuff_timer(duration: float, timer_name: String) -> Timer:
 func apply_slow_debuff(duration: float):
 	var base_move_speed: float = base_movement_speed
 	set_move_speed(base_move_speed * slow_amount)
+	add_color_tint(SLOW_DEBUFF_TINT)
 	var slow_timer: Timer = create_debuff_timer(duration, "slow")
 	slow_timer.timeout.connect(set_move_speed.bind(base_move_speed))
+	slow_timer.timeout.connect(remove_color_tint.bind(SLOW_DEBUFF_TINT))
 	slow_timer.start()
 	
 func apply_extra_gold_debuff(duration: float):
 	var base_gold: float = stats.gold_when_killed
 	set_gold_given(base_gold * extra_gold_amount)
+	add_color_tint(GOLD_DEBUFF_TINT)
 	var extra_gold_timer: Timer = create_debuff_timer(duration, "gold")
 	extra_gold_timer.timeout.connect(set_gold_given.bind(base_gold))
+	extra_gold_timer.timeout.connect(remove_color_tint.bind(GOLD_DEBUFF_TINT))
 	extra_gold_timer.start()
 
 	
