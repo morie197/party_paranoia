@@ -17,6 +17,9 @@ var debuff_color_tints: Array[Color]
 const SLOW_DEBUFF_TINT: Color = Color(0.472, 0.873, 1.0, 1.0)
 const GOLD_DEBUFF_TINT: Color = Color(0.894, 0.821, 0.258, 1.0)
 
+const GOLD_DEBUFF_ICON = preload("uid://cx40g6dv1gy60")
+const SLOW_DEBUFF_ICON = preload("uid://prc2uagvv015")
+
 var debuff_timers: Dictionary[String, Timer]
 
 var slow_amount: float = 0.5
@@ -214,6 +217,9 @@ func apply_slow_debuff(duration: float):
 	set_move_speed(base_move_speed * slow_amount)
 	add_color_tint(SLOW_DEBUFF_TINT)
 	var slow_timer: Timer = create_debuff_timer(duration, "slow")
+	if character and character.character_health_bar:
+		character.character_health_bar.add_debuff(SLOW_DEBUFF_ICON)
+		slow_timer.timeout.connect(character.character_health_bar.remove_debuff.bind(SLOW_DEBUFF_ICON))
 	slow_timer.timeout.connect(set_move_speed.bind(base_move_speed))
 	slow_timer.timeout.connect(remove_color_tint.bind(SLOW_DEBUFF_TINT))
 	slow_timer.start()
@@ -223,6 +229,9 @@ func apply_extra_gold_debuff(duration: float):
 	set_gold_given(base_gold * extra_gold_amount)
 	add_color_tint(GOLD_DEBUFF_TINT)
 	var extra_gold_timer: Timer = create_debuff_timer(duration, "gold")
+	if character and character.character_health_bar:
+		character.character_health_bar.add_debuff(GOLD_DEBUFF_ICON)
+		extra_gold_timer.timeout.connect(character.character_health_bar.remove_debuff.bind(GOLD_DEBUFF_ICON))
 	extra_gold_timer.timeout.connect(set_gold_given.bind(base_gold))
 	extra_gold_timer.timeout.connect(remove_color_tint.bind(GOLD_DEBUFF_TINT))
 	extra_gold_timer.start()
