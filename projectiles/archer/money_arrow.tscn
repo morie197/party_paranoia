@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dglp40w27jcx3"]
 
 [ext_resource type="Script" uid="uid://c1rq7b12fj7gi" path="res://projectiles/archer/archer_projectile.gd" id="1_5tpa2"]
-[ext_resource type="Texture2D" uid="uid://d3ou6c1t7rrc7" path="res://shop/wares/abilities/gold arrow/gold_arrow_icon.tres" id="2_5tpa2"]
+[ext_resource type="Texture2D" uid="uid://b1o8rnsjcfhgb" path="res://projectiles/archer/money_arrow.tres" id="2_5tpa2"]
 
 [node name="ArcherProjectile" type="Node2D" unique_id=155385979]
 script = ExtResource("1_5tpa2")

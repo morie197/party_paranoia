@@ -17,7 +17,7 @@ fill_from = Vector2(0.5, 0.5)
 [sub_resource type="CircleShape2D" id="CircleShape2D_pofft"]
 radius = 9.0
 
-[node name="MageProjectile" type="Node2D" unique_id=155385979]
+[node name="BossProjectile" type="Node2D" unique_id=155385979]
 script = ExtResource("1_e2od4")
 
 [node name="ProjectileVisuals" type="Node2D" parent="." unique_id=425731625]
