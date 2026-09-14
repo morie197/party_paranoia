@@ -65,6 +65,12 @@ func next_pathfinding():
 		
 	if not GameManager.current_battle_manager:
 		return
+		
+	if GameManager.current_battle_manager.battle_over:
+		if character_to_control.ally:
+			is_attacking = false
+			special_attacking = false
+			return
 	
 	var do_traitoring: bool = false
 	

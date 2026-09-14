@@ -305,19 +305,19 @@ func kill_character(character_to_kill: Character, gold_given: float = 0):
 	add_child(gold_indicator)
 	gold_indicator.init_display(gold_given)
 	gold_indicator.global_position = character_to_kill.global_position + Vector2(-16, -32)
-	
-	if character_to_kill.ally:
-		var battle_over_screen = BATTLE_OVER_SCREEN.instantiate()
-		battle_over_screen.won = false
-		battle_over = true
-		add_child(battle_over_screen)
-	else:
-		if enemiess.size() == 1:
-			if next_spawn_time == -1:
-				var battle_over_screen = BATTLE_OVER_SCREEN.instantiate()
-				battle_over_screen.won = true
-				battle_over = true
-				add_child(battle_over_screen)
+	if not battle_over:
+		if character_to_kill.ally:
+			var battle_over_screen = BATTLE_OVER_SCREEN.instantiate()
+			battle_over_screen.won = false
+			battle_over = true
+			add_child(battle_over_screen)
+		else:
+			if enemiess.size() == 1:
+				if next_spawn_time == -1:
+					var battle_over_screen = BATTLE_OVER_SCREEN.instantiate()
+					battle_over_screen.won = true
+					battle_over = true
+					add_child(battle_over_screen)
 	
 	remove_character(character_to_kill)
 	

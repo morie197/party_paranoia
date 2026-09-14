@@ -27,6 +27,12 @@ func _ready():
 	check_closest_character()
 	
 func _physics_process(delta):
+	if not shooter:
+		return
+		
+	if shooter.is_queued_for_deletion():
+		return
+	
 	closest_character_check_accumulator += delta
 	if closest_character_check_accumulator > closest_character_check_delay:
 		closest_character_check_accumulator = 0
