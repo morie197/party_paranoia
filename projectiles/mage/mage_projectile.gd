@@ -32,11 +32,15 @@ func _physics_process(delta):
 		closest_character_check_accumulator = 0
 		check_closest_character()
 	
-	var old_position = position
+	#var old_position = position
 	position += projectile_direction * projectile_attack_speed * delta * orb_speed
 	
-	distance_traveled += old_position.distance_to(position)
-	if distance_traveled >= projectile_range or hits >= max_hits:
+	#distance_traveled += old_position.distance_to(position)
+	#if distance_traveled >= (projectile_range * 2.0) or hits >= max_hits:
+		#if not is_queued_for_deletion():
+			#queue_free()
+			
+	if (position.x > 640 or position.y > 360) or (position.x < 0 or position.y < 0):
 		if not is_queued_for_deletion():
 			queue_free()
 	
