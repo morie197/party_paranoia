@@ -44,6 +44,8 @@ const WARRIOR_VISUAL = preload("uid://5oa1hrynm2gj")
 
 var equipment_menu: EquipmentSelectManager
 
+signal scene_changed
+
 func reset_data():
 	current_map_stage = 0
 	current_map_path = 0
@@ -201,6 +203,8 @@ func do_traitor_move_role() -> int:
 		
 func load_map():
 	get_tree().change_scene_to_packed(WORLD_MAP)
+	scene_changed.emit()
 
 func load_main_menu():
 	get_tree().change_scene_to_packed(MAIN_MENU)
+	scene_changed.emit()

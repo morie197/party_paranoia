@@ -20,8 +20,6 @@ const ADDITIONAL_GOLD_ICON: String = "[img=16x16]res://items/gold/gold.tres[/img
 #var damage_color: Color = Color(1, 0.509, 0.509, 1)
 #var heal_color: Color = Color(0.715, 1.0, 0.719, 1.0)
 
-signal add_time_over
-
 var total_gold: float = 0:
 	set(val):
 		total_gold = val
@@ -35,7 +33,7 @@ func init_display(amount: float):
 
 func _ready():
 	normal_display_timer = normal_display_time
-
+	GameManager.scene_changed.connect(queue_free)
 
 func _process(delta):
 	#if not emitted_add_time:

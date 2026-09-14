@@ -34,6 +34,7 @@ func init_display(amount: float):
 
 func _ready():
 	normal_display_timer = normal_display_time
+	GameManager.scene_changed.connect(queue_free)
 
 
 func _process(delta):
