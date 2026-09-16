@@ -1,4 +1,4 @@
-extends HBoxContainer
+extends MarginContainer
 class_name ShopItemEntry
 
 @onready var item_icon = %ItemIcon
@@ -8,7 +8,8 @@ class_name ShopItemEntry
 @onready var amount_text = %AmountText
 @onready var item_panel = %ItemPanel
 @onready var class_icon = %ClassIcon
-
+@onready var bought_panel = %BoughtPanel
+@onready var shop_contents = %ShopContents
 
 var item_to_display: ShopItem
 
@@ -22,8 +23,8 @@ const SHOP_ITEM_ENTRY_BACKGROUND_INACTIVE = preload("uid://bt1ljfnuowhm4")
 func init_display(item: ShopItem):
 	if item.only_once:
 		if GameManager.inventory.has(item):
-			queue_free()
-			return
+			bought_panel.visible = true
+			#return
 			
 	item_icon.hover_over_text = item.item_description
 	
@@ -49,8 +50,8 @@ func init_display(item: ShopItem):
 		amount_text.text = "x0"
 
 func _ready():
-	mouse_entered.connect(_enter)
-	mouse_exited.connect(_exit)
+	shop_contents.mouse_entered.connect(_enter)
+	shop_contents.mouse_exited.connect(_exit)
 	
 	item_panel.add_theme_stylebox_override("panel", SHOP_ITEM_ENTRY_BACKGROUND_INACTIVE)  
 	amount_panel_container.add_theme_stylebox_override("panel", SHOP_ITEM_ENTRY_BACKGROUND_INACTIVE)  
@@ -59,9 +60,11 @@ func _process(_delta):
 	if mouse_is_entered:
 		if Input.is_action_just_pressed("left_click"):
 			clicked_on.emit()
-			#if item_to_display.only_once:
-			#	if item_to_display.item_price <= GameManager.gold:	
-			#		queue_free()
+			if not item_to_display:
+				return
+			if item_to_display.only_once:
+				if item_to_display.item_price <= GameManager.gold:	
+					bought_panel.visible = true
 
 func _enter():
 	mouse_is_entered = true

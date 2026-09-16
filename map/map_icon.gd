@@ -62,12 +62,13 @@ func _process(_delta):
 			if not is_current_stage:
 				return
 				
-			#GameManager.current_node_manager.chosen_node = true
-			#GameManager.current_node_path.append(line_position)
-			#GameManager.current_map_path = path
-			#GameManager.current_map_stage += 1
-			#get_tree().reload_current_scene()
-			#return
+			#if node_type.node_name == "Battle" or node_type.node_name == "Boss":
+				#GameManager.current_node_manager.chosen_node = true
+				#GameManager.current_node_path.append(line_position)
+				#GameManager.current_map_path = path
+				#GameManager.current_map_stage += 1
+				#get_tree().reload_current_scene()
+				#return
 				
 			if node_type:
 				GameManager.current_node_manager.chosen_node = true

@@ -36,6 +36,9 @@ func buy_item(item: ShopItem):
 		print("Not enough money!")
 		return
 		
+	if item.only_once and GameManager.inventory.has(item):
+		return
+		
 	GameManager.gold -= item.item_price
 	
 	var gold_indicator = GOLD_INDICATOR.instantiate() as GoldIndicator
