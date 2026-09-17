@@ -109,7 +109,15 @@ func next_pathfinding():
 			elif random_number < 3:
 				GameManager.current_battle_manager.spawn_wave(load("res://enemies/battles/waves/bat_mid_flanks.tres"))
 					
-	var closest_badguy: Character = GameManager.current_battle_manager.find_closest_badguy(character_to_control, enemy_detection_range, enemy_preference, enemy_preference_strength, do_traitoring)
+	var closest_badguy: Character
+	
+	if character_to_control.ally:
+		if character_to_control.support:
+			closest_badguy = GameManager.current_battle_manager.find_closest_badguy(character_to_control, enemy_detection_range, enemy_preference, enemy_preference_strength, do_traitoring)
+		else:
+			closest_badguy = GameManager.current_battle_manager.find_closest_reachable_badguy(character_to_control, enemy_detection_range, enemy_preference, enemy_preference_strength, do_traitoring)
+	else:
+		GameManager.current_battle_manager.update_reachable_enemies(character_to_control.global_position.x <= ally_x_limit, character_to_control)
 					
 	if healer:
 		if character_to_control.ally:
@@ -138,10 +146,10 @@ func next_pathfinding():
 				target_character = GameManager.current_battle_manager.find_closest_goodguy(character_to_control, enemy_detection_range, enemy_preference, enemy_preference_strength)
 			if target_character and (not (character_to_control.ally and character_to_control.support)):
 				if character_to_control.ally:
-					if target_character.global_position.x > ally_x_limit:
-						target_position = initial_position
-					else:
-						target_position = target_character.global_position
+					#if target_character.global_position.x > ally_x_limit:
+						#target_position = initial_position
+					#else:
+					target_position = target_character.global_position
 				else:
 					if character_to_control.global_position.x > 660:
 						target_position = Vector2(target_character.global_position.x, character_to_control.global_position.y)

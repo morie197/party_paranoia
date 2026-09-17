@@ -3,6 +3,7 @@ class_name BattleManager
 
 var allies: Array[Character]
 var enemiess: Array[Character]
+var reachable_enemies: Dictionary[Character, bool]
 
 var support_allies: Array[Character]
 var frontline_allies: Array[Character]
@@ -136,53 +137,67 @@ func find_closest_goodguy(searcher: Character, search_range: float = 9999, prefe
 	return closest_ally
 	
 func find_closest_badguy(searcher: Character, search_range: float = 9999, preference: String = "", preference_strength: float = 2.0, do_traitor: bool = false) -> Character:
+	var return_character = find_closest(searcher, enemiess, search_range, preference, preference_strength, do_traitor)
+	
+	return return_character
+
+func find_closest_reachable_badguy(searcher: Character, search_range: float = 9999, preference: String = "", preference_strength: float = 2.0, do_traitor: bool = false) -> Character:
+	var reachable_badguys: Array[Character]
+	for enemy in reachable_enemies:
+		if reachable_enemies[enemy]:
+			reachable_badguys.append(enemy)
+	
+	var return_character = find_closest(searcher, reachable_badguys, search_range, preference, preference_strength, do_traitor)
+	
+	return return_character
+
+func find_closest(searcher: Character, target_list: Array, search_range: float = 9999, preference: String = "", preference_strength: float = 2.0, do_traitor: bool = false) -> Character:
 	var shortest_distance: float = search_range
-	var closest_enemy: Character
-	var furthest_enemy: Character
+	var closest_char: Character
+	var furthest_char: Character
 	var lowest_score: float = 9999
 	var highest_score: float = 0
 	
-	for enemy in enemiess:
-		if searcher == enemy:
+	for character in target_list:
+		if searcher == character:
 			continue
 			
-		if enemy == null:
-			print("Hanging reference for enemy!")
-			#enemiess.erase(enemy)
+		if char == null:
+			print("Hanging reference for character!")
 			continue
 			
-		var current_distance: float = enemy.global_position.distance_to(searcher.global_position)
+		var current_distance: float = character.global_position.distance_to(searcher.global_position)
 		
 		if current_distance < shortest_distance:
 			var target_value: float = 0
 			if not preference == "":
-				if (enemy.character_role.to_lower() == preference.to_lower()) or (preference == "support" and enemy.support) or (preference == "frontline" and not enemy.support):
+				if (character.character_role.to_lower() == preference.to_lower()) or (preference == "support" and character.support) or (preference == "frontline" and not character.support):
 					target_value = preference_strength
 			else:
-				target_value = enemy.character_importantness
+				target_value = character.character_importantness
 				
 			if do_traitor:
-				target_value = enemy.character_importantness / max(0.1, enemy.character_importantness) 
+				target_value = character.character_importantness / max(0.1, character.character_importantness) 
 			
-			if enemy.character_block and enemy.character_block.blocked: # ignore targets already fully blocked
+			if character.character_block and character.character_block.blocked: # ignore targets already fully blocked
 				continue
 			
 			if current_distance / target_value > highest_score:
 				highest_score = current_distance / target_value
-				furthest_enemy = enemy
+				furthest_char = character
 			
 			if current_distance / target_value < lowest_score:
 				lowest_score = current_distance / target_value
-				#shortest_distance = current_distance
-				closest_enemy = enemy
+				closest_char = character
 	
 	if do_traitor and searcher.support:
-		return furthest_enemy
+		return furthest_char
 	
-	if furthest_enemy and not closest_enemy:
-		return furthest_enemy
-	return closest_enemy
+	if furthest_char and not closest_char:
+		return furthest_char
+	return closest_char
 	
+
 func find_closest_opposing_character_by_position(search_position: Vector2, ally: bool, search_range: float = 9999, preference: String = "", preference_strength: float = 2.0) -> Character:
 	var shortest_distance: float = search_range
 	var closest_character: Character
@@ -290,6 +305,8 @@ func remove_character(character_to_remove: Character):
 		frontline_allies.erase(character_to_remove)
 	if all_characters.has(character_to_remove):
 		all_characters.erase(character_to_remove)
+	if reachable_enemies.has(character_to_remove):
+		reachable_enemies.erase(character_to_remove)
 
 	if not character_to_remove.is_queued_for_deletion():
 		character_to_remove.queue_free()
@@ -351,3 +368,10 @@ func turn_traitor_enemy():
 			traitor.character_stats.set_stats(1.3)
 			
 	traitor_characters.clear()
+
+func update_reachable_enemies(is_reachable: bool, enemy_to_update: Character):
+	if is_reachable:
+		reachable_enemies[enemy_to_update] = true
+	else:
+		if reachable_enemies.has(enemy_to_update):
+			reachable_enemies.erase(enemy_to_update)
