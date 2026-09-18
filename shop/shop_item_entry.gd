@@ -59,12 +59,13 @@ func _ready():
 func _process(_delta):
 	if mouse_is_entered:
 		if Input.is_action_just_pressed("left_click"):
-			clicked_on.emit()
 			if not item_to_display:
 				return
 			if item_to_display.only_once:
 				if item_to_display.item_price <= GameManager.gold:	
 					bought_panel.visible = true
+					
+			clicked_on.emit()
 
 func _enter():
 	mouse_is_entered = true

@@ -143,9 +143,12 @@ func find_closest_badguy(searcher: Character, search_range: float = 9999, prefer
 
 func find_closest_reachable_badguy(searcher: Character, search_range: float = 9999, preference: String = "", preference_strength: float = 2.0, do_traitor: bool = false) -> Character:
 	var reachable_badguys: Array[Character]
-	for enemy in reachable_enemies:
-		if reachable_enemies[enemy]:
+	for enemy in reachable_enemies.keys():
+		if is_instance_valid(enemy):
 			reachable_badguys.append(enemy)
+	#for enemy in reachable_enemies:
+		
+		
 	
 	var return_character = find_closest(searcher, reachable_badguys, search_range, preference, preference_strength, do_traitor)
 	

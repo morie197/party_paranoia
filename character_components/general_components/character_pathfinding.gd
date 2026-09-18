@@ -87,7 +87,6 @@ func next_pathfinding():
 		traitor_turns_remaining -= 1
 		do_traitoring = true
 		
-		
 	if character_to_control.character_role.to_lower() == "boss":
 		if character_to_control.character_health:
 			if character_to_control.character_health.current_hp < character_to_control.character_health.max_hp/2.0:
@@ -158,6 +157,12 @@ func next_pathfinding():
 
 	if target_character:
 		if character_to_control.character_attack:
+			if not character_to_control.support and not character_to_control.character_role.to_lower() == "tank" and character_to_control.ally:
+				if character_to_control.character_health.current_hp / character_to_control.character_health.max_hp < 0.2:
+					target_position = initial_position
+					if character_to_control.character_block and character_to_control.character_block.currently_blocking and character_to_control.character_block.blocking:
+						character_to_control.character_block.unblock_all_pure()
+			
 			if character_to_control.character_attack.can_attack(target_character):
 				if do_traitoring and randi_range(0, 5) != 3:
 					return
