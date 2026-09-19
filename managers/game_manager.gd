@@ -116,6 +116,10 @@ func add_equipment(item: ShopItem) -> bool:
 			return false
 	else:
 		available_equipment[item.for_role] = []
+		var equip_class = item.for_role
+		if not current_equipment.has(equip_class):
+			current_equipment[equip_class] = {}
+		current_equipment[equip_class][item.item_slot] = item
 		
 	available_equipment[item.for_role].append(item)
 	
