@@ -67,7 +67,7 @@ func spawn_wave(wave_to_spawn: Wave):
 	var groups: Dictionary = wave_to_spawn.enemy_groups
 	for pos in groups.keys():
 		var y_segment: float = SPAWN_Y_WINDOW/5.0
-		var spawn_at_y: float = y_segment * pos
+		var spawn_at_y: float = (y_segment * pos) - y_segment/2.0
 		spawn_group(groups[pos], spawn_at_y)
 		
 	battle_spawn_times.erase(next_spawn_time)
