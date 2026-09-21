@@ -54,7 +54,7 @@ func reset_data():
 	current_equipment = {}
 	available_equipment = {}
 	
-	gold = 100
+	gold = 0
 	current_battle = null
 	current_node_manager = null
 	current_battle_manager = null

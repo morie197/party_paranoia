@@ -18,7 +18,7 @@ const GOLD_INDICATOR = preload("uid://11tunil45fqo")
 
 var current_battle_time: float = 0
 
-const ENEMY_INDIVIDUAL_OFFSET: float = 50
+const ENEMY_INDIVIDUAL_OFFSET: float = 100
 const SPAWN_AT_X: float = 680
 const SPAWN_Y_WINDOW: float = 360
 

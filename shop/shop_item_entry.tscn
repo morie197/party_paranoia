@@ -20,6 +20,7 @@ script = ExtResource("1_knkf2")
 unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 0
+script = ExtResource("4_fesq1")
 
 [node name="ItemPanel" type="PanelContainer" parent="ShopContents" unique_id=1174590060]
 unique_name_in_owner = true
@@ -34,7 +35,7 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 texture = ExtResource("2_kajpy")
-script = ExtResource("4_fesq1")
+expand_mode = 2
 
 [node name="ItemName" type="RichTextLabel" parent="ShopContents/ItemPanel/HBoxContainer" unique_id=1964754126]
 unique_name_in_owner = true

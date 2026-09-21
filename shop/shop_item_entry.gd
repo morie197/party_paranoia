@@ -26,7 +26,7 @@ func init_display(item: ShopItem):
 			bought_panel.visible = true
 			#return
 			
-	item_icon.hover_over_text = item.item_description
+	shop_contents.hover_over_text = item.item_description
 	
 	item_to_display = item
 	
