@@ -269,7 +269,7 @@ tile_map_data = PackedByteArray("AAAAAAIAAQABAAUAAAABAAIAAQABAAUAAAACAAIAAQABAAU
 tile_set = SubResource("TileSet_h5qqk")
 
 [node name="PlayerArcher" parent="." unique_id=457729495 instance=ExtResource("3_j47wg")]
-position = Vector2(40, 240)
+position = Vector2(60, 240)
 
 [node name="Warrior" parent="." unique_id=882159276 instance=ExtResource("4_dpuaa")]
 position = Vector2(160, 90)
@@ -278,7 +278,7 @@ position = Vector2(160, 90)
 position = Vector2(40, 180)
 
 [node name="Mage" parent="." unique_id=1067034344 instance=ExtResource("6_44htg")]
-position = Vector2(40, 120)
+position = Vector2(60, 120)
 
 [node name="Rogue" parent="." unique_id=658558371 instance=ExtResource("7_rb6x6")]
 position = Vector2(160, 270)
