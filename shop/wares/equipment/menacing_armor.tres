@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ShopItem" format=3 uid="uid://beqakuc6k1k5"]
+
+[ext_resource type="Texture2D" uid="uid://bayg8neoelmvh" path="res://shop/wares/equipment/menacing_armor_icon.tres" id="1_824hv"]
+[ext_resource type="Script" uid="uid://den3a56qy88sg" path="res://shop/wares/shop_item.gd" id="1_slww2"]
+
+[resource]
+script = ExtResource("1_slww2")
+item_name = "Menacing Armor"
+item_icon = ExtResource("1_824hv")
+item_description = "Makes enemies more likely to target you; +10 defense"
+item_slot = "equipment"
+for_role = "archer"
+item_defense = 10.0
+importance_change = 100.0
+metadata/_custom_type_script = "uid://den3a56qy88sg"

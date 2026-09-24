@@ -31,6 +31,8 @@ theme_override_styles/panel = ExtResource("1_cd7sw")
 script = ExtResource("1_7ato5")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1247073068]
+custom_minimum_size = Vector2(80, 0)
+custom_maximum_size = Vector2(80, -1)
 layout_mode = 2
 
 [node name="CharacterName" type="RichTextLabel" parent="VBoxContainer" unique_id=246284737]

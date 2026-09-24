@@ -31,7 +31,7 @@ var max_traitor_moves: int = 0
 var traitor_turns_remaining: int = 0
 
 func _ready():
-	#debug_enabled = true
+	debug_enabled = true
 	target_desired_distance = 30
 	
 	character_to_control = get_parent() as Character

@@ -11,6 +11,7 @@
 [ext_resource type="Resource" uid="uid://br6ejqs75pa8b" path="res://shop/wares/abilities/ice arrow/ice_arrow_item.tres" id="6_xad5q"]
 [ext_resource type="Resource" uid="uid://de3heagio4wti" path="res://shop/wares/abilities/healing arrow/healing_arrow_item.tres" id="7_ljlg5"]
 [ext_resource type="Resource" uid="uid://1s6k7twj18sm" path="res://shop/wares/abilities/gold arrow/gold_arrow.tres" id="11_mmyc1"]
+[ext_resource type="Resource" uid="uid://beqakuc6k1k5" path="res://shop/wares/equipment/menacing_armor.tres" id="13_yrv44"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_kedo2"]
 vertices = PackedVector2Array(16, 16, -16, 16, -16, -16, 16, -16)
@@ -354,3 +355,7 @@ alignment = 1
 [node name="ShopCategory" parent="ShopMenu/VBoxContainer/PanelContainer/ShopItems" unique_id=1743100164 instance=ExtResource("4_mrnko")]
 layout_mode = 2
 items = Array[ExtResource("5_2wf2a")]([ExtResource("6_xad5q"), ExtResource("7_ljlg5"), ExtResource("11_mmyc1")])
+
+[node name="ShopCategory2" parent="ShopMenu/VBoxContainer/PanelContainer/ShopItems" unique_id=1668566154 instance=ExtResource("4_mrnko")]
+layout_mode = 2
+items = Array[ExtResource("5_2wf2a")]([ExtResource("13_yrv44")])

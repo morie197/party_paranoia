@@ -103,9 +103,7 @@ func init_stats():
 	character.ally = stats.character_ally
 	character.support = stats.character_support
 	character.gold_given_on_death = stats.gold_when_killed
-	
-	
-	
+
 	set_stats()
 	
 func set_stats(multiplier: float = 1.0, attack_multiplier: float = 1.0):
@@ -124,9 +122,12 @@ func set_stats(multiplier: float = 1.0, attack_multiplier: float = 1.0):
 		
 		if equipment:
 			character_attack.attack_damage += equipment.item_attack
-			character_attack.attack_speed += equipment.item_attack_projectile_speed
+			character_attack.attack_speed += equipment.item_attack_speed
 			character_attack.attack_range += equipment.item_range
-			
+	
+	if equipment:
+		character.character_importantness = stats.character_importantness + equipment.importance_change
+		print(character.character_importantness)
 	
 	base_movement_speed = stats.character_move_speed
 	if equipment:

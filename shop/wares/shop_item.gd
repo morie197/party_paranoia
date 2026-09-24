@@ -14,6 +14,7 @@ class_name ShopItem
 @export var item_agility: float = 0
 @export var item_hp: float = 0
 @export var item_block: int = 0
+@export var importance_change: float = 0
 
 @export_group("Attack Stats")
 @export var item_attack: float = 0
