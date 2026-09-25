@@ -110,6 +110,8 @@ func find_closest_goodguy(searcher: Character, search_range: float = 9999, prefe
 			if not preference == "":
 				if (ally.character_role.to_lower() == preference.to_lower()) or (preference == "support" and ally.support) or (preference == "frontline" and not ally.support):
 					target_value = ally.character_importantness * preference_strength
+				else:
+					target_value = ally.character_importantness
 			else:
 				target_value = ally.character_importantness
 				
