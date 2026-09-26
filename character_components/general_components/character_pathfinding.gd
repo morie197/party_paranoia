@@ -45,6 +45,10 @@ func _process(_delta):
 		print("No character to control!")
 		return
 		
+	if GameManager.current_battle_manager.battle_over:
+		move_vector = Vector2.ZERO
+		return
+		
 	if is_navigation_finished():
 		move_vector = Vector2.ZERO
 		return
