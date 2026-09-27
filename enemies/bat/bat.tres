@@ -17,4 +17,5 @@ character_attack_cooldown = 0.6
 character_attack_range = 10.0
 character_attack_speed = 10.0
 character_role_attack_preference = "healer"
+character_role_attack_preference_strength = 10.0
 metadata/_custom_type_script = "uid://d4hcg1hl08rya"

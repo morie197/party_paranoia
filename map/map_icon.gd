@@ -58,6 +58,7 @@ func _process(_delta):
 	if mouse_is_entered:
 		if GameManager.current_node_manager and GameManager.current_node_manager.chosen_node:
 			return
+			
 		if Input.is_action_just_pressed("left_click"):
 			if not is_current_stage:
 				return
@@ -93,11 +94,15 @@ func _process(_delta):
 			
 func _mouse_enter():
 	mouse_is_entered = true
+	if GameManager.current_node_manager and GameManager.current_node_manager.chosen_node:
+		return
 	if is_current_stage:
 		map_node_panel.add_theme_stylebox_override("panel", SELECTED_NODE_PANEL)  
 	
 func _mouse_exit():
 	mouse_is_entered = false
+	if GameManager.current_node_manager and GameManager.current_node_manager.chosen_node:
+		return
 	if is_current_stage:
 		map_node_panel.add_theme_stylebox_override("panel", ACTIVE_NODE_PANEL)  
 	#else:
