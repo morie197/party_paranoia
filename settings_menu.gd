@@ -1,0 +1,23 @@
+extends PanelContainer
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	%BackButton.pressed.connect(hide)
+	
+	%MusicSlider.value = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Music")))
+	%SFXSlider.value = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("SFX")))
+	
+	%MusicSlider.value_changed.connect(_music_changed)
+	%SFXSlider.value_changed.connect(_sfx_changed)
+
+
+func _sfx_changed(val):
+	var index = AudioServer.get_bus_index("SFX")
+	var db_value = linear_to_db(val)
+	AudioServer.set_bus_volume_db(index, db_value)
+	
+func _music_changed(val):
+	var index = AudioServer.get_bus_index("Music")
+	var db_value = linear_to_db(val)
+	AudioServer.set_bus_volume_db(index, db_value)

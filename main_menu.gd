@@ -3,7 +3,7 @@ extends Control
 @onready var start = %Start
 @onready var settings = %Settings
 
-
+@onready var settings_menu = %SettingsMenu
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -16,4 +16,4 @@ func _start():
 	GameManager.load_map()
 	
 func _settings():
-	pass
+	settings_menu.show()
