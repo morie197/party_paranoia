@@ -345,6 +345,21 @@ script = ExtResource("5_glbon")
 [node name="Settings" type="VBoxContainer" parent="SettingsMenu" unique_id=1600370542]
 layout_mode = 2
 
+[node name="HBoxContainer3" type="HBoxContainer" parent="SettingsMenu/Settings" unique_id=1487264370]
+layout_mode = 2
+alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="SettingsMenu/Settings/HBoxContainer3" unique_id=780574811]
+layout_mode = 2
+text = "Fullscreen:"
+fit_content = true
+autowrap_mode = 0
+autowrap_trim_flags = 128
+
+[node name="FullScreenCheckBox" type="CheckBox" parent="SettingsMenu/Settings/HBoxContainer3" unique_id=881116433]
+unique_name_in_owner = true
+layout_mode = 2
+
 [node name="HBoxContainer" type="HBoxContainer" parent="SettingsMenu/Settings" unique_id=216378890]
 layout_mode = 2
 alignment = 1

@@ -13,6 +13,8 @@ var current_battle: Battle
 
 var gold: float = 0
 
+var fullscreen: bool = false
+
 var inventory: Dictionary[ShopItem, int]
 
 var current_equipment: Dictionary[String, Dictionary]
@@ -62,6 +64,19 @@ func reset_data():
 	
 	current_traitors = []
 	current_node_path = []
+	
+func _process(delta):
+	if Input.is_action_just_pressed("fullscreen"):
+		toggle_fullscreen()
+
+
+func toggle_fullscreen():
+	fullscreen = !fullscreen
+	if fullscreen:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	else:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+
 	
 func popup_equipment_menu(scene_to_load: PackedScene):
 	equipment_menu = EQUIPMENT_SELECTION_MENU.instantiate()

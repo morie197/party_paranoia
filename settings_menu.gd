@@ -5,12 +5,19 @@ extends PanelContainer
 func _ready():
 	%BackButton.pressed.connect(hide)
 	
+	%FullScreenCheckBox.button_pressed = GameManager.fullscreen
+	
+	%FullScreenCheckBox.pressed.connect(GameManager.toggle_fullscreen)
+	
 	%MusicSlider.value = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Music")))
 	%SFXSlider.value = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("SFX")))
 	
 	%MusicSlider.value_changed.connect(_music_changed)
 	%SFXSlider.value_changed.connect(_sfx_changed)
 
+func _process(delta):
+	if Input.is_action_just_pressed("fullscreen"):
+		%FullScreenCheckBox.button_pressed = GameManager.fullscreen
 
 func _sfx_changed(val):
 	var index = AudioServer.get_bus_index("SFX")
