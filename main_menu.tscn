@@ -4,7 +4,6 @@
 [ext_resource type="StyleBox" uid="uid://djotla8lep23k" path="res://ui/styleboxes/shop_button_normal.tres" id="1_fu7sn"]
 [ext_resource type="Script" uid="uid://d3xo011c4w234" path="res://main_menu.gd" id="1_jix8l"]
 [ext_resource type="StyleBox" uid="uid://rge205efwt3x" path="res://ui/styleboxes/shop_button_pressed.tres" id="2_jix8l"]
-[ext_resource type="Script" uid="uid://csylm4db0lkam" path="res://settings_menu.gd" id="5_glbon"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_kedo2"]
 vertices = PackedVector2Array(16, 16, -16, 16, -16, -16, 16, -16)
@@ -256,17 +255,6 @@ physics_layer_0/collision_layer = 1
 navigation_layer_0/layers = 1
 sources/1 = SubResource("TileSetAtlasSource_7vrkn")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nlkkf"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(0.15, 0.15, 0.15, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-
 [node name="Main Menu" type="Control" unique_id=1044060506]
 layout_mode = 3
 anchors_preset = 15
@@ -323,86 +311,3 @@ z_index = -4
 tile_map_data = PackedByteArray("AAACAAEAAQAAAAUAAAADAAEAAQAAAAUAAAAEAAEAAQABAAIAAAAFAAEAAQABAAIAAAAGAAEAAQABAAIAAAAGAAAAAQAAAAIAAAAHAAAAAQAAAAIAAAAMAAEAAQABAAIAAAANAAEAAQABAAIAAAAOAAEAAQABAAIAAAAPAAEAAQABAAIAAAAQAAEAAQAAAAUAAAASAAMAAQABAAUAAAATAAMAAQAAAAUAAAATAAQAAQABAAUAAAATAAcAAQADABgAAAARAAgAAQADABgAAAARAAkAAQADABgAAAAQAAkAAQADABgAAAAPAAkAAQADABgAAAAOAAoAAQADABgAAAAFAAoAAQADABgAAAAEAAoAAQADABgAAAADAAoAAQADABgAAAACAAoAAQADABgAAAABAAoAAQADABgAAAAAAAoAAQADABgAAAAAAAsAAQADABgAAAABAAsAAQADABgAAAACAAsAAQADABgAAAADAAsAAQADABgAAAAEAAsAAQADABgAAAAFAAsAAQADABgAAAAOAAsAAQADABgAAAAPAAsAAQADABgAAAAQAAsAAQADABgAAAARAAsAAQADABgAAAASAAsAAQADABgAAAASAAoAAQADABgAAAATAAoAAQADABgAAAATAAsAAQADABgAAAAQAAoAAQADABgAAAAPAAoAAQADABgAAAARAAoAAQADABgAAAATAAkAAQADABgAAAASAAkAAQADABgAAAATAAgAAQADABgAAAATAAEAAQAAAAUAAAATAAAAAQAAAAIAAAASAAAAAQAAAAIAAAARAAAAAQAAAAIAAAARAAEAAQAAAAUAAAASAAEAAQAAAAUAAAAQAAAAAQAAAAIAAAAPAAAAAQAAAAIAAAAOAAAAAQAAAAIAAAANAAAAAQAAAAIAAAAMAAAAAQAAAAIAAAAFAAAAAQAAAAIAAAAEAAAAAQAAAAIAAAADAAAAAQAAAAIAAAACAAAAAQAAAAIAAAABAAAAAQAAAAIAAAAAAAAAAQAAAAIAAAD//wAAAQAAAAIAAAD//wEAAQABAAIAAAAAAAEAAQAAAAUAAAABAAEAAQAAAAUAAAAAAAMAAQAAAAUAAAAAAAQAAQAAAAUAAAAAAAUAAQAAAAUAAAAAAAYAAQABAAUAAAACAAcAAQADABgAAAACAAgAAQADABgAAAADAAgAAQADABgAAAABAAkAAQADABgAAAACAAkAAQADABgAAAADAAkAAQADABgAAAAAAAkAAQADABgAAAAAAAgAAQADABgAAAAHAP//AQAAAAIAAAAGAP//AQAAAAIAAAAFAP//AQAAAAIAAAAEAP//AQAAAAIAAAADAP//AQAAAAIAAAACAP//AQAAAAIAAAABAP//AQAAAAIAAAAAAP//AQAAAAIAAAAMAP//AQAAAAIAAAANAP//AQAAAAIAAAAOAP//AQAAAAIAAAAPAP//AQAAAAIAAAAQAP//AQAAAAIAAAARAP//AQAAAAIAAAASAP//AQAAAAIAAAATAP//AQAAAAIAAAAHAAEAAQABAAIAAAD+/wAAAQAAAAIAAAAQAAIAAQABAAUAAAARAAIAAQABAAUAAAASAAIAAQAAAAUAAAATAAIAAQAAAAUAAAACAAIAAQABAAUAAAABAAIAAQAAAAUAAAABAAMAAQAAAAUAAAABAAQAAQAAAAUAAAABAAUAAQABAAUAAAAAAAIAAQAAAAUAAAAEAAkAAQADABgAAAAQAAgAAQADABgAAAASAAcAAQADABgAAAA=")
 tile_set = SubResource("TileSet_fu7sn")
 navigation_enabled = false
-
-[node name="SettingsMenu" type="PanelContainer" parent="." unique_id=1471222943]
-unique_name_in_owner = true
-z_index = 5
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_nlkkf")
-script = ExtResource("5_glbon")
-
-[node name="Settings" type="VBoxContainer" parent="SettingsMenu" unique_id=1600370542]
-layout_mode = 2
-
-[node name="HBoxContainer3" type="HBoxContainer" parent="SettingsMenu/Settings" unique_id=1487264370]
-layout_mode = 2
-alignment = 1
-
-[node name="RichTextLabel" type="RichTextLabel" parent="SettingsMenu/Settings/HBoxContainer3" unique_id=780574811]
-layout_mode = 2
-text = "Fullscreen:"
-fit_content = true
-autowrap_mode = 0
-autowrap_trim_flags = 128
-
-[node name="FullScreenCheckBox" type="CheckBox" parent="SettingsMenu/Settings/HBoxContainer3" unique_id=881116433]
-unique_name_in_owner = true
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="SettingsMenu/Settings" unique_id=216378890]
-layout_mode = 2
-alignment = 1
-
-[node name="RichTextLabel" type="RichTextLabel" parent="SettingsMenu/Settings/HBoxContainer" unique_id=149635765]
-layout_mode = 2
-text = "SFX: "
-fit_content = true
-autowrap_mode = 0
-
-[node name="SFXSlider" type="HSlider" parent="SettingsMenu/Settings/HBoxContainer" unique_id=1084694766]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-size_flags_vertical = 1
-max_value = 1.5
-step = 0.05
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="SettingsMenu/Settings" unique_id=1979888383]
-layout_mode = 2
-alignment = 1
-
-[node name="RichTextLabel" type="RichTextLabel" parent="SettingsMenu/Settings/HBoxContainer2" unique_id=900769617]
-layout_mode = 2
-text = "Music: "
-fit_content = true
-autowrap_mode = 0
-
-[node name="MusicSlider" type="HSlider" parent="SettingsMenu/Settings/HBoxContainer2" unique_id=749773007]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-size_flags_vertical = 1
-max_value = 1.5
-step = 0.05
-
-[node name="BackButton" type="Button" parent="SettingsMenu/Settings" unique_id=1400152053]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_styles/normal = ExtResource("1_fu7sn")
-theme_override_styles/pressed = ExtResource("2_jix8l")
-theme_override_styles/hover = ExtResource("2_jix8l")
-theme_override_styles/disabled = ExtResource("1_fu7sn")
-theme_override_styles/focus = ExtResource("1_fu7sn")
-text = "Back"

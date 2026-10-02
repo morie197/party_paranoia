@@ -30,6 +30,12 @@ var battle_over: bool = false
 
 var starting_gold: float
 
+
+var pause_menu: Control
+
+const PAUSE_MENU = preload("uid://cyf1f6kmmj56c")
+
+
 func _init():
 	GameManager.current_battle_manager = self
 
@@ -44,6 +50,15 @@ func _ready():
 	starting_gold = GameManager.gold
 	
 func _process(delta):
+	if Input.is_action_just_pressed("pause"):
+		if not battle_over:
+			if not pause_menu:
+				pause_menu = PAUSE_MENU.instantiate()
+				add_child(pause_menu)
+			else:
+				pause_menu.queue_free()
+
+	
 	if not battle:
 		print("No battle to spawn!")
 		return
@@ -61,6 +76,7 @@ func _process(delta):
 			print("Invalid spawn time: " + str(next_spawn_time))
 			return
 		spawn_wave(battle.waves[next_spawn_time])
+		
 
 
 func spawn_wave(wave_to_spawn: Wave):

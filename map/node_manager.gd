@@ -5,6 +5,10 @@ var map_nodes: Dictionary[int, Array] = {}
 
 var chosen_node: bool = false
 
+var pause_menu: Control
+
+const PAUSE_MENU = preload("uid://cyf1f6kmmj56c")
+
 func _ready():
 	GameManager.current_node_manager = self
 	
@@ -49,3 +53,10 @@ func _ready():
 			#else:
 				#print(str(map_node.stage) + " - " + str(map_node.path))
 	
+func _process(delta):
+	if Input.is_action_just_pressed("pause"):
+		if not pause_menu:
+			pause_menu = PAUSE_MENU.instantiate()
+			add_child(pause_menu)
+		else:
+			pause_menu.queue_free()

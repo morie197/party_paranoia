@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://cyf1f6kmmj56c"]
+
+[ext_resource type="Script" uid="uid://bwb6pivgoar8b" path="res://map/pause_menu.gd" id="1_fob5h"]
+[ext_resource type="StyleBox" uid="uid://djotla8lep23k" path="res://ui/styleboxes/shop_button_normal.tres" id="2_avurv"]
+[ext_resource type="StyleBox" uid="uid://rge205efwt3x" path="res://ui/styleboxes/shop_button_pressed.tres" id="3_npydk"]
+
+[node name="PauseMenu" type="PanelContainer" unique_id=23211195]
+z_index = 5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 640.0
+offset_bottom = 368.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fob5h")
+
+[node name="PauseContents" type="VBoxContainer" parent="." unique_id=718841427]
+unique_name_in_owner = true
+z_index = 1
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Resume" type="Button" parent="PauseContents" unique_id=1513956986]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = ExtResource("2_avurv")
+theme_override_styles/pressed = ExtResource("3_npydk")
+theme_override_styles/hover = ExtResource("3_npydk")
+theme_override_styles/disabled = ExtResource("2_avurv")
+theme_override_styles/focus = ExtResource("3_npydk")
+text = "Resume"
+
+[node name="Settings" type="Button" parent="PauseContents" unique_id=1970541987]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = ExtResource("2_avurv")
+theme_override_styles/pressed = ExtResource("3_npydk")
+theme_override_styles/hover = ExtResource("3_npydk")
+theme_override_styles/disabled = ExtResource("2_avurv")
+theme_override_styles/focus = ExtResource("3_npydk")
+text = "Settings"
+
+[node name="Menu" type="Button" parent="PauseContents" unique_id=1405952287]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = ExtResource("2_avurv")
+theme_override_styles/pressed = ExtResource("3_npydk")
+theme_override_styles/hover = ExtResource("3_npydk")
+theme_override_styles/disabled = ExtResource("2_avurv")
+theme_override_styles/focus = ExtResource("3_npydk")
+text = "Quit"

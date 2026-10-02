@@ -1,0 +1,99 @@
+[gd_scene format=3 uid="uid://y2xb52uiw6ot"]
+
+[ext_resource type="Script" uid="uid://csylm4db0lkam" path="res://settings_menu.gd" id="1_a6yft"]
+[ext_resource type="StyleBox" uid="uid://djotla8lep23k" path="res://ui/styleboxes/shop_button_normal.tres" id="2_2ty5h"]
+[ext_resource type="StyleBox" uid="uid://rge205efwt3x" path="res://ui/styleboxes/shop_button_pressed.tres" id="3_tog15"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nlkkf"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.15, 0.15, 0.15, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+
+[node name="SettingsMenu" type="PanelContainer" unique_id=1748992630]
+z_index = 5
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_nlkkf")
+script = ExtResource("1_a6yft")
+
+[node name="Settings" type="VBoxContainer" parent="." unique_id=774977553]
+layout_mode = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Settings" unique_id=575340577]
+layout_mode = 2
+alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Settings/HBoxContainer3" unique_id=1458389509]
+layout_mode = 2
+text = "Fullscreen:"
+fit_content = true
+autowrap_mode = 0
+autowrap_trim_flags = 128
+
+[node name="FullScreenCheckBox" type="CheckBox" parent="Settings/HBoxContainer3" unique_id=107130992]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Settings" unique_id=2048871168]
+layout_mode = 2
+alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Settings/HBoxContainer" unique_id=1742315190]
+layout_mode = 2
+text = "SFX: "
+fit_content = true
+autowrap_mode = 0
+
+[node name="SFXSlider" type="HSlider" parent="Settings/HBoxContainer" unique_id=1962890828]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_vertical = 1
+max_value = 1.5
+step = 0.05
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Settings" unique_id=1021161345]
+layout_mode = 2
+alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Settings/HBoxContainer2" unique_id=186519665]
+layout_mode = 2
+text = "Music: "
+fit_content = true
+autowrap_mode = 0
+
+[node name="MusicSlider" type="HSlider" parent="Settings/HBoxContainer2" unique_id=2085364543]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_vertical = 1
+max_value = 1.5
+step = 0.05
+
+[node name="BackButton" type="Button" parent="Settings" unique_id=1135493193]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/normal = ExtResource("2_2ty5h")
+theme_override_styles/pressed = ExtResource("3_tog15")
+theme_override_styles/hover = ExtResource("3_tog15")
+theme_override_styles/disabled = ExtResource("2_2ty5h")
+theme_override_styles/focus = ExtResource("2_2ty5h")
+text = "Back"

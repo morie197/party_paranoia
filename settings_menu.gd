@@ -3,7 +3,7 @@ extends PanelContainer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	%BackButton.pressed.connect(hide)
+	%BackButton.pressed.connect(queue_free)
 	
 	%FullScreenCheckBox.button_pressed = GameManager.fullscreen
 	
