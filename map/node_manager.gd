@@ -53,7 +53,10 @@ func _ready():
 			#else:
 				#print(str(map_node.stage) + " - " + str(map_node.path))
 	
-func _process(delta):
+func _process(_delta):
+	if chosen_node:
+		return
+	
 	if Input.is_action_just_pressed("pause"):
 		if not pause_menu:
 			pause_menu = PAUSE_MENU.instantiate()

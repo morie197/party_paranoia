@@ -18,7 +18,7 @@ func _ready():
 	settings.pressed.connect(_open_settings)
 	menu.pressed.connect(_quit_to_menu)
 	
-	z_index += 10
+	z_index += 500
 	
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	
