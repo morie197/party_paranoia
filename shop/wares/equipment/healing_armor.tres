@@ -1,7 +1,15 @@
 [gd_resource type="Resource" script_class="ShopItem" format=3 uid="uid://bumdfmb7bak6a"]
 
 [ext_resource type="Script" uid="uid://den3a56qy88sg" path="res://shop/wares/shop_item.gd" id="1_gq6lw"]
+[ext_resource type="Texture2D" uid="uid://cv5qfjxem1318" path="res://shop/wares/equipment/healing_armor_icon.tres" id="1_ilb4b"]
 
 [resource]
 script = ExtResource("1_gq6lw")
+item_name = "Healer Armor"
+item_icon = ExtResource("1_ilb4b")
+item_description = "Increases the healer's attack by 20 (+20 heal), and gives +5 defense"
+item_slot = "equipment"
+for_role = "healer"
+item_defense = 5.0
+item_attack = 20.0
 metadata/_custom_type_script = "uid://den3a56qy88sg"
