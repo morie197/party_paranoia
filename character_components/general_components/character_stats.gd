@@ -16,16 +16,20 @@ var debuff_color_tints: Array[Color]
 
 const SLOW_DEBUFF_TINT: Color = Color(0.472, 0.873, 1.0, 1.0)
 const GOLD_DEBUFF_TINT: Color = Color(0.894, 0.821, 0.258, 1.0)
+const DEF_DEBUFF_TINT: Color = Color(0.632, 0.149, 0.337, 1.0)
 
 const GOLD_DEBUFF_ICON = preload("uid://cx40g6dv1gy60")
 const SLOW_DEBUFF_ICON = preload("uid://prc2uagvv015")
+const DEF_DEBUFF_ICON = preload("uid://c7b1qtnqaolud")
 
 var debuff_timers: Dictionary[String, Timer]
 
 var slow_amount: float = 0.5
 var extra_gold_amount: float = 1.5
+var defense_reduction: float = 10
 
 var base_movement_speed: float = 0
+var base_defense: float = 0
 
 var equipment: ShopItem
 var ability: ShopItem
@@ -53,9 +57,11 @@ func init_stats():
 			character_attack_target_controller.max_traitor_moves = GameManager.get_max_traitor_moves()
 	
 	if ability and ability.projectile_to_use != null:
+		character.special_attack_input_controller = character.character_attack_target_controller
 		var projectile_attack = CharacterProjectileAttack.new()
 		projectile_attack.shooter = character
 		character.add_child(projectile_attack)
+		print("Gave " + stats.character_role_name + " special ability!")
 		
 		projectile_attack.projectile_to_fire = ability.projectile_to_use
 		projectile_attack.attack_damage = ability.item_attack
@@ -147,6 +153,8 @@ func set_stats(multiplier: float = 1.0, attack_multiplier: float = 1.0):
 		if equipment:
 			character_health.max_hp += equipment.item_hp
 			character_health.defense += equipment.item_defense
+			
+	base_defense = character_health.defense
 
 	if character_block:
 		character_block.max_block = stats.character_max_block
@@ -195,6 +203,10 @@ func set_move_speed(value: float):
 func set_gold_given(value: float):
 	if character:
 		character.gold_given_on_death = value
+		
+func set_defense(value: float):
+	if character:
+		character.character_health.defense = value
 	
 func create_debuff_timer(duration: float, timer_name: String) -> Timer:
 	if debuff_timers.has(timer_name):
@@ -237,4 +249,14 @@ func apply_extra_gold_debuff(duration: float):
 	extra_gold_timer.timeout.connect(remove_color_tint.bind(GOLD_DEBUFF_TINT))
 	extra_gold_timer.start()
 
-	
+func apply_def_debuff(duration: float):
+	var base_def: float = base_defense
+	set_defense(clampf(base_def - defense_reduction, 0, base_def))
+	add_color_tint(DEF_DEBUFF_TINT)
+	var def_timer: Timer = create_debuff_timer(duration, "defense")
+	if character and character.character_health_bar:
+		character.character_health_bar.add_debuff(DEF_DEBUFF_ICON)
+		def_timer.timeout.connect(character.character_health_bar.remove_debuff.bind(DEF_DEBUFF_ICON))
+	def_timer.timeout.connect(set_defense.bind(base_def))
+	def_timer.timeout.connect(remove_color_tint.bind(DEF_DEBUFF_TINT))
+	def_timer.start()

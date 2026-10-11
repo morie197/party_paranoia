@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="ShopItem" format=3 uid="uid://d8851843uxem"]
+
+[ext_resource type="Script" uid="uid://den3a56qy88sg" path="res://shop/wares/shop_item.gd" id="1_4gwyx"]
+[ext_resource type="Texture2D" uid="uid://du6gibf04s8i" path="res://shop/wares/abilities/defbreak ball/defbreak_icon.tres" id="1_e346d"]
+[ext_resource type="PackedScene" uid="uid://bsg3u8n36xlu6" path="res://projectiles/mage/mage_defbreak.tscn" id="2_7qb0g"]
+
+[resource]
+script = ExtResource("1_4gwyx")
+item_name = "Defense Break"
+item_icon = ExtResource("1_e346d")
+item_description = "Reduces enemy defense by 10 for 4 seconds upon hit; does 10 damage; 3 second cooldown"
+item_slot = "ability"
+for_role = "mage"
+item_attack = 10.0
+item_attack_speed = 20.0
+item_cooldown = 3.0
+projectile_to_use = ExtResource("2_7qb0g")
+debuff_to_apply = "defense"
+debuff_length = 4.0
+metadata/_custom_type_script = "uid://den3a56qy88sg"

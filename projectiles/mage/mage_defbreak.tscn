@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://bsg3u8n36xlu6"]
+
+[ext_resource type="Script" uid="uid://63ehojstmujk" path="res://projectiles/mage/mage_projectile.gd" id="1_dqjdh"]
+
+[sub_resource type="Gradient" id="Gradient_q0cx6"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.3904762, 0.53015876, 0.60634923, 0.6603175, 1)
+colors = PackedColorArray(1, 0.45882353, 0.47058824, 1, 1, 0.45882353, 0.47058824, 0.58431375, 1, 0.45882353, 0.47058824, 0.4627451, 1, 0.45882353, 0.47058824, 0.25490198, 1, 0.45882353, 0.47058824, 0, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_q4323"]
+gradient = SubResource("Gradient_q0cx6")
+width = 16
+height = 16
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pofft"]
+radius = 8.0
+
+[node name="DefBreakProjectile" type="Node2D" unique_id=155385979]
+script = ExtResource("1_dqjdh")
+
+[node name="ProjectileVisuals" type="Node2D" parent="." unique_id=425731625]
+
+[node name="Sprite2D" type="Sprite2D" parent="ProjectileVisuals" unique_id=1401151769]
+texture = SubResource("GradientTexture2D_q4323")
+
+[node name="ProjectileHitBox" type="Area2D" parent="." unique_id=1980277344]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ProjectileHitBox" unique_id=1564093604]
+shape = SubResource("CircleShape2D_pofft")

@@ -128,6 +128,8 @@ func apply_debuff(duration: float, debuff_name: String):
 			character_stats.apply_slow_debuff(duration)
 		"gold":
 			character_stats.apply_extra_gold_debuff(duration)
+		"defense":
+			character_stats.apply_def_debuff(duration)
 		_:
 			print("Unknown debuff: " + debuff_name.to_lower())
 	

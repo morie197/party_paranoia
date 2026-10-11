@@ -184,7 +184,7 @@ func next_pathfinding():
 				special_attacking = true
 				attack_position = target_character.global_position
 			else:
-				#print("Can't special attack sadge")
+				print("Can't special attack sadge")
 				special_attacking = false
 	else:
 		attack_position = initial_position
