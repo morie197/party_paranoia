@@ -28,6 +28,7 @@ func _ready():
 	
 func _physics_process(delta):
 	if not shooter:
+		position += projectile_direction * projectile_attack_speed * delta * orb_speed
 		return
 		
 	if shooter.is_queued_for_deletion():
