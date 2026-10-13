@@ -8,12 +8,12 @@
 script = ExtResource("1_4gwyx")
 item_name = "Defense Break"
 item_icon = ExtResource("1_e346d")
-item_description = "Reduces enemy defense by 10 for 4 seconds upon hit; does 10 damage; 3 second cooldown"
+item_description = "Reduces enemy defense by 10 for 4 seconds upon hit; does 10 damage; 3.4 second cooldown"
 item_slot = "ability"
 for_role = "mage"
 item_attack = 10.0
 item_attack_speed = 20.0
-item_cooldown = 3.0
+item_cooldown = 3.4
 projectile_to_use = ExtResource("2_7qb0g")
 debuff_to_apply = "defense"
 debuff_length = 4.0

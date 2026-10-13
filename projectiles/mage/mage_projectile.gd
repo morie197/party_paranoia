@@ -58,7 +58,7 @@ func _physics_process(delta):
 	
 	global_rotation = lerp_angle(global_rotation, projectile_direction.rotated(PI / 2).angle(), clampf(delta/2.0, 0, 1))
 	
-	projectile_direction = projectile_direction.lerp(new_direction, clampf(delta/2.0, 0, 1))
+	projectile_direction = projectile_direction.lerp(new_direction, clampf(delta/0.5, 0, 1))
 	
 func check_closest_character():
 	if GameManager.current_battle_manager:
