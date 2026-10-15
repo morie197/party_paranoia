@@ -172,10 +172,13 @@ func next_pathfinding():
 					return
 				
 				if (not character_to_control.ally) and character_to_control.support:
-					target_position = character_to_control.global_position
-					
-				attack_position = target_character.global_position
-				is_attacking = true
+					if character_to_control.global_position.x < ally_x_limit:
+						target_position = character_to_control.global_position
+						is_attacking = true
+					else:
+						is_attacking = false
+				else:
+					is_attacking = true
 			else:
 				attack_position = target_position
 				is_attacking = false
