@@ -167,23 +167,21 @@ func next_pathfinding():
 					if character_to_control.character_block and character_to_control.character_block.currently_blocking and character_to_control.character_block.blocking:
 						character_to_control.character_block.unblock_all_pure()
 			
-			if character_to_control.character_attack.can_attack(target_character):
+			if character_to_control.character_attack.can_attack(target_character) and (character_to_control.global_position.x < ally_x_limit or character_to_control.was_traitor):
 				if do_traitoring and randi_range(0, 5) != 3:
 					return
 				
 				if (not character_to_control.ally) and character_to_control.support:
-					if character_to_control.global_position.x < ally_x_limit:
-						target_position = character_to_control.global_position
-						is_attacking = true
-					else:
-						is_attacking = false
-				else:
-					is_attacking = true
+					target_position = character_to_control.global_position
+					
+				attack_position = target_character.global_position
+				is_attacking = true
+		
 			else:
 				attack_position = target_position
 				is_attacking = false
 		if character_to_control.character_special_attack:
-			if character_to_control.character_special_attack.can_attack(target_character):
+			if character_to_control.character_special_attack.can_attack(target_character) and (character_to_control.global_position.x < ally_x_limit or character_to_control.was_traitor):
 				special_attacking = true
 				attack_position = target_character.global_position
 			else:

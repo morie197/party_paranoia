@@ -49,7 +49,7 @@ var equipment_menu: EquipmentSelectManager
 signal scene_changed
 
 func reset_data():
-	current_map_stage = 0
+	current_map_stage = 7
 	current_map_path = 0
 	
 	inventory = {}

@@ -80,13 +80,17 @@ func _hit(hit_body):
 		return
 		
 	var character = hit_body as Character
-	if character.ally != shooter.ally:
-		character.damage(projectile_attack_damage, shooter)
-		if debuff != "" and debuff_length > 0:
-			character.apply_debuff(debuff_length, debuff)
-		hits += 1
-		queue_free()
-	elif healing:
-		character.damage(-projectile_attack_damage, shooter)
-		hits += 1
+	
+	if character and shooter:
+		if character.ally != shooter.ally:
+			character.damage(projectile_attack_damage, shooter)
+			if debuff != "" and debuff_length > 0:
+				character.apply_debuff(debuff_length, debuff)
+			hits += 1
+			queue_free()
+		elif healing:
+			character.damage(-projectile_attack_damage, shooter)
+			hits += 1
+			queue_free()
+	else:
 		queue_free()

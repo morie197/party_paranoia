@@ -373,6 +373,7 @@ func turn_traitor_enemy():
 			frontline_allies.erase(traitor)
 		traitor.character_block.unblock_all()
 		traitor.is_traitor = false
+		traitor.was_traitor = true
 		traitor.character_block.get_child(0).queue_free()
 		enemiess.append(traitor)
 		traitor.ally = not traitor.ally

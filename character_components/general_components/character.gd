@@ -21,6 +21,7 @@ var support: bool = true
 var is_traitor: bool = false
 var character_role: String = ""
 var character_importantness: float = 1.0
+var was_traitor: bool = false
 
 var gold_given_on_death: float = 0
 
