@@ -49,14 +49,14 @@ var equipment_menu: EquipmentSelectManager
 signal scene_changed
 
 func reset_data():
-	current_map_stage = 7
+	current_map_stage = 1
 	current_map_path = 0
 	
 	inventory = {}
 	current_equipment = {}
 	available_equipment = {}
 	
-	gold = 100
+	gold = 5000
 	current_battle = null
 	current_node_manager = null
 	current_battle_manager = null
@@ -129,12 +129,19 @@ func add_equipment(item: ShopItem) -> bool:
 		if available_equipment[item.for_role].has(item):
 			print("Already has equipment!!")
 			return false
+		if available_equipment[item.for_role].size() == 1:
+			var equip_class = item.for_role
+			if not current_equipment.has(equip_class):
+				current_equipment[equip_class] = {}
+			current_equipment[equip_class][item.item_slot] = item
+			print(current_equipment[equip_class])
 	else:
 		available_equipment[item.for_role] = []
 		var equip_class = item.for_role
 		if not current_equipment.has(equip_class):
 			current_equipment[equip_class] = {}
 		current_equipment[equip_class][item.item_slot] = item
+		print(current_equipment[equip_class])
 		
 	available_equipment[item.for_role].append(item)
 	
