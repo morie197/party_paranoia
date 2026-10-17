@@ -163,8 +163,11 @@ func get_compatible_equipment_for_class_slot(role_class: String, item_slot: Stri
 	return compatible_equipment
 	
 func equip_equipment(equipment: ShopItem) -> bool:
-	var equip_slot = equipment.item_slot
-	var equip_class = equipment.for_role
+	if equipment == null:
+		return false
+	
+	var equip_slot = equipment.item_slot.to_lower()
+	var equip_class = equipment.for_role.to_lower()
 	
 	if not equipment_slots.has(equip_slot):
 		print("Invalid equipment slot: " + equip_slot)
@@ -179,9 +182,26 @@ func equip_equipment(equipment: ShopItem) -> bool:
 		
 	current_equipment[equip_class][equip_slot] = equipment
 		
+	print("Equipped")
+	print(current_equipment)
+		
 	return true
 
+func unequip_equipment(equipment_slot, equipment_class):
+	equipment_slot = equipment_slot.to_lower()
+	equipment_class = equipment_class.to_lower()
+	
+	if not current_equipment.has(equipment_class):
+		current_equipment[equipment_class] = {}
+		
+	current_equipment[equipment_class][equipment_slot] = null
+
+	print(current_equipment)
+
 func is_current_equipment(equipment: ShopItem) -> bool:
+	if equipment == null:
+		return false
+	
 	var equip_slot = equipment.item_slot
 	var equip_class = equipment.for_role
 	
@@ -189,6 +209,13 @@ func is_current_equipment(equipment: ShopItem) -> bool:
 		if current_equipment[equip_class].has(equip_slot):
 			return current_equipment[equip_class][equip_slot] == equipment
 	
+	return false
+	
+func is_currently_equiped_for_class_and_slot(for_class: String, for_slot: String, item: ShopItem = null):
+	if current_equipment.has(for_class):
+			if current_equipment[for_class].has(for_slot):
+				return current_equipment[for_class][for_slot] == item
+				
 	return false
 
 func get_current_equipment_in_slot(role_class: String, item_slot: String) -> ShopItem:

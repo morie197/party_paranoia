@@ -26,7 +26,7 @@ func _process(_delta):
 		if Input.is_action_just_pressed("left_click"):
 			selected.emit(item_to_display)
 
-func init_slot(item: ShopItem, is_current: bool):
+func init_slot(item: ShopItem, is_current: bool, slot: String = ""):
 	is_current_equipment = is_current
 	item_to_display = item
 	
@@ -34,6 +34,11 @@ func init_slot(item: ShopItem, is_current: bool):
 		add_theme_stylebox_override("panel", EQUIPMENT_SELECT_SLOT_CURRENT)
 	else:
 		add_theme_stylebox_override("panel", EQUIPMENT_SELECT_SLOT_INACTIVE)
+		
+	if not item:
+		if slot.to_lower() == "equipment":
+			ability_icon.texture = load("res://ui/icons/default_equipment_equipment_icon.tres")
+		return
 		
 	ability_icon.texture = item.item_icon
 	
