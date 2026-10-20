@@ -13,6 +13,8 @@ var item_to_display: ShopItem
 
 signal selected(ShopItem)
 
+var no_equipment_color: Color = Color(0.416, 0.416, 0.416)
+
 @onready var ability_icon = %AbilityIcon
 
 # Called when the node enters the scene tree for the first time.
@@ -36,8 +38,12 @@ func init_slot(item: ShopItem, is_current: bool, slot: String = ""):
 		add_theme_stylebox_override("panel", EQUIPMENT_SELECT_SLOT_INACTIVE)
 		
 	if not item:
+		ability_icon.modulate = no_equipment_color
 		if slot.to_lower() == "equipment":
+			ability_icon.hover_over_text = "Unequip equipment"
 			ability_icon.texture = load("res://ui/icons/default_equipment_equipment_icon.tres")
+		else:
+			ability_icon.hover_over_text = "Unequip ability"
 		return
 		
 	ability_icon.texture = item.item_icon
